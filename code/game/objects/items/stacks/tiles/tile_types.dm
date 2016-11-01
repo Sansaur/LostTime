@@ -51,6 +51,50 @@
 	turf_type = /turf/simulated/floor/wood
 	burn_state = FLAMMABLE
 
+/obj/item/stack/tile/wood/royal_wood // - Sansaur
+	name = "artesanal wood floor tiles"
+	gender = PLURAL
+	singular_name = "artesanal wood floor tile"
+	desc = "an easy to fit wood floor tile, this one looks royal-ish"
+	icon_state = "tile-wood2"
+	turf_type = /turf/simulated/floor/wood/royal_wood
+	burn_state = FLAMMABLE
+
+/obj/item/stack/tile/wood/worker_wood // - Sansaur
+	name = "fixed wood floor tiles"
+	gender = PLURAL
+	singular_name = "fixed wood floor tile"
+	desc = "an easy to fit wood floor tile, this one looks strong"
+	icon_state = "tile-wood3"
+	turf_type = /turf/simulated/floor/wood/worker_wood
+	burn_state = FLAMMABLE
+
+/*
+ * Stones
+ */
+/obj/item/stack/tile/stone
+	name = "wood floor tiles"
+	gender = PLURAL
+	singular_name = "wood floor tile"
+	desc = "a plain stone tile"
+	icon_state = "tile-stone"
+	turf_type = /turf/simulated/floor/stone
+
+/obj/item/stack/tile/stone/tiled_multi // - Sansaur
+	name = "artesanal wood floor tiles"
+	gender = PLURAL
+	singular_name = "artesanal wood floor tile"
+	desc = "an easy to fit multi-tiled stone plaque"
+	icon_state = "tile-stone2"
+	turf_type = /turf/simulated/floor/stone/tiled_multi
+
+/obj/item/stack/tile/stone/tiled // - Sansaur
+	name = "tiled wood floor tiles"
+	gender = PLURAL
+	singular_name = "fixed wood floor tile"
+	desc = "an easy to fit stone floor tile"
+	icon_state = "tile-stone3"
+	turf_type = /turf/simulated/floor/stone/tiled
 /*
  * Carpets
  */

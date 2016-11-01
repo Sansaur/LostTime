@@ -150,6 +150,7 @@
 	if(href_list["late_join"])
 		if(!ticker || ticker.current_state != GAME_STATE_PLAYING)
 			to_chat(usr, "\red The round is either not ready, or has already finished...")
+			world << "SOMETHING WENT WRONG WITH THE TICKER"
 			return
 
 		if(client.prefs.species in whitelisted_species)
@@ -163,7 +164,7 @@
 	if(href_list["manifest"])
 		ViewManifest()
 
-	if(href_list["SelectedJob"])
+	if(href_list["SelectedJob"]) //This is what happens when you select a job in the late_join list
 
 		if(!enter_allowed)
 			to_chat(usr, "\blue There is an administrative lock on entering the game!")
@@ -404,25 +405,22 @@
 
 	var/dat = "<html><body><center>"
 	dat += "Round Duration: [round(hours)]h [round(mins)]m<br>"
-
+	/*
 	if(shuttle_master.emergency.mode >= SHUTTLE_ESCAPE)
 		dat += "<font color='red'><b>The station has been evacuated.</b></font><br>"
 	else if(shuttle_master.emergency.mode >= SHUTTLE_CALL)
 		dat += "<font color='red'>The station is currently undergoing evacuation procedures.</font><br>"
-
+	*/
 	dat += "Choose from the following open positions:<br><br>"
 
 	var/list/activePlayers = list()
 	var/list/categorizedJobs = list(
-		"Command" = list(jobs = list(), titles = command_positions, color = "#aac1ee"),
-		"Engineering" = list(jobs = list(), titles = engineering_positions, color = "#ffd699"),
-		"Security" = list(jobs = list(), titles = security_positions, color = "#ff9999"),
-		"Miscellaneous" = list(jobs = list(), titles = list(), color = "#ffffff", colBreak = 1),
-		"Synthetic" = list(jobs = list(), titles = nonhuman_positions, color = "#ccffcc"),
-		"Support / Service" = list(jobs = list(), titles = service_positions, color = "#cccccc"),
-		"Medical" = list(jobs = list(), titles = medical_positions, color = "#99ffe6", colBreak = 1),
-		"Science" = list(jobs = list(), titles = science_positions, color = "#e6b3e6"),
-		"Supply" = list(jobs = list(), titles = supply_positions, color = "#ead4ae"),
+		"Omegacorp" = list(jobs = list(), titles = command_positions, color = "#aac1ee"),
+		"Villagers" = list(jobs = list(), titles = engineering_positions, color = "#ffd699"),
+		"Kingdom Guard" = list(jobs = list(), titles = security_positions, color = "#ff9999"),
+		"Kingdom Religion" = list(jobs = list(), titles = medical_positions, color = "#99ffe6", colBreak = 1),
+		"Kingdom Wizards" = list(jobs = list(), titles = science_positions, color = "#e6b3e6"),
+		"Kingdom Nobility" = list(jobs = list(), titles = supply_positions, color = "#ead4ae"),
 		)
 	for(var/datum/job/job in job_master.occupations)
 		if(job && IsJobAvailable(job.title))
@@ -435,8 +433,8 @@
 				var/list/jobs = categorizedJobs[jobcat]["jobs"]
 				if(job.title in categorizedJobs[jobcat]["titles"])
 					categorized = 1
-					if(jobcat == "Command") // Put captain at top of command jobs
-						if(job.title == "Captain")
+					if(jobcat == "Kingdom Nobility") // Put captain at top of command jobs
+						if(job.title == "King")
 							jobs.Insert(1, job)
 						else
 							jobs += job
@@ -447,7 +445,6 @@
 							jobs += job
 			if(!categorized)
 				categorizedJobs["Miscellaneous"]["jobs"] += job
-
 	dat += "<table><tr><td valign='top'>"
 	for(var/jobcat in categorizedJobs)
 		if(categorizedJobs[jobcat]["colBreak"])
@@ -460,10 +457,9 @@
 		for(var/datum/job/job in categorizedJobs[jobcat]["jobs"])
 			dat += "<a href='byond://?src=[UID()];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [activePlayers[job]])</a><br>"
 		dat += "</fieldset><br>"
-
 	dat += "</td></tr></table></center>"
 	// Removing the old window method but leaving it here for reference
-//		src << browse(dat, "window=latechoices;size=300x640;can_close=1")
+	src << browse(dat, "window=latechoices;size=300x640;can_close=1") //Quitar esto en cuanto funcione.
 	// Added the new browser window method
 	var/datum/browser/popup = new(src, "latechoices", "Choose Profession", 900, 600)
 	popup.add_stylesheet("playeroptions", 'html/browser/playeroptions.css')

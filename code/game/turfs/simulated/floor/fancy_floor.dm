@@ -20,11 +20,54 @@
 		playsound(src, 'sound/items/Screwdriver.ogg', 80, 1)
 		return
 
+/turf/simulated/floor/wood/royal_wood // - Sansaur
+	icon_state = "wood2"
+	floor_tile = /obj/item/stack/tile/wood/royal_wood
+	broken_states = list("wood2-broken", "wood2-broken2")
+
+/turf/simulated/floor/wood/worker_wood // - Sansaur
+	icon_state = "wood3"
+	floor_tile = /obj/item/stack/tile/wood/worker_wood
+	broken_states = list("wood3-broken", "wood3-broken2")
+
+
+// STONE FLOORS. - Sansaur
+
+/turf/simulated/floor/stone
+	icon_state = "stone"
+	floor_tile = /obj/item/stack/tile/stone
+	broken_states = list("stone-broken")
+
+/turf/simulated/floor/stone/tiled_multi // - Sansaur
+	icon_state = "stone2"
+	floor_tile = /obj/item/stack/tile/stone/tiled_multi
+	broken_states = list("stone2-broken", "stone2-broken2")
+
+/turf/simulated/floor/stone/tiled // - Sansaur
+	icon_state = "stone3"
+	floor_tile = /obj/item/stack/tile/stone/tiled
+	broken_states = list("stone3-broken", "stone3-broken2")
+/*
+/turf/simulated/floor/wood/attackby(obj/item/C, mob/user, params)
+	if(..())
+		return
+	if(istype(C, /obj/item/weapon/screwdriver))
+		if(broken || burnt)
+			return
+		to_chat(user, "<span class='danger'>You unscrew the planks.</span>")
+		new floor_tile(src)
+		make_plating()
+		playsound(src, 'sound/items/Screwdriver.ogg', 80, 1)
+		return
+	*/
+
+	// STONE FLOORS.
 /turf/simulated/floor/grass
 	name = "grass patch"
 	icon_state = "grass1"
 	floor_tile = /obj/item/stack/tile/grass
 	broken_states = list("sand")
+
 
 /turf/simulated/floor/grass/New()
 	..()

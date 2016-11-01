@@ -1,4 +1,4 @@
-/datum/species/plasmaman // /vg/
+/*/datum/species/plasmaman // /vg/
 	name = "Plasmaman"
 	name_plural = "Plasmamen"
 	icobase = 'icons/mob/human_races/r_plasmaman_sb.dmi'
@@ -237,3 +237,4 @@
 		H.IgniteMob()
 
 	return 1
+*/

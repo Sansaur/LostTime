@@ -19,14 +19,14 @@
 
 	reagent_tag = PROCESS_ORG
 
-/datum/species/unathi
-	name = "Unathi"
-	name_plural = "Unathi"
+/datum/species/lizardman
+	name = "Lizardman"
+	name_plural = "Lizardmen"
 	icobase = 'icons/mob/human_races/r_lizard.dmi'
 	deform = 'icons/mob/human_races/r_def_lizard.dmi'
 	path = /mob/living/carbon/human/unathi
 	default_language = "Galactic Common"
-	language = "Sinta'unathi"
+	language = "Sinta'ssjarg"
 	tail = "sogtail"
 	unarmed_type = /datum/unarmed_attack/claws
 	primitive_form = "Stok"
@@ -81,9 +81,9 @@
 /datum/species/unathi/handle_death(var/mob/living/carbon/human/H)
 	H.stop_tail_wagging(1)
 
-/datum/species/tajaran
-	name = "Tajaran"
-	name_plural = "Tajaran"
+/datum/species/phelinor
+	name = "Phelinor"
+	name_plural = "Phelinor"
 	icobase = 'icons/mob/human_races/r_tajaran.dmi'
 	deform = 'icons/mob/human_races/r_def_tajaran.dmi'
 	path = /mob/living/carbon/human/tajaran
@@ -141,9 +141,9 @@
 /datum/species/tajaran/handle_death(var/mob/living/carbon/human/H)
 	H.stop_tail_wagging(1)
 
-/datum/species/vulpkanin
-	name = "Vulpkanin"
-	name_plural = "Vulpkanin"
+/datum/species/wolfman
+	name = "Wolfman"
+	name_plural = "Wolfmen"
 	icobase = 'icons/mob/human_races/r_vulpkanin.dmi'
 	deform = 'icons/mob/human_races/r_vulpkanin.dmi'
 	path = /mob/living/carbon/human/vulpkanin
@@ -191,6 +191,7 @@
 /datum/species/vulpkanin/handle_death(var/mob/living/carbon/human/H)
 	H.stop_tail_wagging(1)
 
+/*
 /datum/species/skrell
 	name = "Skrell"
 	name_plural = "Skrell"
@@ -1008,3 +1009,5 @@
 
 			if(heat_level_3_breathe to INFINITY)
 				H.apply_damage(hot_env_multiplier*HEAT_GAS_DAMAGE_LEVEL_3, BURN, "head", used_weapon = "Excessive Heat")
+
+*/

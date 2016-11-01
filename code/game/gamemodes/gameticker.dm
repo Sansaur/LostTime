@@ -378,7 +378,7 @@ var/round_start_time = 0
 
 	//emergency_shuttle.process() DONE THROUGH PROCESS SCHEDULER
 
-	var/game_finished = shuttle_master.emergency.mode >= SHUTTLE_ENDGAME || mode.station_was_nuked
+	/*var/game_finished = shuttle_master.emergency.mode >= SHUTTLE_ENDGAME || mode.station_was_nuked
 	if(config.continuous_rounds)
 		mode.check_finished() // some modes contain var-changing code in here, so call even if we don't uses result
 	else
@@ -399,7 +399,7 @@ var/round_start_time = 0
 				world.Reboot("Round ended.", "end_proper", "proper completion")
 
 	return 1
-
+	*/
 /datum/controller/gameticker/proc/getfactionbyname(var/name)
 	for(var/datum/faction/F in factions)
 		if(F.name == name)

@@ -1,12 +1,14 @@
-/*/datum/job/cmo
-	title = "Chief Medical Officer"
+//Religious Folk heal and treat people.
+
+/datum/job/bishop
+	title = "Bishop"
 	flag = CMO
 	department_flag = MEDSCI
 	total_positions = 1
 	spawn_positions = 1
-	supervisors = "the captain"
-	selection_color = "#ffddf0"
-	idtype = /obj/item/weapon/card/id/cmo
+	supervisors = "Your Majesty and God"
+	selection_color = "#BDDFFF"
+	//idtype = /obj/item/weapon/card/id/cmo
 	req_admin_notify = 1
 	access = list(access_medical, access_morgue, access_genetics, access_heads,
 			access_chemistry, access_virology, access_cmo, access_surgery, access_RC_announce,
@@ -31,22 +33,25 @@
 		H.equip_or_collect(new /obj/item/device/flashlight/pen(H), slot_s_store)
 		H.equip_or_collect(new /obj/item/weapon/storage/box/survival(H), slot_in_backpack)
 		H.equip_or_collect(new /obj/item/weapon/melee/classic_baton/telescopic(H), slot_in_backpack)
+		H.underwear = "Nude"
+		H.undershirt = "Nude"
+		H.socks = "Nude"
 		return 1
 
 
 
-/datum/job/doctor
-	title = "Medical Doctor"
+/datum/job/priest
+	title = "Priest"
 	flag = DOCTOR
 	department_flag = MEDSCI
 	total_positions = 5
 	spawn_positions = 3
-	supervisors = "the chief medical officer"
-	selection_color = "#ffeef0"
-	idtype = /obj/item/weapon/card/id/medical
+	supervisors = "The Bishop and God"
+	selection_color = "#8BBCEC"
+	//idtype = /obj/item/weapon/card/id/medical
 	access = list(access_medical, access_morgue, access_surgery, access_chemistry, access_virology, access_genetics, access_mineral_storeroom)
 	minimal_access = list(access_medical, access_morgue, access_surgery, access_maint_tunnels)
-	alt_titles = list("Surgeon","Nurse","Coroner")
+	alt_titles = list("Nun","Counselor","Inquisitor")
 	minimal_player_age = 3
 
 	equip(var/mob/living/carbon/human/H)
@@ -90,9 +95,12 @@
 		H.equip_or_collect(new /obj/item/weapon/storage/firstaid/adv(H), slot_l_hand)
 		H.equip_or_collect(new /obj/item/device/flashlight/pen(H), slot_s_store)
 		H.equip_or_collect(new /obj/item/weapon/storage/box/survival(H), slot_in_backpack)
+		H.underwear = "Nude"
+		H.undershirt = "Nude"
+		H.socks = "Nude"
 		return 1
 
-
+/*
 
 //Chemist is a medical job damnit	//YEAH FUCK YOU SCIENCE	-Pete	//Guys, behave -Erro
 /datum/job/chemist
@@ -250,4 +258,5 @@
 		H.equip_or_collect(new /obj/item/weapon/storage/box/engineer(H), slot_in_backpack)
 		H.equip_or_collect(new /obj/item/device/healthanalyzer(H), slot_in_backpack)
 		return 1
+
 */

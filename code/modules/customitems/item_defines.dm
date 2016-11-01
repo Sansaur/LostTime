@@ -10,6 +10,13 @@
 ////////// Usable Items //////////
 //////////////////////////////////
 
+
+//QUITAMOS TODO PORQUE AQUI NO VA A JUGAR NINGUNA DE ESTAS PERSONAS PERO EN UN FUTURO QUIZÁS SEAN BUENA
+//REFERENCIA - SANSAUR.
+//Removing everything but not deleting/deactivating the file as it could help as reference. - Sansaur.
+
+
+/*
 /obj/item/device/fluff
 	var/used = 0
 
@@ -43,9 +50,9 @@
 
 	var/mob/living/carbon/human/target = M
 
-	if(istype(target.species, /datum/species/machine))
-		to_chat(user, "<span class= 'notice'>[target] has no skin, how do you expect to tattoo them?</span>")
-		return
+	//if(istype(target.species, /datum/species/machine))
+	//	to_chat(user, "<span class= 'notice'>[target] has no skin, how do you expect to tattoo them?</span>")
+	//	return
 
 	if(target.m_styles["body"] != "None")
 		to_chat(user, "<span class= 'notice'>[target] already has body markings, any more would look silly!</span>")
@@ -628,3 +635,4 @@
 	suit_adjusted = 1
 	species_fit = null
 	sprite_sheets = null
+*/

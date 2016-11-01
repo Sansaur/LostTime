@@ -107,6 +107,11 @@ var/list/ghostteleportlocs = list()
 	requires_power = 0
 	lighting_use_dynamic = 0
 
+/area/admin/latespawn
+	name = "\improper LateSpawn"
+	icon_state = "start"
+	requires_power = 0
+	lighting_use_dynamic = 0
 
 /area/adminconstruction
 	name = "\improper Admin Testing Area"
@@ -140,6 +145,184 @@ var/list/ghostteleportlocs = list()
 
 /area/space/partyalert()
 	return
+
+//Mod Areas - Sansaur
+
+/area/omegacorp
+	name = "\improper Omegacorp Base"
+	icon_state = "omegacorp"
+	requires_power = 0
+	lighting_use_dynamic = 0
+
+/area/omegacorp/phonebooth
+	name = "\improper The Phonebooth"
+	icon_state = "start"
+
+/area/medieval
+	name = "\improper Medieval Generic"
+	icon_state = "medieval"
+	requires_power = 0
+	lighting_use_dynamic = 0
+	var/DayOrNight = 0 //0 = DAY | 1 = NIGHT
+
+	//This proc is very important, yet badly coded, it controls the day to night transition and that shit.
+	//It will be admin only, it can be accessed via "Secrets" -Sansaur.
+	//It's important that it gets warned and used correctly.
+/area/medieval/proc/ChangeDayTime()
+	DayOrNight = !DayOrNight
+	if(DayOrNight) //If it is night
+		lighting_use_dynamic = 1
+		for(var/turf/T in src)
+			T.lighting_build_overlays()
+			T.reconsider_lights()
+	else
+		lighting_use_dynamic = 0
+		for(var/turf/T in src)
+			T.lighting_clear_overlays()
+			T.luminosity = 1
+			T.reconsider_lights()
+
+	// UNDERGROUND AREAS, FOR BASEMENTS OR THE MINE
+/area/medieval/underground
+	name = "\improper Medieval Generic"
+	icon_state = "medieval"
+	lighting_use_dynamic = 1
+
+/area/medieval/basement/ChangeDayTime()
+	return
+	// UNDERGROUND AREAS, FOR BASEMENTS OR THE MINE
+
+	// C A S T L E     A R E A S
+
+/area/medieval/castle
+	name = "\improper Castle Generic"
+	icon_state = "castle"
+/area/medieval/castle/throne_room
+	name = "\improper Castle ThroneRoom"
+	icon_state = "throne"
+/area/medieval/castle/dormitories
+	name = "\improper Castle Dormitories"
+	icon_state = "royaldormitories"
+/area/medieval/castle/great_dining
+	name = "\improper Castle Great Dining"
+	icon_state = "castledining"
+/area/medieval/castle/kitchen
+	name = "\improper Castle Kitchen"
+	icon_state = "castlekitchen"
+/area/medieval/castle/reunion
+	name = "\improper Castle Meeting Room"
+	icon_state = "castlemeeting"
+/area/medieval/castle/bathroom
+	name = "\improper Castle Bathroom"
+	icon_state = "castlebath"
+/area/medieval/castle/garden
+	name = "\improper Castle Garden"
+	icon_state = "castlegarden"
+
+	// C A S T L E     A R E A S
+	// -----------------------------------------------
+	// V I L L A G E    A R E A S
+
+/area/medieval/village
+	name = "\improper Village Generic"
+	icon_state = "village"
+/area/medieval/village/center
+	name = "\improper Village Center"
+	icon_state = "villagecenter"
+/area/medieval/village/inn
+	name = "\improper Village Dormitories"
+	icon_state = "villageinn"
+/area/medieval/village/town_hall
+	name = "\improper Village Great Dining"
+	icon_state = "villageth"
+/area/medieval/village/general_shop
+	name = "\improper Village Kitchen"
+	icon_state = "villagekitchen"
+/area/medieval/village/farm
+	name = "\improper Village Farm"
+	icon_state = "villagefarm"
+
+	// V I L L A G E    A R E A S
+		// -----------------------------------------------
+	// C A T H E D R A L   A R E A S
+
+/area/medieval/cathedral
+	name = "\improper Cathedral Generic"
+	icon_state = "cathedral"
+/area/medieval/cathedral/bells
+	name = "\improper Cathedral Bell Room"
+	icon_state = "cathedralbell"
+/area/medieval/cathedral/sanitatum
+	name = "\improper Cathedral Dormitories"
+	icon_state = "cathedralsanitatum"
+/area/medieval/cathedral/misa
+	name = "\improper Cathedral Praying Area"
+	icon_state = "cathedralmisa"
+/area/medieval/cathedral/confesionary
+	name = "\improper Cathedral Confession Booths"
+	icon_state = "cathedralconfesionary"
+/area/medieval/cathedral/storage
+	name = "\improper Cathedral Storage"
+	icon_state = "cathedralstorage"
+/area/medieval/cathedral/graveyard
+	name = "\improper Cathedral Graveyard"
+	icon_state = "cathedralgraveyard"
+/area/medieval/cathedral/meeting
+	name = "\improper Cathedral Meeting Room"
+	icon_state = "cathedralmeeting"
+	// C A T H E D R A L   A R E A S
+
+// -----------------------------------------------
+	// B A R R A C K S   A R E A S
+
+/area/medieval/barracks
+	name = "\improper Barracks Generic"
+	icon_state = "barracks"
+/area/medieval/barracks/field
+	name = "\improper Barracks Training field"
+	icon_state = "barracksfield"
+/area/medieval/barracks/armory
+	name = "\improper Barracks Armory"
+	icon_state = "barracksarmory"
+/area/medieval/barracks/sleeping
+	name = "\improper Barracks Resting Area"
+	icon_state = "barrackssleeping"
+/area/medieval/barracks/meeting
+	name = "\improper Barracks Meeting Room"
+	icon_state = "barracksmeeting"
+/area/medieval/barracks/captainroom
+	name = "\improper Barracks Captain Room"
+	icon_state = "barrackscaptainroom"
+
+	// B A R R A C K S   A R E A S
+
+// -----------------------------------------------
+	// A C A D E M Y   A R E A S
+
+/area/medieval/academy
+	name = "\improper Academy Generic"
+	icon_state = "academy"
+/area/medieval/academy/library
+	name = "\improper Academy Library"
+	icon_state = "academylibrary"
+/area/medieval/academy/sanctuary
+	name = "\improper Academy Sanctuary"
+	icon_state = "academysanctuary"
+/area/medieval/academy/classes
+	name = "\improper Academy Learning Area"
+	icon_state = "academyclasses"
+/area/medieval/academy/testing
+	name = "\improper Academy Test Room"
+	icon_state = "academytesting"
+/area/medieval/academy/storage
+	name = "\improper Academy Storage Area"
+	icon_state = "academystorage"
+/area/medieval/academy/archmage
+	name = "\improper Academy Archmage Room"
+	icon_state = "academyarchmage"
+
+	// A C A D E M Y   A R E A S
+//Mod Areas - Sansaur
 
 //These are shuttle areas, they must contain two areas in a subgroup if you want to move a shuttle from one
 //place to another. Look at escape shuttle for example.

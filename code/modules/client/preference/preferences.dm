@@ -398,7 +398,7 @@ var/global/list/special_role_times = list( //minimum age (in days) for accounts 
 			if(!ind)	dat += "\[...\]<br>"
 			else		dat += "<br>"
 
-			dat += "<h2>Clothing</h2>"
+			dat += "<h2>Clothing for Omegacorp</h2>"
 			dat += "<b>Underwear:</b> <a href ='?_src_=prefs;preference=underwear;task=input'>[underwear]</a><BR>"
 			dat += "<b>Undershirt:</b> <a href ='?_src_=prefs;preference=undershirt;task=input'>[undershirt]</a><BR>"
 			dat += "<b>Socks:</b> <a href ='?_src_=prefs;preference=socks;task=input'>[socks]</a><BR>"
@@ -586,12 +586,12 @@ var/global/list/special_role_times = list( //minimum age (in days) for accounts 
 			var/available_in_days = job.available_in_days(user.client)
 			HTML += "<del>[rank]</del></td><td> \[IN [(available_in_days)] DAYS]</td></tr>"
 			continue
-		if((job_support_low & CIVILIAN) && (rank != "Civilian"))
+		if((job_support_low & CIVILIAN) && (rank != "Civilian") )
 			HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
 			continue
 		if((rank in command_positions) || (rank == "AI"))//Bold head jobs
 			HTML += "<b><span class='dark'>[rank]</span></b>"
-		else
+		else if(rank != "NOPE") //Added  && (rank != "NOPE") - Sansaur
 			HTML += "<span class='dark'>[rank]</span>"
 
 		HTML += "</td><td width='40%'>"
@@ -622,8 +622,8 @@ var/global/list/special_role_times = list( //minimum age (in days) for accounts 
 			prefUpperLevel = 3
 			prefLowerLevel = 1
 
-
-		HTML += "<a class='white' href='?_src_=prefs;preference=job;task=setJobLevel;level=[prefUpperLevel];text=[rank]' oncontextmenu='javascript:return setJobPrefRedirect([prefLowerLevel], \"[rank]\");'>"
+		if(rank != "NOPE") //Added  && (rank != "NOPE") - Sansaur
+			HTML += "<a class='white' href='?_src_=prefs;preference=job;task=setJobLevel;level=[prefUpperLevel];text=[rank]' oncontextmenu='javascript:return setJobPrefRedirect([prefLowerLevel], \"[rank]\");'>"
 
 //			HTML += "<a href='?_src_=prefs;preference=job;task=input;text=[rank]'>"
 
@@ -646,7 +646,8 @@ var/global/list/special_role_times = list( //minimum age (in days) for accounts 
 		else
 			HTML += " <font color=red>\[NEVER]</font>"
 			*/
-		HTML += "<font color=[prefLevelColor]>[prefLevelLabel]</font></a>"
+		if(rank != "NOPE") //Added  && (rank != "NOPE") - Sansaur
+			HTML += "<font color=[prefLevelColor]>[prefLevelLabel]</font></a>"
 
 		if(job.alt_titles)
 			HTML += "<br><b><a class='white' href=\"byond://?src=[user.UID()];preference=job;task=alt_title;job=\ref[job]\">\[[GetPlayerAltTitle(job)]\]</a></b></td></tr>"

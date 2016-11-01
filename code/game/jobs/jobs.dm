@@ -58,103 +58,66 @@ var/const/PILOT				=(1<<7)
 var/list/assistant_occupations = list(
 )
 
+//THIS MUST BE CHANGED IN A LATER TIME - SANSAUR
 
 var/list/command_positions = list(
-	"Captain",
-	"Head of Personnel",
-	"Head of Security",
-	"Chief Engineer",
-	"Research Director",
-	"Chief Medical Officer"
+	"Operation Leader",
+	"Operation Support",
+	"Operation Medic",
+	"Operation Enforcer"
 )
-
-
 var/list/engineering_positions = list(
-	"Chief Engineer",
-	"Station Engineer",
-	"Life Support Specialist",
+	"Mayor",
+	"Villager",
+	"Blacksmith",
+	"Shopkeeper",
 	"Mechanic"
 )
 
-
+var/list/security_positions = list(
+	"Captain Guard",
+	"Footman",
+	"Monster Hunter"
+)
+var/list/supply_positions = list(
+	"King",
+	"Heir",
+	"Noble"
+)
 var/list/medical_positions = list(
-	"Chief Medical Officer",
-	"Medical Doctor",
-	"Geneticist",
-	"Psychiatrist",
-	"Chemist",
-	"Virologist",
-	"Paramedic"
+	"Bishop",
+	"Priest"
 )
-
-
 var/list/science_positions = list(
-	"Research Director",
-	"Scientist",
-	"Geneticist",	//Part of both medical and science
-	"Roboticist",
+	"Arch Mage",
+	"Mage"
 )
+
+//THIS MUST BE CHANGED IN A LATER TIME - SANSAUR
+
 
 //BS12 EDIT
-var/list/support_positions = list(
-	"Head of Personnel",
-	"Bartender",
-	"Botanist",
-	"Chef",
-	"Janitor",
-	"Librarian",
-	"Quartermaster",
-	"Cargo Technician",
-	"Shaft Miner",
-	"Internal Affairs Agent",
-	"Chaplain",
-	"Clown",
-	"Mime",
-	"Barber",
-	"Magistrate",
-	"Nanotrasen Representative",
-	"Blueshield"
-)
-
-var/list/supply_positions = list(
-	"Head of Personnel",
-	"Quartermaster",
-	"Cargo Technician",
-	"Shaft Miner"
-)
-
+var/list/support_positions = list()
+var/list/civilian_positions = list()
 var/list/service_positions = support_positions - supply_positions + list("Head of Personnel")
 
 
-var/list/security_positions = list(
-	"Head of Security",
-	"Warden",
-	"Detective",
-	"Security Officer",
-	"Brig Physician",
-	"Security Pod Pilot"
-)
-
-
-var/list/civilian_positions = list(
-	"Civilian"
-)
 
 var/list/nonhuman_positions = list(
-	"AI",
-	"Cyborg",
-	"Drone",
-	"pAI"
+	//"AI",
+	//"Cyborg",
+	//"Drone",
+	//"pAI"
 )
 
 var/list/whitelisted_positions = list(
-	"Blueshield",
-	"Nanotrasen Representative",
-	"Barber",
-	"Mechanic",
-	"Brig Physician",
-	"Magistrate",
-	"Security Pod Pilot",
+	//"Blueshield",
+	//"Nanotrasen Representative",
+	//"Barber",
+	//"Mechanic",
+	//"Brig Physician",
+	//"Magistrate",
+	//"Security Pod Pilot",
 )
 
 

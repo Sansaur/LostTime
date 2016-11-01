@@ -1,4 +1,4 @@
-/datum/species/wryn
+/*/datum/species/wryn
 	name = "Wryn"
 	name_plural = "Wryn"
 	icobase = 'icons/mob/human_races/r_wryn.dmi'
@@ -123,4 +123,4 @@
 	H.visible_message("\red[H]'s body explodes, leaving behind a pile of microscopic crystals!")
 	explosion(T, 0, 0, 2, 2) // Create a small explosion burst upon death
 //	new /obj/item/weapon/shard/supermatter( T )
-	qdel(H)
+	qdel(H)*/

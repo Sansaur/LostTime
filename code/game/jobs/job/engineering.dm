@@ -1,4 +1,4 @@
-/datum/job/chief_engineer
+/*/datum/job/chief_engineer
 	title = "Chief Engineer"
 	flag = CHIEF
 	department_flag = ENGSEC
@@ -126,4 +126,4 @@
 		H.equip_or_collect(new /obj/item/device/pda/engineering(H), slot_wear_pda)
 		H.equip_or_collect(new /obj/item/weapon/storage/box/engineer(H), slot_in_backpack)
 		H.equip_or_collect(new /obj/item/weapon/pod_paint_bucket(H), slot_in_backpack)
-		return 1
+		return 1 */

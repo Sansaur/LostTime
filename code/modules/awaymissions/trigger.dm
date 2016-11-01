@@ -42,3 +42,24 @@
 	uses--
 	if(uses == 0)
 		qdel(src)
+
+/obj/effect/step_trigger/teleport_fancy/tolevels
+	icon = 'icons/effects/effects.dmi'
+	icon_state = "bhole2"
+	var/locationz
+	uses = 0	//0 for infinite uses
+	invisibility = 0 // This one is visible
+
+/obj/effect/step_trigger/teleport_fancy/tolevels/Trigger(mob/M as mob)
+	var/dest = locate(locationx, locationy, locationz)
+	M.Move(dest)
+
+/obj/effect/step_trigger/teleport_fancy/tolevels/to_medieval
+	locationx = 128
+	locationy = 131
+	locationz = 1
+
+/obj/effect/step_trigger/teleport_fancy/tolevels/to_omegacorp
+	locationx = 201
+	locationy = 131
+	locationz = 2

@@ -1,4 +1,4 @@
-
+/*
 // General-purpose CC official. Can hear out grievances, investigate cases, issue demotions, etc.
 /datum/job/ntnavyofficer
 	title = "Nanotrasen Navy Officer"
@@ -78,3 +78,4 @@
 
 /datum/job/ntspecops/get_access()
 	return get_centcom_access(title)
+*/
