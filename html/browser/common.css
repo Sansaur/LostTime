@@ -1,31 +1,35 @@
-body 
+/* NO FUNCIONA PONER BACKGROUND-IMAGES */
+
+body /* Color del cuerpo estereotípico */
 { 
 	padding: 0;
 	margin: 0;
-	background-color: #272727;
+	background-color: #633002;
 	font-size: 12px;
 	color: #ffffff;
 	line-height: 170%;
 }
 
-hr
+hr /*Esto es una línea, a saberse que hace */
 {
 	background-color: #40628a;
 	height: 1px;
 }
 
-a, a:link, a:visited, a:active, .linkOn, .linkOff
+a, a:link, a:visited, a:active, .linkOn, .linkOff /* Link Con Background */
 { 
 	color: #ffffff; 
 	text-decoration: none;
-	background: #40628a;
+	/*background: #40628a;  ORIGINAL */
+	background: linear-gradient(to bottom, rgba(243,226,199,1) 0%, rgba(99,76,43,1) 14%, rgba(125,92,43,1) 87%, rgba(233,212,179,1) 100%);
 	border: 1px solid #161616;
 	padding: 1px 4px 1px 4px;
 	margin: 0 2px 0 0;
 	cursor:default;
+	transition-duration: 2s;
 }
 
-a.nobg, a.nobg:link, a.nobg:visited, a.nobg:active
+a.nobg, a.nobg:link, a.nobg:visited, a.nobg:active /*Link Sin background */
 { 
 	color: #ffffff; 
 	text-decoration: none;
@@ -36,18 +40,18 @@ a.nobg, a.nobg:link, a.nobg:visited, a.nobg:active
 	cursor:default;
 	font-weight:bold;
 }
-a.nobg:hover 
+a.nobg:hover  /*Link Sin background */
 { 
 	color:#40628a;
 }
 
 a:hover 
 { 
-	color: #40628a;
-	background: #ffffff;
+	color: #16813A; /* Cuando haces un Hover sobre un boton de link, las letras se vuelven azules y el fondo blanco */
+	background: #DAA4E5;
 }
 
-a.white, a.white:link, a.white:visited, a.white:active
+a.white, a.white:link, a.white:visited, a.white:active /* Esto es un link a la inversa (wtf) */
 { 
 	color: #40628a; 
 	text-decoration: none;
@@ -58,33 +62,34 @@ a.white, a.white:link, a.white:visited, a.white:active
 	cursor:default;
 }
 
-a.white:hover 
+a.white:hover   /* Esto es un link a la inversa (wtf) */
 { 
 	color: #ffffff;
 	background: #40628a;
 }
 
-.linkOn, a.linkOn:link, a.linkOn:visited, a.linkOn:active, a.linkOn:hover
+.linkOn, a.linkOn:link, a.linkOn:visited, a.linkOn:active, a.linkOn:hover /* Link activo en estos momentos */
 { 
 	color: #ffffff; 
-	background: #2f943c;
+	background: linear-gradient(to bottom, rgba(242,184,96,1) 8%,rgba(243,226,199,1) 13%,rgba(233,212,179,1) 86%,rgba(232,175,90,1) 91%);
 	border-color: #24722e;
+	
 }
 
-.linkOff, a.linkOff:link, a.linkOff:visited, a.linkOff:active, a.linkOff:hover
+.linkOff, a.linkOff:link, a.linkOff:visited, a.linkOff:active, a.linkOff:hover /* Link desactivado */
 { 
 	color: #ffffff; 
 	background: #999999;
 	border-color: #666666;
 }
 
-a.icon, .linkOn.icon, .linkOff.icon
+a.icon, .linkOn.icon, .linkOff.icon /* Un link con icono */
 {
 	position: relative;
 	padding: 1px 4px 2px 20px;
 }
 
-a.icon img, .linkOn.icon img
+a.icon img, .linkOn.icon img  /* Un link con imagen */
 {
 	position: absolute;
 	top: 0;
@@ -93,7 +98,7 @@ a.icon img, .linkOn.icon img
 	height: 18px;
 }
 
-ul
+ul 
 {
 	padding: 4px 0 0 10px;
 	margin: 0;
@@ -137,21 +142,25 @@ h4
 	font-size: 12px;
 }
 
-.uiWrapper
+.uiWrapper /* ESTO ES EL FONDO DE LA VENTANA */
 {
 
 	width: 100%;
 	height: 100%;
 	padding-top:32px;
+	background: linear-gradient(to bottom, rgba(224,155,58,1) 0%,rgba(86,49,12,1) 14%,rgba(96,59,7,1) 88%,rgba(224,155,58,1) 100%);
+	
 }
 
-.uiTitle
+.uiTitle  /* La parte de arriba de las ventanas */
 {
 	clear: both;
 	padding: 6px 8px 6px 8px;
 	border-bottom: 2px solid #161616;
-	background: #383838;
-	color: #98B0C3;
+	background: #E09B3A;
+	/*background: #383838; ORIGINAL*/
+	/*background: linear-gradient(to bottom, rgba(243,226,199,1) 0%, rgba(31,21,7,1) 7%, rgba(125,92,43,1) 95%, rgba(233,212,179,1) 100%);
+	*/color: #7A7A11;
 	font-size: 16px;
 }
 
@@ -181,13 +190,14 @@ h4
 	background-repeat: no-repeat;
 }
 
-.uiContent
+.uiContent /* ESTE ES EL CONTENIDO GENÉRICO DE LAS UIs QUE SALEN DE BROWSER*/
 {	
 	clear: both;
 	padding: 8px;
-	font-family: Verdana, Geneva, sans-serif;
-}
+	font-family: Verdana, Geneva, sans-serif; /*AÑADIDO EL BACKGROUDN */
+	background: linear-gradient(to bottom, rgba(243,226,199,1) 0%, rgba(99,76,43,1) 14%, rgba(125,92,43,1) 87%, rgba(233,212,179,1) 100%);
 
+}
 .good
 {
 	color: #00ff00;
@@ -245,7 +255,9 @@ div.notice
 
 .statusDisplay
 {
-	background: #000000;
+	background: #000000; /*ORIGINAL*/
+	/*background: linear-gradient(to bottom, rgba(243,226,199,1) 0%, rgba(31,21,7,1) 7%, rgba(125,92,43,1) 95%, rgba(233,212,179,1) 100%);
+	*/
 	color: #ffffff;
 	border: 1px solid #40628a;
 	padding: 4px;
@@ -270,7 +282,9 @@ div.notice
 	padding: 8px;
 	margin: 10px 4px 4px 4px;
 	border: 1px solid #40628a;
-	background-color: #202020;
+	background-color: #202020; /* ORIGINAL */
+	/*background: linear-gradient(to bottom, rgba(243,226,199,1) 0%, rgba(31,21,7,1) 7%, rgba(125,92,43,1) 95%, rgba(233,212,179,1) 100%);
+	*/
 }
 
 .block h3

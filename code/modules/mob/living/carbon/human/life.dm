@@ -197,7 +197,7 @@
 	if(!(species.flags & RADIMMUNE))
 		if(radiation)
 
-			if(get_int_organ(/obj/item/organ/internal/nucleation/resonant_crystal))
+			/*if(get_int_organ(/obj/item/organ/internal/nucleation/resonant_crystal))
 				var/rads = radiation/25
 				radiation -= rads
 				radiation -= 0.1
@@ -205,7 +205,7 @@
 				if( prob(10) )
 					to_chat(src, "<span class='notice'>You feel relaxed.</span>")
 				return
-
+			*/
 			if(radiation > 100)
 				radiation = 100
 				Weaken(10)

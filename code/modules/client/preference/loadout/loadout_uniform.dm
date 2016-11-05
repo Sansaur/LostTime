@@ -1,4 +1,4 @@
-// Uniform slot
+/*// Uniform slot
 /datum/gear/uniform
 	subtype_path = /datum/gear/uniform
 	slot = slot_w_uniform
@@ -194,3 +194,4 @@
 /datum/gear/uniform/pants/caopants
 	display_name = "pants, camo"
 	path = /obj/item/clothing/under/pants/camo
+*/

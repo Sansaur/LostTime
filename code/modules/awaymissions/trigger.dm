@@ -59,7 +59,21 @@
 	locationy = 131
 	locationz = 1
 
+/obj/effect/step_trigger/teleport_fancy/tolevels/to_medieval/Trigger(mob/living/carbon/human/M as mob)
+	if(M.time_faction == "Medieval")
+		var/dest = locate(locationx, locationy, locationz)
+		M.Move(dest)
+	else
+		M << "This is not the teleporter you are supposed to take"
+
 /obj/effect/step_trigger/teleport_fancy/tolevels/to_omegacorp
 	locationx = 201
 	locationy = 131
 	locationz = 2
+
+/obj/effect/step_trigger/teleport_fancy/tolevels/to_omegacorp/Trigger(mob/living/carbon/human/M as mob)
+	if(M.time_faction == "Omegacorp")
+		var/dest = locate(locationx, locationy, locationz)
+		M.Move(dest)
+	else
+		M << "This is not the teleporter you are supposed to take"

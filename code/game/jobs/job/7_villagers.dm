@@ -40,6 +40,7 @@
 		H.underwear = "Nude"
 		H.undershirt = "Nude"
 		H.socks = "Nude"
+		H.time_faction = "Medieval"
 		return 1
 
 
@@ -48,8 +49,8 @@
 	title = "Villager"
 	flag = SCIENTIST
 	department_flag = MEDSCI
-	total_positions = 6
-	spawn_positions = 6
+	total_positions = 10
+	spawn_positions = 10
 	supervisors = "Your majesty and the mayor"
 	selection_color = "#C9D2DB"
 	access = list(access_robotics, access_tox, access_tox_storage, access_research, access_xenobiology, access_xenoarch, access_mineral_storeroom)
@@ -77,6 +78,7 @@
 		H.underwear = "Nude"
 		H.undershirt = "Nude"
 		H.socks = "Nude"
+		H.time_faction = "Medieval"
 		return 1
 
 /datum/job/shopkeeper
@@ -113,6 +115,7 @@
 		H.underwear = "Nude"
 		H.undershirt = "Nude"
 		H.socks = "Nude"
+		H.time_faction = "Medieval"
 		return 1
 
 /datum/job/blacksmith
@@ -149,6 +152,7 @@
 		H.underwear = "Nude"
 		H.undershirt = "Nude"
 		H.socks = "Nude"
+		H.time_faction = "Medieval"
 		return 1
 /*
 

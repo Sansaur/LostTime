@@ -231,7 +231,7 @@
 //Deals with converting players to the revolution//
 ///////////////////////////////////////////////////
 /datum/game_mode/proc/add_revolutionary(datum/mind/rev_mind)
-	if(rev_mind.assigned_role in command_positions)
+	if(rev_mind.assigned_role in omegacorp_positions)
 		return 0
 	var/mob/living/carbon/human/H = rev_mind.current//Check to see if the potential rev is implanted
 	if(isloyal(H))

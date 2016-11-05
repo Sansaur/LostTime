@@ -1,4 +1,4 @@
-/datum/gear/shoes
+/*/datum/gear/shoes
 	subtype_path = /datum/gear/shoes
 	slot = slot_shoes
 	sort_category = "Shoes"
@@ -16,3 +16,4 @@
 	display_name = "dress shoes"
 	cost = 5
 	path = /obj/item/clothing/shoes/centcom
+*/

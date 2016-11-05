@@ -1,4 +1,4 @@
-/datum/gear/lipstick
+/*/datum/gear/lipstick
 	display_name = "lipstick, black"
 	path = /obj/item/weapon/lipstick/black
 	sort_category = "Cosmetics"
@@ -21,4 +21,4 @@
 
 /datum/gear/sunglasses
 	display_name = "cheap sunglasses"
-	path = /obj/item/clothing/glasses/sunglasses/fake
+	path = /obj/item/clothing/glasses/sunglasses/fake*/

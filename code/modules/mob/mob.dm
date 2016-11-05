@@ -983,11 +983,11 @@ var/list/slot_equipment_priority = list( \
 	stat(null, "Station Time: [worldtime2text()]")
 
 // this function displays the shuttles ETA in the status panel if the shuttle has been called
-/mob/proc/show_stat_emergency_shuttle_eta()
+/*/mob/proc/show_stat_emergency_shuttle_eta()
 	var/ETA = shuttle_master.emergency.getModeStr()
 	if(ETA)
 		stat(null, "[ETA] [shuttle_master.emergency.getTimerStr()]")
-
+*/
 /mob/proc/show_stat_turf_contents()
 	if(listed_turf && client)
 		if(!TurfAdjacent(listed_turf))

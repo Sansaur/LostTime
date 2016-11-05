@@ -287,6 +287,9 @@
 	if(!IsJobAvailable(rank))
 		to_chat(src, alert("[rank] is not available. Please try another."))
 		return 0
+	if(rank in omegacorp_positions && get_species() != "Human") //THIS MUST BE PROGRAMMED TO BE RECURSIVE LATER - SANSAUR.
+		to_chat(src, alert("You cannot join as [rank] being a [client.prefs.species], you must switch species or characters."))
+		return 0
 
 	job_master.AssignRole(src, rank, 1)
 
@@ -415,12 +418,12 @@
 
 	var/list/activePlayers = list()
 	var/list/categorizedJobs = list(
-		"Omegacorp" = list(jobs = list(), titles = command_positions, color = "#aac1ee"),
-		"Villagers" = list(jobs = list(), titles = engineering_positions, color = "#ffd699"),
-		"Kingdom Guard" = list(jobs = list(), titles = security_positions, color = "#ff9999"),
-		"Kingdom Religion" = list(jobs = list(), titles = medical_positions, color = "#99ffe6", colBreak = 1),
-		"Kingdom Wizards" = list(jobs = list(), titles = science_positions, color = "#e6b3e6"),
-		"Kingdom Nobility" = list(jobs = list(), titles = supply_positions, color = "#ead4ae"),
+		"Omegacorp" = list(jobs = list(), titles = omegacorp_positions, color = "#aac1ee"),
+		"Villagers" = list(jobs = list(), titles = villagers_positions, color = "#ffd699"),
+		"Kingdom Guard" = list(jobs = list(), titles = guards_positions, color = "#ff9999"),
+		"Kingdom Religion" = list(jobs = list(), titles = religious_positions, color = "#99ffe6", colBreak = 1),
+		"Kingdom Wizards" = list(jobs = list(), titles = wizards_positions, color = "#e6b3e6"),
+		"Kingdom Nobility" = list(jobs = list(), titles = nobility_positions, color = "#ead4ae"),
 		)
 	for(var/datum/job/job in job_master.occupations)
 		if(job && IsJobAvailable(job.title))
@@ -439,7 +442,7 @@
 						else
 							jobs += job
 					else // Put heads at top of non-command jobs
-						if(job.title in command_positions)
+						if(job.title in omegacorp_positions)
 							jobs.Insert(1, job)
 						else
 							jobs += job
@@ -459,9 +462,9 @@
 		dat += "</fieldset><br>"
 	dat += "</td></tr></table></center>"
 	// Removing the old window method but leaving it here for reference
-	src << browse(dat, "window=latechoices;size=300x640;can_close=1") //Quitar esto en cuanto funcione.
+	//src << browse(dat, "window=latechoices;size=300x640;can_close=1") //Quitar esto en cuanto funcione.
 	// Added the new browser window method
-	var/datum/browser/popup = new(src, "latechoices", "Choose Profession", 900, 600)
+	var/datum/browser/popup = new(src, "latechoices", "Choose Profession", 800, 600)
 	popup.add_stylesheet("playeroptions", 'html/browser/playeroptions.css')
 	popup.add_script("delay_interactivity", 'html/browser/delay_interactivity.js')
 	popup.set_content(dat)

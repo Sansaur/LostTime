@@ -1,4 +1,4 @@
-/datum/gear/dice
+/*/datum/gear/dice
 	display_name = "a d20"
 	path = /obj/item/weapon/dice/d20
 
@@ -74,3 +74,4 @@
 /datum/gear/skullbandana
 	display_name = "bandana, skull"
 	path = /obj/item/clothing/mask/bandana/skull
+*/

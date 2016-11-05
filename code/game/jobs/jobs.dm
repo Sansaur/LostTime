@@ -60,13 +60,13 @@ var/list/assistant_occupations = list(
 
 //THIS MUST BE CHANGED IN A LATER TIME - SANSAUR
 
-var/list/command_positions = list(
+var/list/omegacorp_positions = list(
 	"Operation Leader",
 	"Operation Support",
 	"Operation Medic",
 	"Operation Enforcer"
 )
-var/list/engineering_positions = list(
+var/list/villagers_positions = list(
 	"Mayor",
 	"Villager",
 	"Blacksmith",
@@ -74,21 +74,21 @@ var/list/engineering_positions = list(
 	"Mechanic"
 )
 
-var/list/security_positions = list(
+var/list/guards_positions = list(
 	"Captain Guard",
 	"Footman",
 	"Monster Hunter"
 )
-var/list/supply_positions = list(
+var/list/nobility_positions = list(
 	"King",
 	"Heir",
 	"Noble"
 )
-var/list/medical_positions = list(
+var/list/religious_positions = list(
 	"Bishop",
 	"Priest"
 )
-var/list/science_positions = list(
+var/list/wizards_positions = list(
 	"Arch Mage",
 	"Mage"
 )
@@ -99,7 +99,7 @@ var/list/science_positions = list(
 //BS12 EDIT
 var/list/support_positions = list()
 var/list/civilian_positions = list()
-var/list/service_positions = support_positions - supply_positions + list("Head of Personnel")
+var/list/service_positions = support_positions - nobility_positions + list("Head of Personnel")
 
 
 

@@ -403,7 +403,7 @@ nanoui is used to open and update nano browser uis
   * @return nothing
   */
 /datum/nanoui/proc/open()
-	if(!user.client)
+	if(!user.client) //Runtime in nanoui.dm,406: Cannot read "".client - SANSAUR WTF
 		return
 	var/window_size = ""
 	if(width && height)

@@ -154,6 +154,12 @@
 /mob/living/carbon/human/stok/New(var/new_loc)
 	..(new_loc, "Stok")
 
+/mob/living/carbon/human/kobold/New(var/new_loc)
+	..(new_loc, "Kobold")
+
+/mob/living/carbon/human/dwarf/New(var/new_loc)
+	..(new_loc, "Dwarf")
+
 /mob/living/carbon/human/Bump(atom/movable/AM, yes)
 	if(!(yes) || now_pushing || buckled)
 		return 0
@@ -250,7 +256,7 @@
 
 	show_stat_station_time()
 
-	show_stat_emergency_shuttle_eta()
+	//show_stat_emergency_shuttle_eta()
 
 	if(client.statpanel == "Status")
 		if(locate(/obj/item/device/assembly/health) in src)
@@ -715,12 +721,12 @@
 	var/obj/item/device/pda/pda = wear_id
 	if(istype(pda) && pda.id)
 		id = pda.id
-		
+
 	if(check_hands)
 		if(istype(get_active_hand(), /obj/item/weapon/card/id))
 			id = get_active_hand()
 		else if(istype(get_inactive_hand(), /obj/item/weapon/card/id))
-			id = get_inactive_hand()					
+			id = get_inactive_hand()
 
 	if(istype(id))
 		return id
@@ -1993,7 +1999,7 @@
 		if(istype(pda))
 			var/obj/item/weapon/card/id/id = pda.id
 			if(istype(id) && id.is_untrackable())
-				return 0		
+				return 0
 	if(istype(head, /obj/item/clothing/head))
 		var/obj/item/clothing/head/hat = head
 		if(hat.blockTracking)

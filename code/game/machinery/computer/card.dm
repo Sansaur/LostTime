@@ -182,10 +182,10 @@ var/time_last_changed_position = 0
 	data["all_centcom_access"] = null
 	data["regions"] = null
 
-	data["engineering_jobs"] = format_jobs(engineering_positions)
-	data["medical_jobs"] = format_jobs(medical_positions)
-	data["science_jobs"] = format_jobs(science_positions)
-	data["security_jobs"] = format_jobs(security_positions)
+	data["engineering_jobs"] = format_jobs(villagers_positions)
+	data["medical_jobs"] = format_jobs(religious_positions)
+	data["science_jobs"] = format_jobs(wizards_positions)
+	data["security_jobs"] = format_jobs(guards_positions)
 	data["support_jobs"] = format_jobs(support_positions)
 	data["civilian_jobs"] = format_jobs(civilian_positions)
 	data["special_jobs"] = format_jobs(whitelisted_positions)

@@ -1,7 +1,7 @@
 /obj/item/clothing
 	name = "clothing"
-	burn_state = FLAMMABLE
-	var/list/species_restricted = null //Only these species can wear this kit.
+	burn_state = FLAMMABLE //Small Species (Dwarves and Kobolds) won't be able to wear normal clothing.
+	var/list/species_restricted = list("Human", "Tajaran", "Vulpkanin", "Unathi", "Kobold", "Dwarf")//THESE SPECIES CAN WEAR THE CLOTHING = list("Kobold", "Dwarf")
 	var/rig_restrict_helmet = 0 // Stops the user from equipping a rig helmet without attaching it to the suit first.
 	var/scan_reagents = 0 //Can the wearer see reagents while it's equipped?
 
@@ -156,7 +156,7 @@
 	strip_delay = 20			//	   but seperated to allow items to protect but not impair vision, like space helmets
 	put_on_delay = 25
 	burn_state = FIRE_PROOF
-	species_restricted = list("exclude","Kidan")
+	species_restricted = list("exclude","Kidan","Kobold","Dwarf")
 /*
 SEE_SELF  // can see self, no matter what
 SEE_MOBS  // can see all mobs, no matter what
@@ -186,7 +186,9 @@ BLIND     // can't see anything
 	species_fit = list("Vox")
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/gloves.dmi',
-		"Drask" = 'icons/mob/species/drask/gloves.dmi'
+		"Drask" = 'icons/mob/species/drask/gloves.dmi',
+		"Kobold" = 'icons/mob/species/kobold/gloves.dmi',
+		"Dwarf" = 'icons/mob/species/dwarf/gloves.dmi'
 		)
 
 /obj/item/clothing/gloves/proc/Touch()
@@ -369,7 +371,9 @@ BLIND     // can't see anything
 	slowdown = SHOES_SLOWDOWN
 	species_fit = list("Vox")
 	sprite_sheets = list(
-		"Vox" = 'icons/mob/species/vox/shoes.dmi'
+		"Vox" = 'icons/mob/species/vox/shoes.dmi',
+		"Dwarf" = 'icons/mob/species/dwarf/shoes.dmi',
+		"Kobold" = 'icons/mob/species/kobold/shoes.dmi'
 		)
 
 /obj/item/clothing/shoes/attackby(obj/item/I, mob/user, params)
@@ -563,7 +567,9 @@ BLIND     // can't see anything
 	species_fit = list("Vox")
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/uniform.dmi',
-		"Drask" = 'icons/mob/species/drask/uniform.dmi'
+		"Drask" = 'icons/mob/species/drask/uniform.dmi',
+		"Dwarf" = 'icons/mob/species/dwarf/uniform.dmi',
+		"Kobold" = 'icons/mob/species/kobold/uniform.dmi'
 		)
 	var/has_sensor = 1//For the crew computer 2 = unable to change mode
 	var/sensor_mode = 0

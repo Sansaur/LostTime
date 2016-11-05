@@ -225,7 +225,7 @@ This is the proc mobs get to turn into a ghost. Forked from ghostize due to comp
 	statpanel("Status")
 	if(client.statpanel == "Status")
 		show_stat_station_time()
-		show_stat_emergency_shuttle_eta()
+		//show_stat_emergency_shuttle_eta()
 
 /mob/dead/observer/verb/reenter_corpse()
 	set category = "Ghost"

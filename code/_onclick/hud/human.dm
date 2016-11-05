@@ -317,8 +317,13 @@
 
 	internals = new /obj/screen/internals()
 	infodisplay += internals
-
-	mymob.healths = new /obj/screen/healths()
+	//This must be done through preferences.
+	//It's better if it goes by species by default - Sansaur
+	if(owner.species == "Tajaran")
+		mymob.healths = new /obj/screen/healths_med()
+	else
+		mymob.healths = new /obj/screen/healths()
+	//This must be done through preferences.
 	infodisplay += mymob.healths
 
 	mymob.healthdoll = new()

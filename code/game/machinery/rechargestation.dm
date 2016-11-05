@@ -157,13 +157,13 @@
 					R.cell.charge = R.cell.maxcharge
 				else
 					R.cell.charge = min(R.cell.charge + recharge_speed, R.cell.maxcharge)
-		else if(istype(occupant, /mob/living/carbon/human))
+		/*else if(istype(occupant, /mob/living/carbon/human))
 			var/mob/living/carbon/human/H = occupant
 			if(H.get_int_organ(/obj/item/organ/internal/cell) && H.nutrition < 450)
 				H.nutrition = min(H.nutrition+recharge_speed_nutrition, 450)
 				if(repairs)
 					H.heal_overall_damage(repairs, repairs, 0, 1)
-					H.updatehealth()
+					H.updatehealth()*/
 
 /obj/machinery/recharge_station/proc/go_out()
 	if(!( src.occupant ))
@@ -291,8 +291,8 @@
 		if(occupant)
 			to_chat(H, "<span class='warning'>The cell is already occupied!</span>")
 			return
-		if(!H.get_int_organ(/obj/item/organ/internal/cell))
-			return
+		//if(!H.get_int_organ(/obj/item/organ/internal/cell))
+			//return
 		can_accept_user = 1
 
 	if(!can_accept_user)

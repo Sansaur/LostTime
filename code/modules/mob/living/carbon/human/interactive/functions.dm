@@ -805,13 +805,13 @@
 	var/result = pick("fired", "promoted", "demoted", "terminated", "incinerated", "sent to CentCom", "borged")
 
 	return pick(
-		"The [adjective_insult] [pick(command_positions)] [past_verb(verbs_touch)] the [adjective_objects] [nouns_objects] and was [result].",
-		"The [adjective_generic] [pick(engineering_positions)] [past_verb(verbs_touch)] the [adjective_insult] [nouns_objects]. [capitalize(curse_words)], the [nouns_insult] was [result].",
-		"The [adjective_insult] [pick(security_positions)] [past_verb(verbs_touch)] the [adjective_generic] [nouns_insult] [pick(support_positions)]'s [nouns_body] and had to be [result].",
-		"Medical had to [verbs_use] the [adjective_generic] [pick(command_positions)]'s [adjective_objects] [nouns_body] after the incident.",
+		"The [adjective_insult] [pick(omegacorp_positions)] [past_verb(verbs_touch)] the [adjective_objects] [nouns_objects] and was [result].",
+		"The [adjective_generic] [pick(villagers_positions)] [past_verb(verbs_touch)] the [adjective_insult] [nouns_objects]. [capitalize(curse_words)], the [nouns_insult] was [result].",
+		"The [adjective_insult] [pick(guards_positions)] [past_verb(verbs_touch)] the [adjective_generic] [nouns_insult] [pick(support_positions)]'s [nouns_body] and had to be [result].",
+		"Medical had to [verbs_use] the [adjective_generic] [pick(omegacorp_positions)]'s [adjective_objects] [nouns_body] after the incident.",
 		"I demand that [nouns_generic] respond with a [adjective_generic] update ASAP.",
-		"Would like an update from [nouns_generic] regarding the [adjective_insult] [pick(command_positions)] being [result].",
-		"The [pick(medical_positions)] needs to [verbs_move] faster when the crew's [adjective_objects] [nouns_body]s are injured, or they will be [result].",
+		"Would like an update from [nouns_generic] regarding the [adjective_insult] [pick(omegacorp_positions)] being [result].",
+		"The [pick(religious_positions)] needs to [verbs_move] faster when the crew's [adjective_objects] [nouns_body]s are injured, or they will be [result].",
 		"[capitalize(curse_words)] [adjective_insult] [curse_words].",
 		"<br><br>")
 

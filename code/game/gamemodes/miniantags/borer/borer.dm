@@ -235,7 +235,7 @@
 	..()
 	statpanel("Status")
 
-	show_stat_emergency_shuttle_eta()
+	//show_stat_emergency_shuttle_eta()
 
 	if(client.statpanel == "Status")
 		stat("Chemicals", chemicals)

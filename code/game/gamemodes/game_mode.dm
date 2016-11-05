@@ -295,7 +295,7 @@
 /datum/game_mode/proc/get_living_heads()
 	. = list()
 	for(var/mob/living/carbon/human/player in mob_list)
-		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in command_positions))
+		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in omegacorp_positions))
 			. |= player.mind
 
 
@@ -305,7 +305,7 @@
 /datum/game_mode/proc/get_all_heads()
 	. = list()
 	for(var/mob/player in mob_list)
-		if(player.mind && (player.mind.assigned_role in command_positions))
+		if(player.mind && (player.mind.assigned_role in omegacorp_positions))
 			. |= player.mind
 
 //////////////////////////////////////////////
@@ -314,7 +314,7 @@
 /datum/game_mode/proc/get_living_sec()
 	. = list()
 	for(var/mob/living/carbon/human/player in mob_list)
-		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in security_positions))
+		if(player.stat != DEAD && player.mind && (player.mind.assigned_role in guards_positions))
 			. |= player.mind
 
 ////////////////////////////////////////
@@ -323,7 +323,7 @@
 /datum/game_mode/proc/get_all_sec()
 	. = list()
 	for(var/mob/living/carbon/human/player in mob_list)
-		if(player.mind && (player.mind.assigned_role in security_positions))
+		if(player.mind && (player.mind.assigned_role in guards_positions))
 			. |= player.mind
 
 /datum/game_mode/proc/check_antagonists_topic(href, href_list[])

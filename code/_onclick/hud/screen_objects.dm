@@ -441,6 +441,11 @@
 	icon_state = "health0"
 	screen_loc = ui_health
 
+/obj/screen/healths_med
+	name = "health"
+	icon_state = "2health0"
+	screen_loc = ui_health
+
 /obj/screen/healths/alien
 	icon = 'icons/mob/screen_alien.dmi'
 	screen_loc = ui_alien_health

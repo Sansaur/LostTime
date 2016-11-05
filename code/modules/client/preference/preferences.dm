@@ -84,7 +84,7 @@ var/global/list/special_role_times = list( //minimum age (in days) for accounts 
 	var/lastchangelog = ""				//Saved changlog filesize to detect if there was a change
 	var/ooccolor = "#b82e00"
 	var/be_special = list()				//Special role selection
-	var/UI_style = "Midnight"
+	var/UI_style = "Slimecore"
 	var/nanoui_fancy = TRUE
 	var/toggles = TOGGLES_DEFAULT
 	var/sound = SOUND_DEFAULT
@@ -273,11 +273,12 @@ var/global/list/special_role_times = list( //minimum age (in days) for accounts 
 			dat += "<b>Age:</b> <a href='?_src_=prefs;preference=age;task=input'>[age]</a><br>"
 			dat += "<b>Body:</b> <a href='?_src_=prefs;preference=all;task=random'>(&reg;)</a><br>"
 			dat += "<b>Species:</b> <a href='?_src_=prefs;preference=species;task=input'>[species]</a><br>"
+			dat += "<b><h4>Omegacorp is human only</h4></b><br>"
 			if(species == "Vox")
 				dat += "<b>N2 Tank:</b> <a href='?_src_=prefs;preference=speciesprefs;task=input'>[speciesprefs ? "Large N2 Tank" : "Specialized N2 Tank"]</a><br>"
 			dat += "<b>Secondary Language:</b> <a href='?_src_=prefs;preference=language;task=input'>[language]</a><br>"
 			dat += "<b>Blood Type:</b> <a href='?_src_=prefs;preference=b_type;task=input'>[b_type]</a><br>"
-			if(species in list("Human", "Drask", "Vox"))
+			if(species in list("Human", "Dwarf"))
 				dat += "<b>Skin Tone:</b> <a href='?_src_=prefs;preference=s_tone;task=input'>[species == "Vox" ? "[s_tone]" : "[-s_tone + 35]/220"]</a><br>"
 			dat += "<b>Disabilities:</b> <a href='?_src_=prefs;preference=disabilities'>\[Set\]</a><br>"
 			dat += "<b>Nanotrasen Relation:</b> <a href ='?_src_=prefs;preference=nt_relation;task=input'>[nanotrasen_relation]</a><br>"
@@ -535,7 +536,7 @@ var/global/list/special_role_times = list( //minimum age (in days) for accounts 
 	metadata["[tweak]"] = new_metadata
 
 
-/datum/preferences/proc/SetChoices(mob/user, limit = 12, list/splitJobs = list("Civilian","Research Director","AI","Bartender"), width = 760, height = 790)
+/datum/preferences/proc/SetChoices(mob/user, limit = 12, list/splitJobs = list("Civilian","Research Director","AI","Bartender"), width = 400, height = 790)
 	if(!job_master)
 		return
 
@@ -562,19 +563,21 @@ var/global/list/special_role_times = list( //minimum age (in days) for accounts 
 
 		if(job.admin_only)
 			continue
-
+		var/rank = job.title
 		index += 1
 		if((index >= limit) || (job.title in splitJobs))
 			if((index < limit) && (lastJob != null))
 				//If the cells were broken up by a job in the splitJob list then it will fill in the rest of the cells with
 				//the last job's selection color. Creating a rather nice effect.
 				for(var/i = 0, i < (limit - index), i += 1)
-					HTML += "<tr bgcolor='[lastJob.selection_color]'><td width='60%' align='right'>&nbsp</td><td>&nbsp</td></tr>"
-			HTML += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
+					if(rank != "NOPE")
+						HTML += "<tr bgcolor='[lastJob.selection_color]'><td width='60%' align='right'>&nbsp</td><td>&nbsp</td></tr>"
+			if(rank != "NOPE")
+				HTML += "</table></td><td width='20%'><table width='100%' cellpadding='1' cellspacing='0'>"
 			index = 0
+		if(rank != "NOPE")
+			HTML += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
 
-		HTML += "<tr bgcolor='[job.selection_color]'><td width='60%' align='right'>"
-		var/rank = job.title
 		lastJob = job
 		if(!is_job_whitelisted(user, rank))
 			HTML += "<font color=red>[rank]</font></td><td><font color=red><b> \[KARMA]</b></font></td></tr>"
@@ -589,7 +592,7 @@ var/global/list/special_role_times = list( //minimum age (in days) for accounts 
 		if((job_support_low & CIVILIAN) && (rank != "Civilian") )
 			HTML += "<font color=orange>[rank]</font></td><td></td></tr>"
 			continue
-		if((rank in command_positions) || (rank == "AI"))//Bold head jobs
+		if((rank in omegacorp_positions) || (rank == "AI"))//Bold head jobs
 			HTML += "<b><span class='dark'>[rank]</span></b>"
 		else if(rank != "NOPE") //Added  && (rank != "NOPE") - Sansaur
 			HTML += "<span class='dark'>[rank]</span>"
@@ -646,7 +649,7 @@ var/global/list/special_role_times = list( //minimum age (in days) for accounts 
 		else
 			HTML += " <font color=red>\[NEVER]</font>"
 			*/
-		if(rank != "NOPE") //Added  && (rank != "NOPE") - Sansaur
+		if(job.title != "NOPE") //Added  && (rank != "NOPE") - Sansaur
 			HTML += "<font color=[prefLevelColor]>[prefLevelLabel]</font></a>"
 
 		if(job.alt_titles)
@@ -1233,7 +1236,7 @@ var/global/list/special_role_times = list( //minimum age (in days) for accounts 
 					if(new_age)
 						age = max(min( round(text2num(new_age)), AGE_MAX),AGE_MIN)
 				if("species")
-					var/list/new_species = list("Human", "Tajaran", "Skrell", "Unathi", "Diona", "Vulpkanin")
+					var/list/new_species = list("Human", "Tajaran", "Unathi", "Vulpkanin", "Kobold", "Dwarf")
 					var/prev_species = species
 //						var/whitelisted = 0
 
@@ -1300,7 +1303,7 @@ var/global/list/special_role_times = list( //minimum age (in days) for accounts 
 							socks = random_socks(gender, species)
 
 						//reset skin tone and colour
-						if(species in list("Human", "Drask", "Vox"))
+						if(species in list("Human", "Dwarf"))
 							random_skin_tone(species)
 						else
 							s_tone = 0

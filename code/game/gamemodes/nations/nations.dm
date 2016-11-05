@@ -36,7 +36,7 @@ datum/game_mode/nations
 
 	for(var/mob/living/carbon/human/H in player_list)
 		if(H.mind)
-			if(H.mind.assigned_role in engineering_positions)
+			if(H.mind.assigned_role in villagers_positions)
 				H.mind.nation = all_nations["Atmosia"]
 				update_nations_icons_added(H,"hudatmosia")
 				H.mind.nation.membership += H.mind.current
@@ -47,7 +47,7 @@ datum/game_mode/nations
 				to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.default_name]!")
 				continue
 
-			if(H.mind.assigned_role in medical_positions)
+			if(H.mind.assigned_role in religious_positions)
 				H.mind.nation = all_nations["Medistan"]
 				update_nations_icons_added(H,"hudmedistan")
 				H.mind.nation.membership += H.mind.current
@@ -58,7 +58,7 @@ datum/game_mode/nations
 				to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.default_name]!")
 				continue
 
-			if(H.mind.assigned_role in science_positions)
+			if(H.mind.assigned_role in wizards_positions)
 				H.mind.nation = all_nations["Scientopia"]
 				update_nations_icons_added(H,"hudscientopia")
 				H.mind.nation.membership += H.mind.current
@@ -69,7 +69,7 @@ datum/game_mode/nations
 				to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.default_name]!")
 				continue
 
-			if(H.mind.assigned_role in security_positions)
+			if(H.mind.assigned_role in guards_positions)
 				H.mind.nation = all_nations["Brigston"]
 				update_nations_icons_added(H,"hudbrigston")
 				H.mind.nation.membership += H.mind.current
@@ -102,7 +102,7 @@ datum/game_mode/nations
 				to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.default_name]!")
 				continue
 
-			if(H.mind.assigned_role in (support_positions + command_positions))
+			if(H.mind.assigned_role in (support_positions + omegacorp_positions))
 				H.mind.nation = all_nations["People's Republic of Commandzakstan"]
 				update_nations_icons_added(H,"hudcommand")
 				H.mind.nation.membership += H.mind.current
@@ -173,28 +173,28 @@ datum/game_mode/nations
 	if(!mode.kickoff) return 1
 
 	if(H.mind)
-		if(H.mind.assigned_role in engineering_positions)
+		if(H.mind.assigned_role in villagers_positions)
 			H.mind.nation = all_nations["Atmosia"]
 			mode.update_nations_icons_added(H,"atmosia")
 			H.mind.nation.membership += H.mind.current
 			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
 			return 1
 
-		if(H.mind.assigned_role in medical_positions)
+		if(H.mind.assigned_role in religious_positions)
 			H.mind.nation = all_nations["Medistan"]
 			mode.update_nations_icons_added(H,"hudmedistan")
 			H.mind.nation.membership += H.mind.current
 			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
 			return 1
 
-		if(H.mind.assigned_role in science_positions)
+		if(H.mind.assigned_role in wizards_positions)
 			H.mind.nation = all_nations["Scientopia"]
 			mode.update_nations_icons_added(H,"hudscientopia")
 			H.mind.nation.membership += H.mind.current
 			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
 			return 1
 
-		if(H.mind.assigned_role in security_positions)
+		if(H.mind.assigned_role in guards_positions)
 			H.mind.nation = all_nations["Brigston"]
 			mode.update_nations_icons_added(H,"hudbrigston")
 			H.mind.nation.membership += H.mind.current
@@ -215,7 +215,7 @@ datum/game_mode/nations
 			to_chat(H, "You are now part of the great sovereign nation of [H.mind.nation.current_name]!")
 			return 1
 
-		if(H.mind.assigned_role in (support_positions + command_positions))
+		if(H.mind.assigned_role in (support_positions + omegacorp_positions))
 			H.mind.nation = all_nations["People's Republic of Commandzakstan"]
 			mode.update_nations_icons_added(H,"hudcommand")
 			H.mind.nation.membership += H.mind.current

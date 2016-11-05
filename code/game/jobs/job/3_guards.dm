@@ -39,7 +39,7 @@
 		H.underwear = "Nude"
 		H.undershirt = "Nude"
 		H.socks = "Nude"
-
+		H.time_faction = "Medieval"
 		return 1
 
 
@@ -79,6 +79,7 @@
 		H.underwear = "Nude"
 		H.undershirt = "Nude"
 		H.socks = "Nude"
+		H.time_faction = "Medieval"
 		return 1
 
 
@@ -125,4 +126,5 @@
 		H.underwear = "Nude"
 		H.undershirt = "Nude"
 		H.socks = "Nude"
+		H.time_faction = "Medieval"
 		return 1

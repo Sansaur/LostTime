@@ -18,9 +18,9 @@
 // I'm using this for mechs giving MMIs HUDs now
 
 /obj/item/device/mmi/attackby(var/obj/item/O as obj, var/mob/user as mob, params)
-	if(istype(O, /obj/item/organ/internal/brain/crystal ))
-		to_chat(user, "<span class='warning'> This brain is too malformed to be able to use with the [src].</span>")
-		return
+//	if(istype(O, /obj/item/organ/internal/brain/crystal ))
+	//	to_chat(user, "<span class='warning'> This brain is too malformed to be able to use with the [src].</span>")
+	//	return
 	if(istype(O,/obj/item/organ/internal/brain) && !brainmob) //Time to stick a brain in it --NEO
 		var/obj/item/organ/internal/brain/B = O
 		if(!B.brainmob)
@@ -181,7 +181,7 @@
 	syndiemmi = 1
 
 /obj/item/device/mmi/attempt_become_organ(obj/item/organ/external/parent,mob/living/carbon/human/H)
-	if(!brainmob)
+	/*if(!brainmob)
 		return 0
 	if(!parent)
 		log_debug("Attempting to insert into a null parent!")
@@ -200,4 +200,5 @@
 		brainmob.mind.transfer_to(H)
 	holder.insert(H)
 
-	return 1
+	return 1*/
+	H << "This method has been commented out, contact an admin if you see this"

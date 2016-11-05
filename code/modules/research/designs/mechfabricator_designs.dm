@@ -1077,7 +1077,7 @@
 	materials = list(MAT_METAL=500)
 	construction_time = 50
 	category = list("Misc")
-
+/*
 /datum/design/ipc_head
 	name = "IPC Head"
 	id = "ipc_head"
@@ -1104,3 +1104,4 @@
 	materials = list(MAT_METAL=1000, MAT_GLASS=2500)
 	construction_time = 200
 	category = list("Misc")
+*/

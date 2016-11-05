@@ -53,25 +53,25 @@
 //			to_chat(world, "[name]: [rank]")
 			//cael - to prevent multiple appearances of a player/job combination, add a continue after each line
 		var/department = 0
-		if(real_rank in command_positions)
+		if(real_rank in omegacorp_positions)
 			heads[name] = rank
 			department = 1
-		if(real_rank in security_positions)
+		if(real_rank in guards_positions)
 			sec[name] = rank
 			department = 1
-		if(real_rank in engineering_positions)
+		if(real_rank in villagers_positions)
 			eng[name] = rank
 			department = 1
-		if(real_rank in medical_positions)
+		if(real_rank in religious_positions)
 			med[name] = rank
 			department = 1
-		if(real_rank in science_positions)
+		if(real_rank in wizards_positions)
 			sci[name] = rank
 			department = 1
 		if(real_rank in service_positions)
 			ser[name] = rank
 			department = 1
-		if(real_rank in supply_positions)
+		if(real_rank in nobility_positions)
 			sup[name] = rank
 			department = 1
 		if(real_rank in nonhuman_positions)
@@ -162,32 +162,32 @@ var/global/list/PDA_Manifest = list()
 		var/isactive = t.fields["p_stat"]
 		var/department = 0
 		var/depthead = 0 			// Department Heads will be placed at the top of their lists.
-		if(real_rank in command_positions)
+		if(real_rank in omegacorp_positions)
 			heads[++heads.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			depthead = 1
 			if(rank == "Captain" && heads.len != 1)
 				heads.Swap(1,  heads.len)
 
-		if(real_rank in security_positions)
+		if(real_rank in guards_positions)
 			sec[++sec.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && sec.len != 1)
 				sec.Swap(1, sec.len)
 
-		if(real_rank in engineering_positions)
+		if(real_rank in villagers_positions)
 			eng[++eng.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && eng.len != 1)
 				eng.Swap(1, eng.len)
 
-		if(real_rank in medical_positions)
+		if(real_rank in religious_positions)
 			med[++med.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && med.len != 1)
 				med.Swap(1, med.len)
 
-		if(real_rank in science_positions)
+		if(real_rank in wizards_positions)
 			sci[++sci.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && sci.len != 1)
@@ -199,7 +199,7 @@ var/global/list/PDA_Manifest = list()
 			if(depthead && ser.len != 1)
 				ser.Swap(1, ser.len)
 
-		if(real_rank in supply_positions)
+		if(real_rank in nobility_positions)
 			sup[++sup.len] = list("name" = name, "rank" = rank, "active" = isactive)
 			department = 1
 			if(depthead && sup.len != 1)

@@ -114,7 +114,7 @@ var/global/datum/controller/occupations/job_master
 			if(istype(job, GetJob("Civilian"))) // We don't want to give him assistant, that's boring!
 				continue
 
-			if(job.title in command_positions) //If you want a command position, select it!
+			if(job.title in omegacorp_positions) //If you want a command position, select it!
 				continue
 
 			if(job.title in whitelisted_positions) // No random whitelisted job, sorry!
@@ -154,7 +154,7 @@ var/global/datum/controller/occupations/job_master
 	///This proc is called before the level loop of DivideOccupations() and will try to select a head, ignoring ALL non-head preferences for every level until it locates a head or runs out of levels to check
 	proc/FillHeadPosition()
 		for(var/level = 1 to 3)
-			for(var/command_position in command_positions)
+			for(var/command_position in omegacorp_positions)
 				var/datum/job/job = GetJob(command_position)
 				if(!job)	continue
 				var/list/candidates = FindOccupationCandidates(job, level)
@@ -200,7 +200,7 @@ var/global/datum/controller/occupations/job_master
 
 	///This proc is called at the start of the level loop of DivideOccupations() and will cause head jobs to be checked before any other jobs of the same level
 	proc/CheckHeadPositions(var/level)
-		for(var/command_position in command_positions)
+		for(var/command_position in omegacorp_positions)
 			var/datum/job/job = GetJob(command_position)
 			if(!job)	continue
 			var/list/candidates = FindOccupationCandidates(job, level)
@@ -568,10 +568,10 @@ var/global/datum/controller/occupations/job_master
 		if(job)
 			if(job.title == "Cyborg")
 				return
-			else
+			else if(job.title in omegacorp_positions) //Only people from Omegacorp gets to have IDs
 				C = new job.idtype(H)
 				C.access = job.get_access()
-		else
+		else if(job.title in omegacorp_positions) //Only people from Omegacorp gets to have IDs
 			C = new /obj/item/weapon/card/id(H)
 		if(C)
 			C.registered_name = H.real_name

@@ -1,4 +1,4 @@
-/datum/gear/accessory
+/*/datum/gear/accessory
 	subtype_path = /datum/gear/accessory
 	slot = slot_tie
 	sort_category = "Accessories"
@@ -93,3 +93,4 @@
 	display_name = "stethoscope"
 	path = /obj/item/clothing/accessory/stethoscope
 	allowed_roles = list("Chief Medical Officer", "Medical Doctor", "Paramedic", "Brig Physician")
+*/

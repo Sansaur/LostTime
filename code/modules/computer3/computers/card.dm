@@ -41,7 +41,7 @@
 
 		counter = 0
 		jobs_all += "</tr><tr><td><font color='#A50000'><b>Security</b></font></td>"//Red
-		for(var/job in security_positions)
+		for(var/job in guards_positions)
 			counter++
 			if(counter >= 6)
 				jobs_all += "</tr><tr height='20'><td></td><td></td>"
@@ -50,7 +50,7 @@
 
 		counter = 0
 		jobs_all += "</tr><tr><td><font color='#FFA500'><b>Engineering</b></font></td>"//Orange
-		for(var/job in engineering_positions)
+		for(var/job in villagers_positions)
 			counter++
 			if(counter >= 6)
 				jobs_all += "</tr><tr height='20'><td></td><td></td>"
@@ -59,7 +59,7 @@
 
 		counter = 0
 		jobs_all += "</tr><tr height='20'><td><font color='#008000'><b>Medical</b></font></td>"//Green
-		for(var/job in medical_positions)
+		for(var/job in religious_positions)
 			counter++
 			if(counter >= 6)
 				jobs_all += "</tr><tr height='20'><td></td><td></td>"
@@ -68,7 +68,7 @@
 
 		counter = 0
 		jobs_all += "</tr><tr height='20'><td><font color='#800080'><b>Science</b></font></td>"//Purple
-		for(var/job in science_positions)
+		for(var/job in wizards_positions)
 			counter++
 			if(counter >= 6)
 				jobs_all += "</tr><tr height='20'><td></td><td></td>"

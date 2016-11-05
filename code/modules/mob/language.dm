@@ -401,7 +401,7 @@
 	var/mob/living/carbon/M = other
 	if(!istype(M))
 		return 1
-	if(locate(/obj/item/organ/internal/wryn/hivenode) in M.internal_organs)
+	//if(locate(/obj/item/organ/internal/wryn/hivenode) in M.internal_organs)
 		return 1
 
 	return 0
@@ -559,7 +559,7 @@
 	flags = RESTRICTED | HIVEMIND
 	drone_only = 1
 	follow = 1
-	
+
 /datum/language/drone
 	name = "Drone"
 	desc = "An encrypted stream of data converted to speech patterns."

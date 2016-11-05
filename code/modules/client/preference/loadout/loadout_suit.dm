@@ -1,4 +1,4 @@
-/datum/gear/suit
+/*/datum/gear/suit
 	subtype_path = /datum/gear/suit
 	slot = slot_wear_suit
 	cost = 2
@@ -158,3 +158,4 @@
 /datum/gear/suit/purplesuit
 	display_name = "suit jacket, purple"
 	path = /obj/item/clothing/suit/storage/lawyer/purpjacket
+*/

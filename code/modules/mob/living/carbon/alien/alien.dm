@@ -27,7 +27,7 @@
 	var/heat_protection = 0.5
 	var/leaping = 0
 	ventcrawler = 2
-	
+
 	var/list/alien_organs = list()
 
 /mob/living/carbon/alien/New()
@@ -161,7 +161,7 @@
 	..()
 
 
-	show_stat_emergency_shuttle_eta()
+	//show_stat_emergency_shuttle_eta()
 
 /mob/living/carbon/alien/SetStunned(amount)
 	..(amount)

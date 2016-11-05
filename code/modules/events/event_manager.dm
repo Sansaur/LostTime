@@ -391,7 +391,7 @@
 
 		if(istype(M, /mob/living/silicon/robot) && M:module && M:module.name == "security robot module")
 			active_with_role["Security"]++
-		if(M.mind.assigned_role in security_positions)
+		if(M.mind.assigned_role in guards_positions)
 			active_with_role["Security"]++
 
 		if(M.mind.assigned_role in list("Research Director", "Scientist"))

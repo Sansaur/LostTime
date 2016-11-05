@@ -714,6 +714,26 @@
 	desc = "A modified ID card given only to those people who have devoted their lives to the better interests of Nanotrasen. It sparkles blue."
 	icon_state = "lifetimeid"
 
+/obj/item/weapon/card/id/omegacorp_support
+	name = "Operation Support ID"
+	desc = "An ID given to a recruit for the time-travelling operation"
+	icon_state = "id"
+
+/obj/item/weapon/card/id/omegacorp_enforcer
+	name = "Operation Enforcer ID"
+	desc = "An ID given to a time-police enforcer"
+	icon_state = "id_enforcer"
+
+/obj/item/weapon/card/id/omegacorp_medic
+	name = "Operation Medic ID"
+	desc = "An ID given to the operation medic"
+	icon_state = "id_medic"
+
+/obj/item/weapon/card/id/omegacorp_leader
+	name = "Operation Leader ID"
+	desc = "The ID card belonging to the operation leader, grants full access to the company's tools"
+	icon_state = "id_leader"
+
 // Decals
 /obj/item/weapon/id_decal
 	name = "identification card decal"
@@ -748,6 +768,8 @@
 	name = "centcom ID card decal"
 	decal_desc = "An ID straight from Cent. Com."
 	decal_icon_state = "centcom"
+
+
 
 /obj/item/weapon/id_decal/emag
 	name = "cryptographic sequencer ID card decal"

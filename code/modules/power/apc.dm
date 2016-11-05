@@ -668,7 +668,7 @@
 		return
 	src.add_fingerprint(user)
 	//Synthetic human mob goes here.
-	if(istype(user,/mob/living/carbon/human))
+	/*if(istype(user,/mob/living/carbon/human))
 		var/mob/living/carbon/human/H = user
 		if(H.get_int_organ(/obj/item/organ/internal/cell) && H.a_intent == I_GRAB)
 			if(emagged || stat & BROKEN)
@@ -697,7 +697,7 @@
 			else
 				to_chat(user, "<span class='warning'>There is no charge to draw from that APC.</span>")
 			return
-
+*/
 	if(usr == user && opened && (!issilicon(user)))
 		if(cell)
 			if(issilicon(user))

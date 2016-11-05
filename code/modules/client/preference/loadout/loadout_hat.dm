@@ -1,4 +1,4 @@
-/datum/gear/hat
+/*/datum/gear/hat
 	subtype_path = /datum/gear/hat
 	slot = slot_head
 	sort_category = "Headwear"
@@ -117,3 +117,4 @@
 	display_name = "science beret"
 	path = /obj/item/clothing/head/beret/sci
 	allowed_roles = list("Research Director", "Scientist")
+*/

@@ -800,8 +800,7 @@ var/list/admin_verbs_snpc = list(
 
 	if(!check_rights(R_ADMIN))
 		return
-
-	if(!istype(H))
+	/*if(!istype(H))
 		if(istype(H, /mob/living/carbon/brain))
 			var/mob/living/carbon/brain/B = H
 			if(istype(B.container, /obj/item/device/mmi/posibrain/ipc))
@@ -812,11 +811,10 @@ var/list/admin_verbs_snpc = list(
 			else
 				return
 		else
-			return
-
+			return*/
 	if(holder)
 		admin_log_and_message_admins("is altering the appearance of [H].")
-		H.change_appearance(APPEARANCE_ALL, usr, usr, check_species_whitelist = 0)
+		H.change_appearance(APPEARANCE_ALL_BODY, usr, usr, check_species_whitelist = 0) //TESTING HERE, ORIGINAL: APPEARANCE_ALL - SANSAUR
 	feedback_add_details("admin_verb","CHAA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/change_human_appearance_self(mob/living/carbon/human/H in mob_list)
@@ -826,20 +824,20 @@ var/list/admin_verbs_snpc = list(
 
 	if(!check_rights(R_ADMIN))
 		return
-
+/*
 	if(!istype(H))
 		if(istype(H, /mob/living/carbon/brain))
-			var/mob/living/carbon/brain/B = H
-			if(istype(B.container, /obj/item/device/mmi/posibrain/ipc))
-				var/obj/item/device/mmi/posibrain/ipc/C = B.container
-				var/obj/item/organ/internal/brain/mmi_holder/posibrain/P = C.loc
-				if(istype(P.owner, /mob/living/carbon/human))
-					H = P.owner
-			else
-				return
+			//var/mob/living/carbon/brain/B = H
+			//if(istype(B.container, /obj/item/device/mmi/posibrain/ipc))
+				//var/obj/item/device/mmi/posibrain/ipc/C = B.container
+				//var/obj/item/organ/internal/brain/mmi_holder/posibrain/P = C.loc
+				//if(istype(P.owner, /mob/living/carbon/human))
+				//	H = P.owner
+			//else
+				//return
 		else
 			return
-
+*/
 	if(!H.client)
 		to_chat(usr, "Only mobs with clients can alter their own appearance.")
 		return
@@ -847,10 +845,10 @@ var/list/admin_verbs_snpc = list(
 	switch(alert("Do you wish for [H] to be allowed to select non-whitelisted races?","Alter Mob Appearance","Yes","No","Cancel"))
 		if("Yes")
 			admin_log_and_message_admins("has allowed [H] to change \his appearance, without whitelisting of races.")
-			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 0)
+			H.change_appearance(APPEARANCE_ALL_BODY, H.loc, check_species_whitelist = 0)
 		if("No")
 			admin_log_and_message_admins("has allowed [H] to change \his appearance, with whitelisting of races.")
-			H.change_appearance(APPEARANCE_ALL, H.loc, check_species_whitelist = 1)
+			H.change_appearance(APPEARANCE_ALL_BODY, H.loc, check_species_whitelist = 1)
 	feedback_add_details("admin_verb","CMAS") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
 
 /client/proc/free_slot()

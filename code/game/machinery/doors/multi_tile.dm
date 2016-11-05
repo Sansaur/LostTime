@@ -8,4 +8,3 @@
 	opacity = 0
 	glass = 1
 	assembly_type = "obj/structure/door_assembly/multi_tile"
-

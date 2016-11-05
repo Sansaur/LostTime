@@ -72,3 +72,8 @@ var/global/default_martial_art = new/datum/martial_art
 	var/fire_sprite = "Standing"
 
 	var/datum/body_accessory/body_accessory = null
+
+	// MOD VARIABLES - SANSAUR
+
+	var/time_faction //This is a String and it gets updated in the equipping function for the jobs.
+					 //"Omegacorp" and "Medieval" are the two possible options, it's used for the joining teleports.
