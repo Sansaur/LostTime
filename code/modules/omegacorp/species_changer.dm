@@ -115,8 +115,10 @@
 			for(database in world)
 				if(database.scanned_humans)
 					for(var/mob/living/carbon/human/HUMANOID in database.scanned_humans)
+						if(HUMANOID.species.name in availible_species)
 							continue
 						else
+							availible_species.Add(HUMANOID.species.name)
 
 
 			if(availible_species.len == 1)

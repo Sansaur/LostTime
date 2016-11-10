@@ -47,6 +47,8 @@ a.nobg:hover  /*Link Sin background */
 
 a:hover 
 { 
+	color: #FCC37A; /* Cuando haces un Hover sobre un boton de link, las letras se vuelven azules y el fondo blanco */
+	background: #2F043A;
 }
 
 a.white, a.white:link, a.white:visited, a.white:active /* Esto es un link a la inversa (wtf) */
