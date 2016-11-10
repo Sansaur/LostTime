@@ -2323,6 +2323,8 @@
 				feedback_add_details("admin_secrets_fun_used","QP")
 				log_admin("[key_name(usr)] changed the time of the day", 1)
 				message_admins("\blue [key_name_admin(usr)] changed the time of the day", 1)
+				//This must be done by loading the medieval areas in a list before
+				//for(var/area/medieval/AM in world)
 				for(var/area/medieval/AM in world)
 					AM.ChangeDayTime()
 			if("prisonwarp")

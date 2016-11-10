@@ -750,14 +750,14 @@ Traitors and the like can also be revived with the previous role mostly intact.
 	//message_admins("\blue [key_name_admin(usr)] changed their view range to [view].", 1)	//why? removed by order of XSI
 
 	feedback_add_details("admin_verb","CVRA") //If you are copy-pasting this, ensure the 2nd parameter is unique to the new proc!
-
+/*
 /client/proc/admin_call_shuttle()
 
 	set category = "Admin"
 	set name = "Call Shuttle"
 
-	if(shuttle_master.emergency.mode >= SHUTTLE_DOCKED)
-		return
+	//if(shuttle_master.emergency.mode >= SHUTTLE_DOCKED)
+	//	return
 
 	if(!check_rights(R_ADMIN))
 		return
@@ -804,7 +804,7 @@ Traitors and the like can also be revived with the previous role mostly intact.
 
 	log_admin("[key_name(src)] has [shuttle_master.emergencyNoEscape ? "denied" : "allowed"] the shuttle to be called.")
 	message_admins("[key_name_admin(usr)] has [shuttle_master.emergencyNoEscape ? "denied" : "allowed"] the shuttle to be called.")
-
+*/
 /client/proc/cmd_admin_attack_log(mob/M as mob in mob_list)
 	set category = "Special Verbs"
 	set name = "Attack Log"

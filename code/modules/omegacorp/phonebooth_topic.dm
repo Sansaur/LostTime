@@ -39,6 +39,9 @@
 		to_chat(user, "A mainframe has not been found!! Contact the company for more details")
 		return
 	else
+		if(!(PB.loc.loc.type == /area/omegacorp/phonebooth))
+			to_chat(user, "<span class=warning> Someone built the mainframe out of the phonebooth, you may call them retard</span>")
+			return
 		if(!PB.is_setup)
 			to_chat(user, "Time travelling without the power mainframe ready is almost suicidal!")
 			return 0
@@ -175,7 +178,12 @@
 	visible_message("[bicon(src)]  <B>the computer</B> beeps, 1")
 	sleep(10)
 	master_booth.forceMove(dest)
+	var/obj/effect/overlay/trippyfloor/TRIPPZ
+	for(var/turf/T in src.loc.loc)
+		T.overlays.Add(TRIPPZ)
 	playsound(loc, 'sound/effects/phasein.ogg', 70, 1)
+	var/obj/structure/heat_controller/HEATCONTROL = locate()
+	HEATCONTROL.heat += 15
 	var/obj/structure/pb_mainframe/stabilization_mainframe/SB = locate()
 	if(SB)
 		if(SB.is_setup)
@@ -187,7 +195,9 @@
 			HUMAN.Stun(5)
 			HUMAN.Weaken(5)
 			shake_camera(HUMAN, 15, 1)
-
+	sleep(8)
+	for(var/turf/T in src.loc.loc)
+		T.overlays.Remove(TRIPPZ)
 /obj/structure/timetravel/phonebooth_computer/proc/Dest_IsSafe(turf/dest as turf)
 	if(dest.density)
 		return 0
@@ -242,9 +252,14 @@
 		to_chat(user, "A mainframe has not been found!! Contact the company for more details")
 		return
 	else
+		if(!(PB.loc.loc.type == /area/omegacorp/phonebooth))
+			to_chat(user, "<span class=warning> Someone built the mainframe out of the phonebooth, you may call them retard</span>")
+			return 0
+
 		if(!PB.is_setup)
 			to_chat(user, "Time travelling without the power mainframe ready is almost suicidal!")
 			return 0
+
 	if(password)
 		var/texti = input(user, "Please introduce the password", "Introduce password", 0) as text
 		if(texti != password)
@@ -283,7 +298,7 @@
 		return 1
 
 	if(choice == "RETURN" && Adjacent(user))
-		var/dest = locate(220, 146, 2)
+		var/dest = locate(220, 135, 2)
 		Launch(dest)
 		return 1
 
@@ -327,6 +342,8 @@
 	visible_message("[bicon(src)]  <B>the computer</B> beeps, 1")
 	sleep(10)
 	master_booth.forceMove(dest)
+	var/obj/structure/heat_controller/HEATCONTROL = locate()
+	HEATCONTROL.heat += 15
 	playsound(loc, 'sound/effects/phasein.ogg', 70, 1)
 
 /obj/structure/timetravel/phonebooth_saver/proc/Dest_IsSafe(turf/dest as turf)
@@ -358,3 +375,7 @@
 		else
 			return 0
 	return 1
+
+/obj/effect/overlay/trippyfloor
+	icon = 'icons/turf/floors.dmi'
+	icon_state = "trippyfloor"

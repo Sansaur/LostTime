@@ -321,3 +321,19 @@
 		else
 			to_chat(user, "<font color=red>No associated computer found. Only local scans will function properly.</font>")
 		to_chat(user, "\n")
+
+
+
+
+
+/****
+**** MOD LIBRARY ****
+****/
+
+/obj/structure/bookcase/manuals/story
+	name = "Backstory bookcase"
+
+	New()
+		..()
+		new /obj/item/weapon/book/manual/medical_cloning(src)
+		update_icon()

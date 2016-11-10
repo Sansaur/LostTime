@@ -633,3 +633,49 @@
 
 /obj/structure/rack/skeletal_bar/right
 	icon_state = "minibar_right"
+
+/obj/structure/rack/metal_shelves
+	name = "metal shelves"
+	desc = "Some metal shelves to put your stuff in them, make sure you can reach the top part before throwing something on it."
+	icon = 'icons/obj/objects.dmi'
+	icon_state = "metal_shelf"
+	density = 1
+	anchored = 1.0
+	throwpass = 1	//You can throw objects over this, despite it's density.
+	parts = /obj/item/weapon/shelf_parts
+	health = 5
+
+/obj/structure/rack/metal_shelves/ex_act(severity)
+	switch(severity)
+		if(1.0)
+			qdel(src)
+		if(2.0)
+			qdel(src)
+			if(prob(50))
+				new /obj/item/weapon/shelf_parts(src.loc)
+		if(3.0)
+			if(prob(25))
+				qdel(src)
+				new /obj/item/weapon/shelf_parts(src.loc)
+
+/obj/structure/rack/metal_shelves/blob_act()
+	if(prob(75))
+		qdel(src)
+		return
+	else if(prob(50))
+		new /obj/item/weapon/shelf_parts(src.loc)
+		qdel(src)
+		return
+
+/obj/structure/rack/metal_shelves/attackby(obj/item/weapon/W as obj, mob/user as mob, params)
+	if(istype(W, /obj/item/weapon/wrench))
+		new /obj/item/weapon/shelf_parts( src.loc )
+		playsound(src.loc, 'sound/items/Ratchet.ogg', 50, 1)
+		qdel(src)
+		return
+	if(isrobot(user))
+		return
+	if(!(W.flags & ABSTRACT))
+		if(user.drop_item())
+			W.Move(loc)
+	return

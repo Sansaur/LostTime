@@ -313,6 +313,12 @@
 
 				if("vote_period")
 					config.vote_period = text2num(value)
+					/* THIS MAY OR MAY NOT WORK - Sansaur*/
+				if("vote_autotransfer_initial")
+					config.vote_autotransfer_initial = text2num(value)
+
+				if("vote_autotransfer_interval")
+					config.vote_autotransfer_interval = text2num(value)
 
 				if("allow_ai")
 					config.allow_ai = 1

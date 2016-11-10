@@ -69,6 +69,14 @@
 	turf_type = /turf/simulated/floor/wood/worker_wood
 	burn_state = FLAMMABLE
 
+/obj/item/stack/tile/wood/worker_wood_mini // - Sansaur
+	name = "fixed wood floor tiles"
+	gender = PLURAL
+	singular_name = "fixed wood floor tile"
+	desc = "an easy to fit wood floor tile, this one looks average"
+	icon_state = "tile-wood4"
+	turf_type = /turf/simulated/floor/wood/worker_wood_mini
+	burn_state = FLAMMABLE
 /*
  * Stones
  */

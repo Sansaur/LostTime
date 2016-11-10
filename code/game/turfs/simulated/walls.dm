@@ -23,7 +23,7 @@
 
 	var/hardness = 40 //lower numbers are harder. Used to determine the probability of a hulk smashing through.
 	var/engraving, engraving_quality //engraving on the wall
-	
+
 	var/sheet_type = /obj/item/stack/sheet/metal
 	var/obj/item/stack/sheet/builtin_sheet = null
 
@@ -39,8 +39,8 @@
 
 /turf/simulated/wall/New()
 	..()
-	builtin_sheet = new sheet_type	
-	
+	builtin_sheet = new sheet_type
+
 /turf/simulated/wall/BeforeChange()
 	for(var/obj/effect/E in src)
 		// such quality code
@@ -48,7 +48,7 @@
 			qdel(E)
 	. = ..()
 
-	
+
 //Appearance
 /turf/simulated/wall/examine(mob/user)
 	. = ..(user)
@@ -138,22 +138,34 @@
 		else
 			O.loc = src
 
-	ChangeTurf(/turf/simulated/floor/plating)
-	
+	if(src.loc in medieval_areas)
+		src.ChangeTurf(/turf/simulated/floor/plating)
+	else
+		src.ChangeTurf(/turf/simulated/floor/grass)
+
 /turf/simulated/wall/proc/break_wall()
-	builtin_sheet.amount = 2
+	/*builtin_sheet.amount = 2
 	builtin_sheet.loc = src
-	return (new /obj/structure/girder(src))
+	if(src.loc.type in medieval_areas)
+		src.ChangeTurf(/turf/simulated/floor/grass)
+		return (new /obj/structure/girder(src))
+	else
+		src.ChangeTurf(/turf/simulated/floor/plating)
+		return (new /obj/structure/girder(src))
+	return (new /obj/structure/girder(src))*/
 
 /turf/simulated/wall/proc/devastate_wall()
-	builtin_sheet.amount = 2
+	/*builtin_sheet.amount = 2
 	builtin_sheet.loc = src
-	new /obj/item/stack/sheet/metal(src)
+	new /obj/item/stack/sheet/metal(src)*/
 
 /turf/simulated/wall/ex_act(severity)
 	switch(severity)
 		if(1.0)
-			src.ChangeTurf(/turf/space)
+			if(src.loc.type in medieval_areas)
+				src.ChangeTurf(/turf/simulated/floor/grass)
+			else
+				src.ChangeTurf(/turf/simulated/floor/plating)
 			return
 		if(2.0)
 			if(prob(50))
@@ -201,7 +213,7 @@
 /turf/simulated/wall/proc/thermitemelt(mob/user as mob)
 	if(istype(sheet_type, /obj/item/stack/sheet/mineral/diamond))
 		return
-		
+
 	var/obj/effect/overlay/O = new/obj/effect/overlay( src )
 	O.name = "Thermite"
 	O.desc = "Looks hot."
@@ -210,8 +222,11 @@
 	O.anchored = 1
 	O.density = 1
 	O.layer = 5
+	if(!(src.loc in medieval_areas))
+		src.ChangeTurf(/turf/simulated/floor/plating)
+	else
+		src.ChangeTurf(/turf/simulated/floor/grass)
 
-	src.ChangeTurf(/turf/simulated/floor/plating)
 
 	var/turf/simulated/floor/F = src
 	F.burn_tile()
@@ -275,7 +290,7 @@
 		return
 
 	//get the user's location
-	if(!istype(user.loc, /turf))	
+	if(!istype(user.loc, /turf))
 		return	//can't do this stuff whilst inside objects and such
 
 	if(rotting)

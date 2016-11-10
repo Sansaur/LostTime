@@ -352,8 +352,8 @@
 	name = "Airlock"
 	icon = 'icons/obj/doors/survival.dmi'
 	assembly_type = /obj/structure/door_assembly/door_assembly_pod
-	opacity = 0
-	glass = 1
+	opacity = 1
+	//glass = 1
 
 /obj/structure/door_assembly/door_assembly_pod
 	base_icon_state = "survival_pod"

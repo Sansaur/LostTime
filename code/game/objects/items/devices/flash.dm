@@ -192,8 +192,36 @@
 
 /obj/item/device/flash/memorizer
 	name = "memorizer"
-	desc = "If you see this, you're not likely to remember it any time soon."
+	desc = "If you see this, you're not likely to remember it any time soon. It erases the target's memory for up to an hour\
+			Protip: Don't use it on yourself."
 	icon_state = "memorizer"
 	item_state = "nullrod"
+
+
+/obj/item/device/flash/memorizer/flash_carbon(var/mob/living/carbon/M, var/mob/user = null, var/power = 5, targeted = 1)
+	add_logs(user, M, "flashed", object="[src.name]")
+	if(user && targeted)
+		if(M.weakeyes)
+			M.Weaken(3) //quick weaken bypasses eye protection but has no eye flash
+		if(M.flash_eyes(1, 1))
+			M.confused += power
+			terrible_conversion_proc(M, user)
+			M.Stun(1)
+			M.Weaken(1)
+			visible_message("<span class='disarm'>[user] blinds [M] with the flash!</span>")
+			to_chat(user, "<span class='danger'>You blind [M] with the flash!</span>")
+			to_chat(M, "<span class='userdanger'>[user] blinds you with the flash!</span>")
+			to_chat(M, "<span class='biggerdanger'>You've forgotten everything that has happened to you during the past hour!</span>")
+			if(M.weakeyes)
+				M.Stun(2)
+				M.visible_message("<span class='disarm'>[M] gasps and shields their eyes!</span>", "<span class='userdanger'>You gasp and shields your eyes!</span>")
+		else
+			visible_message("<span class='disarm'>[user] fails to blind [M] with the flash!</span>")
+			to_chat(user, "<span class='warning'>You fail to blind [M] with the flash!</span>")
+			to_chat(M, "<span class='danger'>[user] fails to blind you with the flash!</span>")
+	else
+		if(M.flash_eyes())
+			M.confused += power
+
 
 /obj/item/device/flash/synthetic //just a regular flash now

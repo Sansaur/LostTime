@@ -4,7 +4,7 @@ body /* Color del cuerpo estereotípico */
 { 
 	padding: 0;
 	margin: 0;
-	background-color: #633002;
+	background-color: #40260B;
 	font-size: 12px;
 	color: #ffffff;
 	line-height: 170%;
@@ -26,7 +26,7 @@ a, a:link, a:visited, a:active, .linkOn, .linkOff /* Link Con Background */
 	padding: 1px 4px 1px 4px;
 	margin: 0 2px 0 0;
 	cursor:default;
-	transition-duration: 2s;
+	transition-duration: 0.6s;
 }
 
 a.nobg, a.nobg:link, a.nobg:visited, a.nobg:active /*Link Sin background */
@@ -47,8 +47,6 @@ a.nobg:hover  /*Link Sin background */
 
 a:hover 
 { 
-	color: #16813A; /* Cuando haces un Hover sobre un boton de link, las letras se vuelven azules y el fondo blanco */
-	background: #DAA4E5;
 }
 
 a.white, a.white:link, a.white:visited, a.white:active /* Esto es un link a la inversa (wtf) */
@@ -70,7 +68,7 @@ a.white:hover   /* Esto es un link a la inversa (wtf) */
 
 .linkOn, a.linkOn:link, a.linkOn:visited, a.linkOn:active, a.linkOn:hover /* Link activo en estos momentos */
 { 
-	color: #ffffff; 
+	color: #000000; 
 	background: linear-gradient(to bottom, rgba(242,184,96,1) 8%,rgba(243,226,199,1) 13%,rgba(233,212,179,1) 86%,rgba(232,175,90,1) 91%);
 	border-color: #24722e;
 	
@@ -157,10 +155,10 @@ h4
 	clear: both;
 	padding: 6px 8px 6px 8px;
 	border-bottom: 2px solid #161616;
-	background: #E09B3A;
+	background: #40260B;
 	/*background: #383838; ORIGINAL*/
 	/*background: linear-gradient(to bottom, rgba(243,226,199,1) 0%, rgba(31,21,7,1) 7%, rgba(125,92,43,1) 95%, rgba(233,212,179,1) 100%);
-	*/color: #7A7A11;
+	*/color: #FFFFFF;
 	font-size: 16px;
 }
 

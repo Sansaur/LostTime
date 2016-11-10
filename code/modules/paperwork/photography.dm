@@ -188,8 +188,12 @@ var/list/SpookyGhosts = list("ghost","shade","shade2","ghost-narsie","horror","s
 /obj/item/device/camera/attack_self(mob/user as mob)
 	on = !on
 	if(on)
+		if(is_disguised)
+			return
 		src.icon_state = icon_on
 	else
+		if(is_disguised)
+			return
 		src.icon_state = icon_off
 	to_chat(user, "You switch the camera [on ? "on" : "off"].")
 	return

@@ -126,9 +126,10 @@ If they had an objective to get someone imprinted, it works like this:
 
 **/
 
-obj/structure/human_imprinter_comp
+/obj/structure/human_imprinter_comp
 	name = "Humanoid Imprinter Computer"
-	desc = "Use this to send copies of a humanoid's characteristics to the company."
+	desc = "Use this to send copies of a humanoid's characteristics to the company. \
+			It is also used to store data for the quick species changer."
 	icon = 'icons/obj/omegacorp_objs.dmi'
 	icon_state = "human_imprinter_comp"
 	anchored = 1
@@ -136,7 +137,7 @@ obj/structure/human_imprinter_comp
 	opacity = 0
 	var/list/mob/living/carbon/human/scanned_humans = list()
 
-obj/structure/human_imprinter_comp/attack_hand(mob/user as mob)
+/obj/structure/human_imprinter_comp/attack_hand(mob/user as mob)
 	var/obj/item/weapon/card/id/IDS
 	if(!IDS in user.contents)
 		to_chat(user, "<span class=warning> Access Denied </span>")

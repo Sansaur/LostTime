@@ -65,6 +65,13 @@
 	flags = CONDUCT
 	materials = list(MAT_METAL=2000)
 
+/obj/item/weapon/shelf_parts
+	name = "shelf parts"
+	desc = "Parts of a shelf."
+	icon = 'icons/obj/items.dmi'
+	icon_state = "shelf_parts"
+	flags = CONDUCT
+	materials = list(MAT_METAL=2000)
 /*
  * Table Parts
  */
@@ -103,6 +110,12 @@
 
 /obj/item/weapon/rack_parts/attack_self(mob/user as mob)
 	var/obj/structure/rack/R = new /obj/structure/rack(user.loc)
+	R.add_fingerprint(user)
+	user.drop_item()
+	qdel(src)
+
+/obj/item/weapon/shelf_parts/attack_self(mob/user as mob)
+	var/obj/structure/rack/metal_shelves/R = new /obj/structure/rack/metal_shelves(user.loc)
 	R.add_fingerprint(user)
 	user.drop_item()
 	qdel(src)

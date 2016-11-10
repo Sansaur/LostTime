@@ -100,6 +100,14 @@
 
 /obj/machinery/door/poddoor/multi_tile // Whoever wrote the old code for multi-tile spesspod doors needs to burn in hell.
 	name = "Large Pod Door"
+	opacity = 1
+
+/obj/machinery/door/poddoor/multi_tile/attackby(obj/item/W, mob/user as mob) //This is a hacky way of making pod doors work as regular doors!
+	if(istype(W, /obj/item/weapon/card/id/omegacorp_leader) || istype(W, /obj/item/weapon/card/id/omegacorp_enforcer))
+		if(src.density)
+			src.open()
+		else
+			src.close()
 
 /obj/machinery/door/poddoor/multi_tile/four_tile_ver/
 	icon = 'icons/obj/doors/1x4blast_vert.dmi'

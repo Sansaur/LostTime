@@ -248,6 +248,8 @@
 		..()
 
 /obj/item/toy/crayon/spraycan/update_icon()
+	if(is_disguised)
+		return
 	overlays.Cut()
 	var/image/I = image('icons/obj/crayons.dmi',icon_state = "[capped ? "spraycan_cap_colors" : "spraycan_colors"]")
 	I.color = colour

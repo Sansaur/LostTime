@@ -9,6 +9,7 @@
 	var/obj/structure/species_server/my_server
 
 /obj/structure/species_changer/New()
+	..()
 	detect_server()
 
 /obj/structure/species_changer/attack_hand(mob/user as mob)
@@ -24,6 +25,7 @@
 	if(my_server)
 		change_species()
 	else
+		visible_message("<span class=warning> The [src] has not located the servers, please press the button on the platform to locate the nearest server")
 		playsound(loc, 'sound/machines/synth_no.ogg', 70, 1)
 
 /obj/structure/species_changer/proc/change_species()
@@ -32,9 +34,8 @@
 	flick("species_changer_platform_ENGAGED", src)
 	var/mob/living/carbon/human/HUMAN
 	for(HUMAN in src.loc)
-		var/species_name = my_server.disk.stored_species.name
 		var/species = my_server.disk.stored_species
-		HUMAN.change_species(species_name)//LET'S KEEP DEBUGGING THIS
+		HUMAN.change_species(my_server.disk.stored_species)//LET'S KEEP DEBUGGING THIS
 		HUMAN.change_species(species)//LET'S KEEP DEBUGGING THIS
 		visible_message("<span class=warning>[HUMAN] has been turned into a [my_server.disk.stored_species]!!</span>")
 	layer = 3
@@ -44,7 +45,6 @@
 		var/turf/T
 		T = get_step(src, card)
 		if(!my_server)
-			//var/obj/structure/species_server/server
 			for(var/obj/structure/W in T)
 				if(istype(W, /obj/structure/species_server))
 					my_server = W
@@ -91,8 +91,7 @@
 	anchored = 1
 	density = 1
 	opacity = 0
-	var/obj/structure/species_server/disk
-
+	var/obj/item/weapon/species_datadisk/disk
 
 /obj/structure/species_server_computer/attack_hand(mob/user as mob)
 	if(!disk)
@@ -108,11 +107,27 @@
 			user.put_in_hands(disk)
 			disk = null
 			return
+
 		if(response == "Change Disk Species")
 			var/altering
-			altering = input("Choose a new species to change the disk contents to", "Operating", null) in list("Human", "Unathi", "Tajaran", "Vulpkanin", "Kobold", "Dwarf")
+			var/list/availible_species = list("Human")
+			var/obj/structure/human_imprinter_comp/database
+			for(database in world)
+				if(database.scanned_humans)
+					for(var/mob/living/carbon/human/HUMANOID in database.scanned_humans)
+							continue
+						else
+
+
+			if(availible_species.len == 1)
+				to_chat(user, "There's only humans in the availible species database, do you want to change the disk's data to the Human species?")
+				var/choice = input(user, "Decide time!", "Operating", "No") in list("Yes", "No")
+				if(choice == "No")
+					return 0
+
+			altering = input(user, "Choose a new species to change the disk contents to", "Operating", null) in availible_species
 			disk.stored_species = altering
-			return
+			return 1
 		if(response == "Show Disk Data")
 			to_chat(user, "The disk contains the information of a [disk.stored_species]")
 			return

@@ -92,6 +92,8 @@
 	return
 
 /obj/item/toy/balloon/update_icon()
+	if(is_disguised)
+		return
 	if(src.reagents.total_volume >= 1)
 		icon_state = "waterballoon"
 		item_state = "balloon"
@@ -1402,6 +1404,8 @@ obj/item/toy/cards/deck/syndicate/black
 	attack_verb = list("sawed", "cut", "hacked", "carved", "cleaved", "butchered", "felled", "timbered")
 
 /obj/item/weapon/twohanded/toy/chainsaw/update_icon()
+	if(is_disguised)
+		return
 	if(wielded)
 		icon_state = "chainsaw[wielded]"
 	else

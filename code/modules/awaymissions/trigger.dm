@@ -53,6 +53,16 @@
 /obj/effect/step_trigger/teleport_fancy/tolevels/Trigger(mob/M as mob)
 	var/dest = locate(locationx, locationy, locationz)
 	M.Move(dest)
+	for(var/obj/item/weapon/book/manual/omegacorp/MANUAL in M.contents)
+		qdel(MANUAL)
+
+	//for(var/obj/item/clothing/storage/STORAGE in M.contents)
+	//	for(var/obj/item/weapon/book/manual/omegacorp/MANUAL in STORAGE.contents)
+	//		qdel(MANUAL)
+
+	for(var/obj/item/weapon/storage/B_STORAGE in M.contents)
+		for(var/obj/item/weapon/book/manual/omegacorp/MANUAL in B_STORAGE.contents)
+			qdel(MANUAL)
 
 /obj/effect/step_trigger/teleport_fancy/tolevels/to_medieval
 	locationx = 128
@@ -63,8 +73,19 @@
 	if(M.time_faction == "Medieval")
 		var/dest = locate(locationx, locationy, locationz)
 		M.Move(dest)
+
+		for(var/obj/item/weapon/book/manual/omegacorp/MANUAL in M.contents)
+			qdel(MANUAL)
+
+		//for(var/obj/item/clothing/storage/STORAGE in M.contents)
+		//	for(var/obj/item/weapon/book/manual/omegacorp/MANUAL in STORAGE.contents)
+		//		qdel(MANUAL)
+
+		for(var/obj/item/weapon/storage/B_STORAGE in M.contents)
+			for(var/obj/item/weapon/book/manual/omegacorp/MANUAL in B_STORAGE.contents)
+				qdel(MANUAL)
 	else
-		M << "This is not the teleporter you are supposed to take"
+		to_chat(M, "This is not the teleporter you are supposed to take")
 
 /obj/effect/step_trigger/teleport_fancy/tolevels/to_omegacorp
 	locationx = 201
@@ -75,5 +96,16 @@
 	if(M.time_faction == "Omegacorp")
 		var/dest = locate(locationx, locationy, locationz)
 		M.Move(dest)
+
+		for(var/obj/item/weapon/book/manual/omegacorp/MANUAL in M.contents)
+			qdel(MANUAL)
+
+		//for(var/obj/item/clothing/storage/STORAGE in M.contents)
+		//	for(var/obj/item/weapon/book/manual/omegacorp/MANUAL in STORAGE.contents)
+		//		qdel(MANUAL)
+
+		for(var/obj/item/weapon/storage/B_STORAGE in M.contents)
+			for(var/obj/item/weapon/book/manual/omegacorp/MANUAL in B_STORAGE.contents)
+				qdel(MANUAL)
 	else
-		M << "This is not the teleporter you are supposed to take"
+		to_chat(M, "This is not the teleporter you are supposed to take")

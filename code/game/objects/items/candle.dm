@@ -18,6 +18,8 @@
 		light(show_message = 0)
 
 /obj/item/candle/update_icon()
+	if(is_disguised)
+		return
 	var/i
 	if(wax>150)
 		i = 1

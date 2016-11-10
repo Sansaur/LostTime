@@ -72,6 +72,15 @@
 	var/dest = locate(locationx, locationy, locationz)
 	user.Move(dest)
 
+/obj/structure/timetravel/phonebooth/attackby(obj/item/W, mob/user as mob)
+	if(istype(W, /obj/item/weapon/phonebooth_remote))
+		var/locationx = 248
+		var/locationy = 121
+		var/locationz = 2
+		var/dest = locate(locationx, locationy, locationz)
+		to_chat(user, "Entering the phonebooth using the secure bypass")
+		user.Move(dest)
+
 /obj/effect/step_trigger/teleport_fancy/phonebooth
 	var/locationz
 	invisibility = 101
@@ -89,7 +98,9 @@
 
 
 /obj/item/weapon/phonebooth_remote //Very important item, there's only one of these too
-	name = "Phonebooth controller"
+	name = "Sonic screwdriver"
+	desc = "This tiny piece of technology allows you to perform many important phonebooth tasks with the press of a button \
+			it has a hijack to bypass it's security and it allows you to call the phonebooth to the user"
 	icon = 'icons/obj/timetravel.dmi'
 	icon_state = "controller"
 	w_class = 2
@@ -100,6 +111,21 @@
 	var/selection
 	selection = input("Select the disguise for the phonebooth","Default is the Phonebooth sprite itself",selection) in possible_sprites
 	ChangePhoneBoothSprite(selection)
+
+/obj/item/weapon/phonebooth_remote/verb/recall_phonebooth()
+	set name = "Call phonebooth"
+	set desc = "It's the power of the PHONEBOOTH RECALL"
+	set category = "Object"
+	set src = usr
+
+	var/dest = locate(usr.x, usr.y + 1, usr.z)
+	for(var/card in cardinal)
+		var/turf/T = get_step(usr, card)
+		if(T.density == 1)
+			to_chat(usr, "The phonebooth cannot be called at this time!")
+			return
+
+	master_booth.loc = dest
 
 /obj/item/weapon/phonebooth_remote/proc/ChangePhoneBoothSprite(var/selection)
 	if(selection == "Default")

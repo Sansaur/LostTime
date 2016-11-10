@@ -58,26 +58,35 @@ var/list/icons_to_ignore_at_floor_init = list("damaged1","damaged2","damaged3","
 		return
 	switch(severity)
 		if(1.0)
-			src.ChangeTurf(/turf/space)
+			if(src.loc.type in medieval_areas)
+				src.ChangeTurf(/turf/simulated/floor/grass)
+			else
+				src.ChangeTurf(/turf/simulated/floor/plating)
 		if(2.0)
 			switch(pick(1,2;75,3))
 				if(1)
 					spawn(0)
-						src.ReplaceWithLattice()
-						if(prob(33)) new /obj/item/stack/sheet/metal(src)
+						if(!(src.loc.type in medieval_areas))
+							src.ReplaceWithLattice()
+							if(prob(33)) new /obj/item/stack/sheet/metal(src)
 				if(2)
-					src.ChangeTurf(/turf/space)
-				if(3)
-					if(prob(80))
-						src.break_tile_to_plating()
+					if(src.loc.type in medieval_areas)
+						src.ChangeTurf(/turf/simulated/floor/grass)
 					else
-						src.break_tile()
-					src.hotspot_expose(1000,CELL_VOLUME)
-					if(prob(33)) new /obj/item/stack/sheet/metal(src)
+						src.ChangeTurf(/turf/simulated/floor/plating)
+				if(3)
+					if(!(src.loc.type in medieval_areas))
+						if(prob(80))
+							src.break_tile_to_plating()
+						else
+							src.break_tile()
+						src.hotspot_expose(1000,CELL_VOLUME)
+					//if(prob(33)) new /obj/item/stack/sheet/metal(src)
 		if(3.0)
 			if(prob(50))
-				src.break_tile()
-				src.hotspot_expose(1000,CELL_VOLUME)
+				if(!(src.loc.type in medieval_areas))
+					src.break_tile()
+					src.hotspot_expose(1000,CELL_VOLUME)
 	return
 
 /turf/simulated/floor/is_shielded()
@@ -153,7 +162,10 @@ var/list/icons_to_ignore_at_floor_init = list("damaged1","damaged2","damaged3","
 				to_chat(user, "<span class='danger'>You remove \the [builtin_tile.singular_name].</span>")
 				builtin_tile.loc = src
 				builtin_tile = null //deassociate tile, it no longer belongs to this turf
-		make_plating()
+		if(src.loc.type in medieval_areas)
+			src.ChangeTurf(/turf/simulated/floor/grass)
+		else
+			make_plating()
 		playsound(src, 'sound/items/Crowbar.ogg', 80, 1)
 		return 1
 	if(istype(C, /obj/item/pipe))

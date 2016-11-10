@@ -29,6 +29,8 @@
 		to_chat(usr, "<span class='notice'>You activate the pinpointer.</span>")
 	else
 		active = 0
+		if(is_disguised)
+			return
 		icon_state = "pinoff"
 		to_chat(usr, "<span class='notice'>You deactivate the pinpointer.</span>")
 
@@ -37,6 +39,8 @@
 		the_disk = locate()
 
 /obj/item/weapon/pinpointer/proc/point_at(atom/target, spawnself = 1)
+	if(is_disguised)
+		return
 	if(!active)
 		return
 	if(!target)

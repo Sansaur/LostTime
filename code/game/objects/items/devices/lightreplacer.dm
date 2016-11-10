@@ -149,6 +149,8 @@
 	to_chat(usr, "It has [uses] lights remaining.")
 
 /obj/item/device/lightreplacer/update_icon()
+	if(is_disguised)
+		return
 	icon_state = "lightreplacer[emagged]"
 
 

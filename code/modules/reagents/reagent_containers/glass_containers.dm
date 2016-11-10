@@ -92,6 +92,7 @@
 		reagents.reaction(target, TOUCH)
 		spawn(5) reagents.clear_reagents()
 		return
+
 	else if(istype(target, /obj/structure/reagent_dispensers)) //A dispenser. Transfer FROM it TO us.
 
 		if(!target.reagents.total_volume && target.reagents)
@@ -122,6 +123,9 @@
 		return
 
 	else if(istype(target, /obj/effect/decal/cleanable)) //stops splashing while scooping up fluids
+		return
+
+	else if(istype(target, /obj/structure/heat_controller)) //Allows adding ice to the heat controller - Sansaur
 		return
 
 	else if(reagents.total_volume)
@@ -331,7 +335,7 @@
 	armor = list(melee = 10, bullet = 0, laser = 0, energy = 0, bomb = 0, bio = 0, rad = 0)
 	slot_flags = SLOT_HEAD
 	flags = OPENCONTAINER
-	
+
 /obj/item/weapon/reagent_containers/glass/bucket/equipped(mob/user, slot)
     ..()
     if(slot == slot_head && reagents.total_volume)

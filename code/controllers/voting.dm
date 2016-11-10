@@ -52,7 +52,7 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 				CHECK_TICK
 
 /datum/controller/vote/proc/autotransfer()
-	initiate_vote("crew_transfer","the server")
+	initiate_vote("restart","the server")
 
 /datum/controller/vote/proc/reset()
 	initiator = null
@@ -218,6 +218,10 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 		reset()
 		switch(vote_type)
 			if("restart")
+				for(var/mob/M in player_list)
+					playsound(M, 'sound/misc/8bit_explosion.ogg', 90, 0, 0, 0, 1, 0)
+
+
 				choices.Add("Restart Round","Continue Playing")
 			if("gamemode")
 				if(ticker.current_state >= 2)
@@ -255,9 +259,11 @@ var/global/list/round_voters = list() //Keeps track of the individuals voting fo
 			log_admin("[capitalize(mode)] vote started by [key_name(usr)].")
 
 		log_vote(text)
-		to_chat(world, {"<font color='purple'><b>[text]</b>
+		to_chat(world, {"
+
+			<font color='purple'><br> -------------------------- <br><b>[text]</b>
 			<a href='?src=[UID()];vote=open'>Click here or type vote to place your vote.</a>
-			You have [config.vote_period/10] seconds to vote.</font>"})
+			You have [config.vote_period/10] seconds to vote. <br> -------------------------- <br></font>"})
 		switch(vote_type)
 			if("crew_transfer")
 				world << sound('sound/ambience/alarm4.ogg')

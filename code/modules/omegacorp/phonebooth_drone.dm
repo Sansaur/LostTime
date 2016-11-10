@@ -23,6 +23,8 @@
 		var/mob/camera/seeking_eye/neweye = new()
 		var/mob/living/carbon/human/humantoreturn = user
 		neweye.activate(user.ckey, humantoreturn, src)
+		var/obj/structure/heat_controller/HEATCONTROL = locate()
+		HEATCONTROL.heat += 25
 		src.icon_state = "seeking_comp-inuse"
 		update_icon()
 		being_used = 1

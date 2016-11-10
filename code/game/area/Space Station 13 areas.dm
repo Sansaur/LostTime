@@ -188,7 +188,7 @@ var/list/ghostteleportlocs = list()
 	icon_state = "medieval"
 	lighting_use_dynamic = 1
 
-/area/medieval/basement/ChangeDayTime()
+/area/medieval/underground/ChangeDayTime()
 	return
 	// UNDERGROUND AREAS, FOR BASEMENTS OR THE MINE
 
@@ -2822,4 +2822,88 @@ var/list/the_station_areas = list (
 	/area/turret_protected/ai_upload, //do not try to simplify to "/area/turret_protected" --rastaf0
 	/area/turret_protected/ai_upload_foyer,
 	/area/turret_protected/ai,
+)
+
+
+var/list/medieval_areas = list (
+	/area/medieval,
+	/area/medieval/underground,
+	/area/medieval/castle,
+	/area/medieval/castle/throne_room,
+	/area/medieval/castle/dormitories,
+	/area/medieval/castle/great_dining,
+	/area/medieval/castle/kitchen,
+	/area/medieval/castle/reunion,
+	/area/medieval/castle/bathroom,
+	/area/medieval/castle/garden,
+	/area/medieval/village,
+	/area/medieval/village/center,
+	/area/medieval/village/inn,
+	/area/medieval/village/town_hall,
+	/area/medieval/village/general_shop,
+	/area/medieval/village/farm,
+	/area/medieval/cathedral,
+	/area/medieval/cathedral/bells,
+	/area/medieval/cathedral/sanitatum,
+	/area/medieval/cathedral/misa,
+	/area/medieval/cathedral/confesionary,
+	/area/medieval/cathedral/storage,
+	/area/medieval/cathedral/graveyard,
+	/area/medieval/cathedral/meeting,
+	/area/medieval/barracks,
+	/area/medieval/barracks/field,
+	/area/medieval/barracks/armory,
+	/area/medieval/barracks/sleeping,
+	/area/medieval/barracks/meeting,
+	/area/medieval/barracks/captainroom,
+	/area/medieval/academy,
+	/area/medieval/academy/library,
+	/area/medieval/academy/sanctuary,
+	/area/medieval/academy/classes,
+	/area/medieval/academy/testing,
+	/area/medieval/academy/storage,
+	/area/medieval/academy/archmage
+)
+
+var/list/medieval_areas_exposed_to_sun = list (
+	/area/medieval,
+	/area/medieval/castle,
+	/area/medieval/castle/throne_room,
+	/area/medieval/castle/dormitories,
+	/area/medieval/castle/great_dining,
+	/area/medieval/castle/kitchen,
+	/area/medieval/castle/reunion,
+	/area/medieval/castle/bathroom,
+	/area/medieval/castle/garden,
+	/area/medieval/village,
+	/area/medieval/village/center,
+	/area/medieval/village/inn,
+	/area/medieval/village/town_hall,
+	/area/medieval/village/general_shop,
+	/area/medieval/village/farm,
+	/area/medieval/cathedral,
+	/area/medieval/cathedral/bells,
+	/area/medieval/cathedral/sanitatum,
+	/area/medieval/cathedral/misa,
+	/area/medieval/cathedral/confesionary,
+	/area/medieval/cathedral/storage,
+	/area/medieval/cathedral/graveyard,
+	/area/medieval/cathedral/meeting,
+	/area/medieval/barracks,
+	/area/medieval/barracks/field,
+	/area/medieval/barracks/armory,
+	/area/medieval/barracks/sleeping,
+	/area/medieval/barracks/meeting,
+	/area/medieval/barracks/captainroom,
+	/area/medieval/academy,
+	/area/medieval/academy/library,
+	/area/medieval/academy/sanctuary,
+	/area/medieval/academy/classes,
+	/area/medieval/academy/testing,
+	/area/medieval/academy/storage,
+	/area/medieval/academy/archmage
+)
+
+var/list/medieval_areas_underground = list (
+	/area/medieval/underground
 )

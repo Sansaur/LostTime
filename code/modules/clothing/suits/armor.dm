@@ -12,7 +12,7 @@
 	sprite_sheets = list(
 		"Vox" = 'icons/mob/species/vox/suit.dmi'
 		)
-
+	var/been_reinforced = 0 //This is used on armor_reforger.dm and it'll probably be used in the future for medieval blacksmith
 /obj/item/clothing/suit/armor/vest
 	name = "armor"
 	desc = "An armored vest that protects against some damage."

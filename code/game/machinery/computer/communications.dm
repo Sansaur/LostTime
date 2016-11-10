@@ -69,14 +69,14 @@
 		var/list/access = usr.get_access()
 		if(allowed(usr))
 			authenticated = COMM_AUTHENTICATION_MIN
-			
+
 		if(access_captain in access)
 			authenticated = COMM_AUTHENTICATION_MAX
 			var/mob/living/carbon/human/H = usr
 			var/obj/item/weapon/card/id = H.get_idcard(TRUE)
 			if(istype(id))
 				crew_announcement.announcer = GetNameAndAssignmentFromId(id)
-			
+
 		nanomanager.update_uis(src)
 		return
 

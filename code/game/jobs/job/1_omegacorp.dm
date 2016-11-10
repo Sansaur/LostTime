@@ -13,7 +13,7 @@
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		H.equip_or_collect(new /obj/item/clothing/under/omegacorp_leader(H), slot_w_uniform)
+		H.equip_or_collect(new /obj/item/clothing/under/omegacorp/omegacorp_leader(H), slot_w_uniform)
 		H.equip_or_collect(new /obj/item/clothing/shoes/centcom(H), slot_shoes)
 		H.equip_or_collect(new /obj/item/clothing/gloves/color/white(H), slot_gloves)
 		H.equip_or_collect(new /obj/item/device/radio/headset(H), slot_l_ear)
@@ -55,7 +55,7 @@
 
 	equip(var/mob/living/carbon/human/H)
 		if(!H)	return 0
-		H.equip_or_collect(new /obj/item/clothing/under/omegacorp_enforcer(H), slot_w_uniform)
+		H.equip_or_collect(new /obj/item/clothing/under/omegacorp/omegacorp_enforcer(H), slot_w_uniform)
 		H.equip_or_collect(new /obj/item/clothing/shoes/combat(H), slot_shoes)
 		H.equip_or_collect(new /obj/item/clothing/gloves/combat(H), slot_gloves)
 		H.equip_or_collect(new /obj/item/device/radio/headset(H), slot_l_ear)
@@ -96,7 +96,7 @@
 			if(2) H.equip_or_collect(new /obj/item/weapon/storage/backpack(H), slot_back)
 			if(3) H.equip_or_collect(new /obj/item/weapon/storage/backpack/satchel_norm(H), slot_back)
 			if(4) H.equip_or_collect(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-		H.equip_or_collect(new /obj/item/clothing/under/omegacorp_medic(H), slot_w_uniform)
+		H.equip_or_collect(new /obj/item/clothing/under/omegacorp/omegacorp_medic(H), slot_w_uniform)
 		H.equip_or_collect(new /obj/item/clothing/shoes/workboots(H), slot_shoes)
 		H.equip_or_collect(new /obj/item/weapon/storage/belt/utility/atmostech/(H), slot_belt)
 		H.equip_or_collect(new /obj/item/device/pda/atmos(H), slot_wear_pda)
@@ -120,7 +120,7 @@
 	spawn_positions = 3
 	supervisors = "Omegacorp"
 	selection_color = "#FF9100"
-	idtype = /obj/item/weapon/card/id/omegacorp_enforcer
+	idtype = /obj/item/weapon/card/id/omegacorp_support
 	access = list(access_engine, access_engine_equip, access_tech_storage, access_maint_tunnels, access_mechanic, access_external_airlocks, access_mineral_storeroom)
 	minimal_access = list(access_maint_tunnels, access_emergency_storage, access_mechanic, access_external_airlocks, access_mineral_storeroom)
 
@@ -132,7 +132,7 @@
 			if(2) H.equip_or_collect(new /obj/item/weapon/storage/backpack/industrial(H), slot_back)
 			if(3) H.equip_or_collect(new /obj/item/weapon/storage/backpack/satchel_eng(H), slot_back)
 			if(4) H.equip_or_collect(new /obj/item/weapon/storage/backpack/satchel(H), slot_back)
-		H.equip_or_collect(new /obj/item/clothing/under/omegacorp_support(H), slot_w_uniform)
+		H.equip_or_collect(new /obj/item/clothing/under/omegacorp/omegacorp_support(H), slot_w_uniform)
 		H.equip_or_collect(new /obj/item/clothing/shoes/workboots(H), slot_shoes)
 		H.equip_or_collect(new /obj/item/weapon/storage/belt/utility/full(H), slot_belt)
 		H.equip_or_collect(new /obj/item/clothing/head/hardhat(H), slot_head)
@@ -169,4 +169,13 @@
 	var/mob/new_player/NP = new()
 	non_respawnable_keys -= ghost.ckey
 	NP.ckey = ghost.ckey
+	/*
+	for(var/datum/job/job in categorizedJobs[jobcat]["jobs"])
+			dat += "<a href='byond://?src=[UID()];SelectedJob=[job.title]'>[job.title] ([job.current_positions]) (Active: [activePlayers[job]])</a><br>"
+
+		Ver como quitar el tío que acaba de entrar de esta lista.
+
+	*/
 	qdel(ghost)
+	//writtenjob.current_positions -= 1 //Quitarmos el job del tio que acaba de entrar para evitar que se spamee
+	//ARREGLAR MAS TARDE

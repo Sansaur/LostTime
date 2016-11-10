@@ -23,9 +23,15 @@
 
 /obj/item/device/flashlight/proc/update_brightness(var/mob/user = null)
 	if(on)
+		if(is_disguised)
+			set_light(brightness_on)
+			return
 		icon_state = "[initial(icon_state)]-on"
 		set_light(brightness_on)
 	else
+		if(is_disguised)
+			set_light(0)
+			return
 		icon_state = initial(icon_state)
 		set_light(0)
 
