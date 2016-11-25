@@ -191,13 +191,6 @@
 	icon_state = "coffee"
 	list_reagents = list("ice" = 30)
 
-/obj/item/weapon/reagent_containers/food/drinks/tea
-	name = "Duke Purple Tea"
-	desc = "An insult to Duke Purple is an insult to the Space Queen! Any proper gentleman will fight you, if you sully this tea."
-	icon_state = "teacup"
-	item_state = "coffee"
-	list_reagents = list("tea" = 30)
-
 /obj/item/weapon/reagent_containers/food/drinks/tea/New()
 	..()
 	if(prob(20))
@@ -211,8 +204,8 @@
 	list_reagents = list("mugwort" = 30)
 
 /obj/item/weapon/reagent_containers/food/drinks/h_chocolate
-	name = "Dutch Hot Coco"
-	desc = "Made in Space South America."
+	name = "Hot Coco"
+	desc = "Made in Las Indias."
 	icon_state = "hot_coco"
 	item_state = "coffee"
 	list_reagents = list("hot_coco" = 30, "sugar" = 5)
@@ -275,13 +268,6 @@
 	materials = list(MAT_METAL=1500)
 	amount_per_transfer_from_this = 10
 	volume = 100
-
-/obj/item/weapon/reagent_containers/food/drinks/flask
-	name = "flask"
-	desc = "Every good spaceman knows it's a good idea to bring along a couple of pints of whiskey wherever they go."
-	icon_state = "flask"
-	materials = list(MAT_METAL=250)
-	volume = 60
 
 /obj/item/weapon/reagent_containers/food/drinks/flask/barflask
 	name = "flask"

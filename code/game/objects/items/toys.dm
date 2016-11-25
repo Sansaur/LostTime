@@ -761,6 +761,11 @@ obj/item/toy/cards/deck/syndicate
 obj/item/toy/cards/deck/black
 	deckstyle = "black"
 
+obj/item/toy/cards/deck/medieval
+	name = "playing cards"
+	desc = "You may now bet your money"
+	deckstyle = "black"
+
 obj/item/toy/cards/deck/syndicate/black
 	deckstyle = "black"
 

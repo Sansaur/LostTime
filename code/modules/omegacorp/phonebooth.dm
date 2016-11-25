@@ -103,6 +103,7 @@
 			it has a hijack to bypass it's security and it allows you to call the phonebooth to the user"
 	icon = 'icons/obj/timetravel.dmi'
 	icon_state = "controller"
+	item_state = "screwdriver"
 	w_class = 2
 	var/obj/structure/timetravel/phonebooth/master_booth
 
@@ -116,15 +117,46 @@
 	set name = "Call phonebooth"
 	set desc = "It's the power of the PHONEBOOTH RECALL"
 	set category = "Object"
-	set src = usr
+	set src in usr
+	if(!istype(usr, /mob/living)) return
+	if(usr.stat) return
 
+	playsound(loc, 'sound/effects/eleczap.ogg', 100, 1)
+	var/area/omegacorp/phonebooth/PHONE_AREA = locate()
+	for(var/mob/living/carbon/human/HUMAN in PHONE_AREA)
+		to_chat(HUMAN, "<span class=warning> The Phonebooth is being called by a sonic screwdriver! </span>")
+		sleep(10)
+		if(!(HUMAN in PHONE_AREA))
+			return
+		to_chat(HUMAN, "<span class=biggerdanger> 3 </span>")
+		sleep(10)
+		if(!(HUMAN in PHONE_AREA))
+			return
+		to_chat(HUMAN, "<span class=biggerdanger> 2 </span>")
+		sleep(10)
+		if(!(HUMAN in PHONE_AREA))
+			return
+		to_chat(HUMAN, "<span class=biggerdanger> 1 </span>")
+		if(!HUMAN.buckled)
+			to_chat(HUMAN, "TIME TRAVELLING TURBULENCE!")
+			HUMAN.Stun(5)
+			HUMAN.Weaken(5)
+			shake_camera(HUMAN, 15, 1)
+
+	to_chat(usr, "The phonebooth will be recalled in 3 seconds")
+	sleep(30)
 	var/dest = locate(usr.x, usr.y + 1, usr.z)
 	for(var/card in cardinal)
 		var/turf/T = get_step(usr, card)
 		if(T.density == 1)
 			to_chat(usr, "The phonebooth cannot be called at this time!")
 			return
-
+		if(usr.loc.loc.type == /area/omegacorp)
+			to_chat(usr, "The phonebooth cannot be called at this time!")
+			return
+		if(usr.loc.loc.type == /area/omegacorp/phonebooth)
+			to_chat(usr, "The phonebooth cannot be called at this time!")
+			return
 	master_booth.loc = dest
 
 /obj/item/weapon/phonebooth_remote/proc/ChangePhoneBoothSprite(var/selection)

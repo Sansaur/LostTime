@@ -33,6 +33,7 @@
 		to_chat(user, "You start getting inside the [src]")
 		if(do_after(user, 40, target = src))
 			Insert_Human(user)
+
 /obj/structure/human_imprinter/attackby(obj/item/W, mob/user as mob)
 	if(lockdown)
 		if(istype(W, /obj/item/weapon/card/id))

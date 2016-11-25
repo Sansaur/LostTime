@@ -112,12 +112,16 @@
 		icon_state = mineralType
 
 /obj/structure/mineral_door/attackby(obj/item/weapon/W as obj, mob/user as mob, params)
+	if(istype(W, /obj/item/weapon/lock))
+		Add_Lock(W, user) //This is declared on lockable_doors.dm
+
 	if(istype(W,/obj/item/weapon/pickaxe))
 		var/obj/item/weapon/pickaxe/digTool = W
 		to_chat(user, "You start digging the [name].")
 		if(do_after(user,digTool.digspeed*hardness, target = src) && src)
 			to_chat(user, "You finished digging.")
 			Dismantle()
+
 	else if(istype(W,/obj/item/weapon)) //not sure, can't not just weapons get passed to this proc?
 		hardness -= W.force/100
 		to_chat(user, "You hit the [name] with your [W.name]!")
@@ -250,6 +254,7 @@
 				new/obj/item/stack/sheet/wood(get_turf(src))
 		qdel(src)
 
+
 /obj/structure/mineral_door/resin
 	mineralType = "resin"
 	hardness = 1.5
@@ -291,3 +296,4 @@
 	CheckHardness()
 		playsound(loc, 'sound/effects/attackblob.ogg', 100, 1)
 		..()
+

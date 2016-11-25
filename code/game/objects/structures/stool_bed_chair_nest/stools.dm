@@ -74,3 +74,23 @@
 		T.Weaken(5)
 		return
 	..()
+
+
+/obj/structure/stool/medieval/royal
+	name = "stool"
+	desc = "Apply royal butt."
+	icon = 'icons/medieval/structures.dmi'
+	icon_state = "royal_stool"
+	anchored = 1
+/obj/structure/stool/medieval/worker
+	name = "stool"
+	desc = "Apply butt."
+	icon = 'icons/medieval/structures.dmi'
+	icon_state = "worker_stool"
+	anchored = 1
+/obj/structure/stool/medieval/square
+	name = "stool"
+	desc = "Apply butt."
+	icon = 'icons/medieval/structures.dmi'
+	icon_state = "square_stool"
+	anchored = 1

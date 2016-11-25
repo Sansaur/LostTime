@@ -1,7 +1,7 @@
 /obj/item/weapon/paper_bin
 	name = "paper bin"
 	icon = 'icons/obj/bureaucracy.dmi'
-	icon_state = "paper_bin1"
+	icon_state = "paper_bin"
 	item_state = "sheet-metal"
 	throwforce = 1
 	w_class = 3
@@ -108,9 +108,9 @@
 
 /obj/item/weapon/paper_bin/update_icon()
 	if(amount < 1)
-		icon_state = "paper_bin0"
+		icon_state = "[icon_state]0"
 	else
-		icon_state = "paper_bin1"
+		icon_state = "[icon_state]1"
 
 
 /obj/item/weapon/paper_bin/carbon
@@ -129,6 +129,31 @@
 			papers.Remove(P)
 		else
 			P = new /obj/item/weapon/paper/carbon
+		P.loc = user.loc
+		user.put_in_hands(P)
+		to_chat(user, "<span class='notice'>You take [P] out of the [src].</span>")
+	else
+		to_chat(user, "<span class='notice'>[src] is empty!</span>")
+
+	add_fingerprint(user)
+	return
+
+/obj/item/weapon/paper_bin/scrolls
+	name = "scroll stack"
+	icon_state = "scroll_stack1"
+
+/obj/item/weapon/paper_bin/scrolls/attack_hand(mob/user as mob)
+	if(amount >= 1)
+		amount--
+		if(amount==0)
+			update_icon()
+
+		var/obj/item/weapon/paper/medieval_scroll/P
+		if(papers.len > 0)	//If there's any custom paper on the stack, use that instead of creating a new paper.
+			P = papers[papers.len]
+			papers.Remove(P)
+		else
+			P = new /obj/item/weapon/paper/medieval_scroll
 		P.loc = user.loc
 		user.put_in_hands(P)
 		to_chat(user, "<span class='notice'>You take [P] out of the [src].</span>")

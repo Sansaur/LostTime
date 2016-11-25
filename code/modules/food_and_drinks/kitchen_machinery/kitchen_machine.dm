@@ -2,6 +2,7 @@
 /obj/machinery/kitchen_machine
 	name = "Base Kitchen Machine"
 	desc = "If you are seeing this, a coder/mapper messed up. Please report it."
+
 	layer = 2.9
 	density = 1
 	anchored = 1

@@ -283,3 +283,12 @@
 	mineral = "abductor"
 	walltype = "abductor"
 	canSmoothWith = list(/obj/structure/falsewall/abductor, /turf/simulated/wall/mineral/abductor)
+
+/obj/structure/falsewall/stone
+	name = "stone wall"
+	desc = "Harder than rock."
+	icon = 'icons/turf/walls/stone_wall.dmi'
+	icon_state = "stone"
+	mineral = "stone"
+	walltype = "stone"
+	canSmoothWith = list(/obj/structure/falsewall/stone, /turf/simulated/wall/mineral/stone)

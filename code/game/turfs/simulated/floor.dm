@@ -59,6 +59,9 @@ var/list/icons_to_ignore_at_floor_init = list("damaged1","damaged2","damaged3","
 	switch(severity)
 		if(1.0)
 			if(src.loc.type in medieval_areas)
+				if(prob(10))
+					if(src.type != /turf/simulated/floor/grass)
+						new src.floor_tile(src)
 				src.ChangeTurf(/turf/simulated/floor/grass)
 			else
 				src.ChangeTurf(/turf/simulated/floor/plating)
@@ -77,16 +80,17 @@ var/list/icons_to_ignore_at_floor_init = list("damaged1","damaged2","damaged3","
 				if(3)
 					if(!(src.loc.type in medieval_areas))
 						if(prob(80))
-							src.break_tile_to_plating()
+							src.break_tile()
 						else
 							src.break_tile()
 						src.hotspot_expose(1000,CELL_VOLUME)
 					//if(prob(33)) new /obj/item/stack/sheet/metal(src)
 		if(3.0)
 			if(prob(50))
-				if(!(src.loc.type in medieval_areas))
-					src.break_tile()
-					src.hotspot_expose(1000,CELL_VOLUME)
+				if(src.type == /turf/simulated/floor/grass)
+					return
+				src.break_tile()
+				src.hotspot_expose(1000,CELL_VOLUME)
 	return
 
 /turf/simulated/floor/is_shielded()
@@ -106,8 +110,8 @@ var/list/icons_to_ignore_at_floor_init = list("damaged1","damaged2","damaged3","
 	return
 
 /turf/simulated/floor/proc/break_tile_to_plating()
-	var/turf/simulated/floor/plating/T = make_plating()
-	T.break_tile()
+	//var/turf/simulated/floor/plating/T = make_plating()
+	//T.break_tile()
 
 /turf/simulated/floor/proc/break_tile()
 	if(broken)
@@ -125,7 +129,7 @@ var/list/icons_to_ignore_at_floor_init = list("damaged1","damaged2","damaged3","
 	burnt = 1
 
 /turf/simulated/floor/proc/make_plating()
-	return ChangeTurf(/turf/simulated/floor/plating)
+	return ChangeTurf(/turf/simulated/floor/grass)
 
 /turf/simulated/floor/ChangeTurf(turf/simulated/floor/T, defer_change = FALSE, keep_icon = TRUE)
 	if(!istype(src,/turf/simulated/floor)) return ..() //fucking turfs switch the fucking src of the fucking running procs

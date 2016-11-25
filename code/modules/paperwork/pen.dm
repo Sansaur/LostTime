@@ -34,6 +34,39 @@
 	icon_state = "pen_blue"
 	colour = "blue"
 
+/obj/item/weapon/pen/quill
+	name = "quill"
+	desc = "It's a normal quill to write with."
+	icon_state = "quill"
+	colour = "black"
+
+/obj/item/ink_bottle
+	desc = "Dip your quill in this"
+	name = "black ink bottle"
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "ink_bottle"
+	item_state = "syringe_kit"
+	w_class = 2
+	var/colour_to_transfer = "black"
+
+/obj/item/ink_bottle/attackby(obj/item/W, mob/user as mob)
+	if(istype(W, /obj/item/weapon/pen/quill))
+		var/obj/item/weapon/pen/quill/QUILL = W
+		QUILL.colour = colour_to_transfer
+		visible_message("[user] dips his [QUILL] into the [src]")
+		to_chat(user, "<span class=info> Now your [QUILL] will write with a [colour_to_transfer] colour</span>")
+		return
+
+/obj/item/ink_bottle/red
+	name = "red ink bottle"
+	icon_state = "ink_bottle_red"
+	colour_to_transfer = "red"
+
+/obj/item/ink_bottle/blue
+	name = "blue ink bottle"
+	icon_state = "ink_bottle_blue"
+	colour_to_transfer = "blue"
+
 /obj/item/weapon/pen/red
 	name = "red-ink pen"
 	desc = "It's a normal red ink pen."

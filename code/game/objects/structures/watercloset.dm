@@ -11,7 +11,7 @@
 	var/cistern = 0			//if the cistern bit is open
 	var/w_items = 0			//the combined w_class of all the items in the cistern
 	var/mob/living/swirlie = null	//the mob being given a swirlie
-
+	var/icon_name = "toilet"
 
 /obj/structure/toilet/New()
 	open = round(rand(0, 1))
@@ -45,7 +45,7 @@
 
 
 /obj/structure/toilet/update_icon()
-	icon_state = "toilet[open][cistern]"
+	icon_state = "[icon_name][open][cistern]"
 
 
 /obj/structure/toilet/attackby(obj/item/I, mob/living/user, params)
@@ -460,3 +460,12 @@
 	..()
 	icon_state = "puddle"
 
+
+/obj/structure/toilet/medieval
+	name = "toilet"
+	desc = "This one seems remarkably clean."
+	icon = 'icons/obj/watercloset.dmi'
+	icon_state = "medtoilet00"
+	density = 0
+	anchored = 1
+	icon_name = "medtoilet"

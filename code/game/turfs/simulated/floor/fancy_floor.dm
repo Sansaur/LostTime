@@ -35,6 +35,21 @@
 	floor_tile = /obj/item/stack/tile/wood/worker_wood_mini
 	broken_states = list("wood4-broken", "wood4-broken2")
 
+/turf/simulated/floor/wood/plain_wood_tile // - Sansaur
+	icon_state = "wood5"
+	floor_tile = /obj/item/stack/tile/wood/plain_wood_tile
+	broken_states = list("wood5-broken", "wood5-broken2")
+
+/turf/simulated/floor/wood/stairs // - Sansaur
+	icon_state = "wood6"
+	floor_tile = /obj/item/stack/tile/wood/stairs
+	broken_states = list("wood6-broken", "wood6-broken2")
+
+/turf/simulated/floor/wood/smooth_tile // - Sansaur
+	icon_state = "wood7"
+	floor_tile = /obj/item/stack/tile/wood/smooth_tile
+	broken_states = list("wood7-broken", "wood7-broken2")
+
 // STONE FLOORS. - Sansaur
 
 /turf/simulated/floor/stone
@@ -52,8 +67,48 @@
 	floor_tile = /obj/item/stack/tile/stone/tiled
 	broken_states = list("stone3-broken", "stone3-broken2")
 
+/turf/simulated/floor/stone/brick // - Sansaur
+	icon_state = "stone4"
+	floor_tile = /obj/item/stack/tile/stone/brick
+	broken_states = list("stone4-broken", "stone4-broken2")
 
+/turf/simulated/floor/stone/big_brick // - Sansaur
+	icon_state = "stone5"
+	floor_tile = /obj/item/stack/tile/stone/big_brick
+	broken_states = list("stone5-broken", "stone5-broken2")
+
+/turf/simulated/floor/stone/stairs // - Sansaur
+	icon_state = "stone6"
+	floor_tile = /obj/item/stack/tile/stone/big_brick
+	broken_states = list("stone6-broken", "stone6-broken2")
 	// STONE FLOORS.
+
+	// MARBLE FLOORS.
+
+/turf/simulated/floor/marble // - Sansaur
+	icon_state = "marble"
+	floor_tile = /obj/item/stack/tile/marble
+	broken_states = list("marble-broken", "marble-broken2")
+	footstep_sounds = list(
+		"human" = list('sound/effects/footstep/marble_all.ogg'), //@avakas of Freesound.org
+		"xeno"  = list('sound/effects/footstep/marble_all.ogg')  //@avakas of Freesound.org
+	)
+/turf/simulated/floor/marble/yellow // - Sansaur
+	icon_state = "marble2"
+	floor_tile = /obj/item/stack/tile/marble/yellow
+	broken_states = list("marble2-broken", "marble2-broken2")
+
+/turf/simulated/floor/marble/plain // - Sansaur
+	icon_state = "marble3"
+	floor_tile = /obj/item/stack/tile/marble/plain
+	broken_states = list("marble3-broken", "marble3-broken2")
+
+/turf/simulated/floor/marble/stairs // - Sansaur
+	icon_state = "marble4"
+	floor_tile = /obj/item/stack/tile/marble/plain
+	broken_states = list("marble4-broken", "marble4-broken2")
+	// MARBLE FLOORS.
+
 /turf/simulated/floor/grass
 	name = "grass patch"
 	icon_state = "grass1"
@@ -61,6 +116,11 @@
 	broken_states = list("sand")
 	var/excavated = 0
 	var/obj/item/BURIED_ITEM
+	var/obj/structure/closet/coffin/HIDDENCOFFIN
+	footstep_sounds = list(
+		"human" = list('sound/effects/footstep/grass.ogg'), //@avakas of Freesound.org
+		"xeno"  = list('sound/effects/footstep/grass.ogg')  //@avakas of Freesound.org
+	)
 
 /turf/simulated/floor/grass/New()
 	..()
@@ -82,6 +142,12 @@
 				BURIED_ITEM.invisibility = 3
 				BURIED_ITEM.loc = src
 				BURIED_ITEM = null
+			if(HIDDENCOFFIN)
+				HIDDENCOFFIN.invisibility = 3
+				HIDDENCOFFIN.density = 1
+				HIDDENCOFFIN.loc = src
+				HIDDENCOFFIN = null
+				icon_state = "grass[pick("1","2","3","4")]"
 			else
 				new /obj/item/weapon/ore/glass(src)
 			to_chat(user, "<span class='notice'>You shovel the grass.</span>")
@@ -99,6 +165,13 @@
 			qdel(C)
 			icon_state = "grass[pick("1","2","3","4")]"
 			excavated = 0
+			//If there's a coffin on the loc it turns invisible until this gets excavated again.
+			var/obj/structure/closet/coffin/COFFIN
+			for(COFFIN in src)
+				COFFIN.invisibility = 101
+				COFFIN.density = 0
+				icon_state = "grass_buried"
+				HIDDENCOFFIN = COFFIN
 			return
 
 	if(istype(C, /obj/item/stack/tile))

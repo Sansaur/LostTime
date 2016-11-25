@@ -56,11 +56,12 @@ The Time Station's cursor lasts forever but it's very slow, it can go through wa
 	move_on_shuttle = 0
 	var/mob/living/carbon/human/human_to_return
 	var/obj/structure/time_station/computer_to_close
-	var/tech_speed = 60 //This is to allow improvements later on, the move_delay = the tech_speed
+	var/tech_speed = 7 //This is to allow improvements later on, the move_delay = the tech_speed
 	incorporeal_move = 1
 	var/STORED_TURF //Let's change this to types for now, it was Turfs earlier
 	var/list/obj/effect/forcefield/FORCEFIELDS = list()
 	var/COOLDOWN = 0
+	var/SLOWMOVEMENT = 0
 	use_me = 0
 /mob/living/time_cursor/New()
 	..()
@@ -72,9 +73,36 @@ The Time Station's cursor lasts forever but it's very slow, it can go through wa
 	tally = tech_speed
 	return tally
 	*/
-/mob/living/time_cursor/Move()
+/mob/living/time_cursor/forceMove(atom/destination)
+	if(SLOWMOVEMENT)
+		return
+
+	SLOWMOVEMENT = 1
+	var/turf/old_loc = loc
+	loc = destination
+
+	if(old_loc)
+		old_loc.Exited(src, destination)
+		for(var/atom/movable/AM in old_loc)
+			AM.Uncrossed(src)
+
+	if(destination)
+		destination.Entered(src)
+		for(var/atom/movable/AM in destination)
+			AM.Crossed(src)
+
+		if(isturf(destination) && opacity)
+			var/turf/new_loc = destination
+			new_loc.reconsider_lights()
+
+	if(isturf(old_loc) && opacity)
+		old_loc.reconsider_lights()
+
+	for(var/datum/light_source/L in light_sources)
+		L.source_atom.update_light()
 	sleep(tech_speed)
-	..()
+	SLOWMOVEMENT = 0
+	return 1
 
 /mob/living/time_cursor/proc/activate(var/clave as key, var/mob/living/carbon/human/HUMAN as mob, var/obj/structure/time_station/comp)
 	human_to_return = HUMAN
@@ -168,6 +196,7 @@ The Time Station's cursor lasts forever but it's very slow, it can go through wa
 		HUMANS.underlays.Remove(RESCUEOVERLAY)
 		HUMANS.underlays.Remove(/obj/effect/overlay/healing_overlay)
 		HUMANS.underlays.Cut()
+		Cooldown(10)
 	Cooldown(80)
 
 
@@ -177,6 +206,8 @@ The Time Station's cursor lasts forever but it's very slow, it can go through wa
 	sleep(amount)
 	COOLDOWN = 0
 	icon_state = "time_cursor"
+	if(STORED_TURF)
+		icon_state = "time_cursor_turf"
 
 /obj/effect/overlay/healing_overlay
 	icon = 'icons/obj/timetravel.dmi'

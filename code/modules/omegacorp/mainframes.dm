@@ -97,6 +97,14 @@
 	explosion(src, -1, -1, 3, 3)
 	qdel(src)
 
+/obj/structure/pb_mainframe/power_mainframe/New()
+	..()
+	var/obj/structure/power_mainframe_repair/MAINREPAIR = locate()
+	qdel(MAINREPAIR)
+	var/obj/structure/heat_controller/HEATCONTROL = locate()
+	HEATCONTROL.MAINFRAME = src
+	HEATCONTROL.processing()
+	//FUCKING WORK ALREADY
 
 /obj/structure/pb_mainframe/stabilization_mainframe
 	name = "Stabilization mainframe"
@@ -148,6 +156,7 @@
 	PB.overlays -= /obj/effect/overlay/phonebooth_lock
 	var/obj/structure/heat_controller/HEATCONTROL = locate()
 	HEATCONTROL.heat += 5
+
 /********
 HERE GO THE PARTS TO BUILD THE MAINFRAME ONCE AGAIN
 **********/
@@ -224,13 +233,13 @@ HERE GO THE PARTS TO BUILD THE MAINFRAME ONCE AGAIN
 			if(do_after(user, 50, target = src))
 				playsound(src.loc, 'sound/items/Screwdriver.ogg', 50, 1)
 				new /obj/structure/pb_mainframe/power_mainframe (src.loc)
-				var/obj/structure/heat_controller/HEATCONTROL = locate()
-				HEATCONTROL.processing()
 				qdel(src)
-				del src
-				src.invisibility = 101
 		else
 			to_chat(user, "<span class=warning>[W] is not the item it needs</span>")
+
+	if(step == 2)
+		qdel(src)
+		return
 
 /obj/item/mainframe_building/circuit
 	name = "Power mainframe circuit"

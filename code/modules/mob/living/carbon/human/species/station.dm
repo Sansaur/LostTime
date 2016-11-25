@@ -31,6 +31,8 @@
 	unarmed_type = /datum/unarmed_attack/claws
 	primitive_form = "Stok"
 	darksight = 3
+	male_scream_sound = 'sound/voice/unathi_scream.ogg'
+	female_scream_sound = 'sound/voice/unathi_scream.ogg'
 
 	blurb = "A heavily reptillian species, Unathi (or 'Sinta as they call themselves) hail from the \
 	Uuosa-Eso system, which roughly translates to 'burning mother'.<br/><br/>Coming from a harsh, radioactive \
@@ -92,7 +94,8 @@
 	tail = "tajtail"
 	unarmed_type = /datum/unarmed_attack/claws
 	darksight = 8
-
+	male_scream_sound = 'sound/voice/tajaran_scream.ogg'
+	female_scream_sound = 'sound/voice/tajaran_scream.ogg'
 	blurb = "The Tajaran race is a species of feline-like bipeds hailing from the planet of Ahdomai in the \
 	S'randarr system. They have been brought up into the space age by the Humans and Skrell, and have been \
 	influenced heavily by their long history of Slavemaster rule. They have a structured, clan-influenced way \
@@ -158,7 +161,8 @@
 	damage_mask = 'icons/mob/human_races/masks/dam_mask_kobold.dmi' //IMPORTANTE DE ARREGLAR EN EL FUTURO.
 	//blood_mask = 'icons/mob/human_races/masks/blood_human.dmi'
 	blurb = "KOBOLDS YAP YAP"
-
+	male_scream_sound = 'sound/voice/kobold_scream.ogg'
+	female_scream_sound = 'sound/voice/kobold_scream.ogg'
 	flags = HAS_LIPS
 	clothing_flags = HAS_UNDERWEAR | HAS_UNDERSHIRT | HAS_SOCKS
 	bodyflags = FEET_CLAWS | HAS_TAIL | HAS_SKIN_COLOR | TAIL_WAGGING
@@ -226,6 +230,7 @@
 		"is jamming their fingers into their eye sockets!",
 		"is twisting their own neck!",
 		"is holding their breath!")
+
 /datum/species/vulpkanin
 	name = "Vulpkanin"
 	name_plural = "Vulpkanin"
@@ -238,6 +243,8 @@
 	tail = "vulptail"
 	unarmed_type = /datum/unarmed_attack/claws
 	darksight = 8
+	male_scream_sound = 'sound/voice/vulpkanin_scream.ogg'
+	female_scream_sound = 'sound/voice/vulpkanin_scream.ogg'
 
 	blurb = "Vulpkanin are a species of sharp-witted canine-pideds residing on the planet Altam just barely within the \
 	dual-star Vazzend system. Their politically de-centralized society and independent natures have led them to become a species and \
@@ -275,6 +282,67 @@
 
 /datum/species/vulpkanin/handle_death(var/mob/living/carbon/human/H)
 	H.stop_tail_wagging(1)
+
+/datum/species/shark
+	name = "Squall"
+	name_plural = "Squall"
+	icobase = 'icons/mob/human_races/r_shark.dmi'
+	deform = 'icons/mob/human_races/r_shark.dmi'
+	path = /mob/living/carbon/human/shark
+	default_language = "Galactic Common"
+	language = "Sinta'unathi"
+	tail = "sogtail"
+	unarmed_type = /datum/unarmed_attack/claws
+	primitive_form = "Stok"
+	darksight = 3
+	male_scream_sound = 'sound/voice/shark_scream.ogg'
+	female_scream_sound = 'sound/voice/shark_scream.ogg'
+
+	blurb = "Sharks"
+
+	flags = HAS_LIPS
+	clothing_flags = HAS_UNDERWEAR | HAS_UNDERSHIRT | HAS_SOCKS
+	bodyflags = FEET_CLAWS | HAS_TAIL | HAS_HEAD_ACCESSORY | HAS_BODY_MARKINGS | HAS_HEAD_MARKINGS | HAS_SKIN_COLOR | HAS_ALT_HEADS | TAIL_WAGGING
+	dietflags = DIET_CARN
+
+	cold_level_1 = 280 //Default 260 - Lower is better
+	cold_level_2 = 220 //Default 200
+	cold_level_3 = 140 //Default 120
+
+	heat_level_1 = 380 //Default 360 - Higher is better
+	heat_level_2 = 420 //Default 400
+	heat_level_3 = 480 //Default 460
+	heat_level_3_breathe = 1100 //Default 1000
+
+	flesh_color = "#34AF10"
+	reagent_tag = PROCESS_ORG
+	base_color = "#066000"
+	//Default styles for created mobs.
+	default_hair = "Bald"
+	butt_sprite = "unathi"
+
+	has_organ = list(
+		"heart" =    /obj/item/organ/internal/heart,
+		"lungs" =    /obj/item/organ/internal/lungs,
+		"liver" =    /obj/item/organ/internal/liver/unathi,
+		"kidneys" =  /obj/item/organ/internal/kidneys,
+		"brain" =    /obj/item/organ/internal/brain,
+		"appendix" = /obj/item/organ/internal/appendix,
+		"eyes" =     /obj/item/organ/internal/eyes,
+		)
+
+	allowed_consumed_mobs = list(/mob/living/simple_animal/mouse, /mob/living/simple_animal/lizard, /mob/living/simple_animal/chick, /mob/living/simple_animal/chicken,
+								 /mob/living/simple_animal/crab, /mob/living/simple_animal/butterfly, /mob/living/simple_animal/parrot, /mob/living/simple_animal/tribble)
+
+	suicide_messages = list(
+		"is attempting to bite their tongue off!",
+		"is jamming their claws into their eye sockets!",
+		"is twisting their own neck!",
+		"is holding their breath!")
+
+/datum/species/shark/handle_death(var/mob/living/carbon/human/H)
+	H.stop_tail_wagging(1)
+
 /*
 
 /datum/species/skrell

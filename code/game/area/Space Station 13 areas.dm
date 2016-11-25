@@ -164,10 +164,25 @@ var/list/ghostteleportlocs = list()
 	requires_power = 0
 	lighting_use_dynamic = 0
 	var/DayOrNight = 0 //0 = DAY | 1 = NIGHT
-
 	//This proc is very important, yet badly coded, it controls the day to night transition and that shit.
 	//It will be admin only, it can be accessed via "Secrets" -Sansaur.
 	//It's important that it gets warned and used correctly.
+
+/area/medieval/Entered(A)
+	..()
+	if(!istype(A,/mob/living))	return
+
+	var/mob/living/L = A
+	if(L && L.client && !L.client.ambience_playing && (L.client.prefs.sound & SOUND_BUZZ))	//split off the white noise from the rest of the ambience because of annoyance complaints - Kluys
+		L.client.ambience_playing = 1
+		L << sound('sound/ambience/medieval.ogg', repeat = 1, wait = 0, volume = 12, channel = 2)
+
+	else if(L && L.client && !(L.client.prefs.sound & SOUND_BUZZ)) L.client.ambience_playing = 0
+
+	//if(prob(35) && L && L.client && (L.client.prefs.sound & SOUND_AMBIENCE))
+		//var/sound = pick(ambientsounds)
+	//Hay que poner nuevos efectos de ambiente
+
 /area/medieval/proc/ChangeDayTime()
 	DayOrNight = !DayOrNight
 	if(DayOrNight) //If it is night
@@ -230,17 +245,23 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Village Center"
 	icon_state = "villagecenter"
 /area/medieval/village/inn
-	name = "\improper Village Dormitories"
+	name = "\improper Village Inn"
 	icon_state = "villageinn"
 /area/medieval/village/town_hall
-	name = "\improper Village Great Dining"
+	name = "\improper Village Town Hall"
 	icon_state = "villageth"
 /area/medieval/village/general_shop
-	name = "\improper Village Kitchen"
+	name = "\improper Village General shop"
 	icon_state = "villagekitchen"
 /area/medieval/village/farm
 	name = "\improper Village Farm"
 	icon_state = "villagefarm"
+/area/medieval/village/blacksmith
+	name = "\improper Village Blacksmith"
+	icon_state = "villagesmith"
+/area/medieval/village/exotic_shop
+	name = "\improper Village Exotic shop"
+	icon_state = "villageexo"
 
 	// V I L L A G E    A R E A S
 		// -----------------------------------------------

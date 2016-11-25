@@ -77,6 +77,33 @@
 	icon_state = "tile-wood4"
 	turf_type = /turf/simulated/floor/wood/worker_wood_mini
 	burn_state = FLAMMABLE
+
+/obj/item/stack/tile/wood/plain_wood_tile // - Sansaur
+	name = "plain floor tiles"
+	gender = PLURAL
+	singular_name = "plain floor tile"
+	desc = "an easy to fit wood floor tile, this one is plain, without decorations"
+	icon_state = "tile-wood5"
+	turf_type = /turf/simulated/floor/wood/plain_wood_tile
+	burn_state = FLAMMABLE
+
+/obj/item/stack/tile/wood/stairs // - Sansaur
+	name = "plain stairs tiles"
+	gender = PLURAL
+	singular_name = "plain stairs tile"
+	desc = "an easy to fit mini wooden stairs"
+	icon_state = "tile-wood6"
+	turf_type = /turf/simulated/floor/wood/stairs
+	burn_state = FLAMMABLE
+
+/obj/item/stack/tile/wood/smooth_tile // - Sansaur
+	name = "smooth wood"
+	gender = PLURAL
+	singular_name = "smooth wood tile"
+	desc = "an easy to fit smooth wooden floor"
+	icon_state = "tile-wood7"
+	turf_type = /turf/simulated/floor/wood/smooth_tile
+	burn_state = FLAMMABLE
 /*
  * Stones
  */
@@ -102,7 +129,67 @@
 	singular_name = "fixed wood floor tile"
 	desc = "an easy to fit stone floor tile"
 	icon_state = "tile-stone3"
-	turf_type = /turf/simulated/floor/stone/tiled
+	turf_type = /turf/simulated/floor/stone/brick
+
+/obj/item/stack/tile/stone/brick // - Sansaur
+	name = "bricked floor tiles"
+	gender = PLURAL
+	singular_name = "bricked floor tile"
+	desc = "an easy to fit stone floor tile"
+	icon_state = "tile-stone4"
+	turf_type = /turf/simulated/floor/stone/brick
+
+/obj/item/stack/tile/stone/big_brick // - Sansaur
+	name = "big bricked floor tiles"
+	gender = PLURAL
+	singular_name = "big bricked floor tile"
+	desc = "an easy to fit stone floor tile"
+	icon_state = "tile-stone5"
+	turf_type = /turf/simulated/floor/stone/big_brick
+
+/obj/item/stack/tile/stone/stairs // - Sansaur
+	name = "stairs floor tiles"
+	gender = PLURAL
+	singular_name = "stairs floor tiles"
+	desc = "an easy to fit stone floor tile"
+	icon_state = "tile-stone6"
+	turf_type = /turf/simulated/floor/stone/stairs
+
+/**
+	Marble
+**/
+
+/obj/item/stack/tile/marble // - Sansaur
+	name = "marble tiles"
+	gender = PLURAL
+	singular_name = "marble tile"
+	desc = "an easy to fit marble floor tile"
+	icon_state = "tile-marble"
+	turf_type = /turf/simulated/floor/marble
+
+/obj/item/stack/tile/marble/yellow // - Sansaur
+	name = "marble tiles"
+	gender = PLURAL
+	singular_name = "marble tile"
+	desc = "an easy to fit marble floor tile"
+	icon_state = "tile-marble2"
+	turf_type = /turf/simulated/floor/marble/yellow
+
+/obj/item/stack/tile/marble/plain // - Sansaur
+	name = "marble tiles"
+	gender = PLURAL
+	singular_name = "marble tile"
+	desc = "an easy to fit marble floor tile"
+	icon_state = "tile-marble3"
+	turf_type = /turf/simulated/floor/marble/plain
+
+/obj/item/stack/tile/marble/stairs // - Sansaur
+	name = "marble stairs"
+	gender = PLURAL
+	singular_name = "marble stairs"
+	desc = "an easy to fit marble stairs tile"
+	icon_state = "tile-marble4"
+	turf_type = /turf/simulated/floor/marble/stairs
 /*
  * Carpets
  */

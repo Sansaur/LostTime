@@ -160,6 +160,9 @@
 /mob/living/carbon/human/dwarf/New(var/new_loc)
 	..(new_loc, "Dwarf")
 
+/mob/living/carbon/human/shark/New(var/new_loc)
+	..(new_loc, "Squall")
+
 /mob/living/carbon/human/Bump(atom/movable/AM, yes)
 	if(!(yes) || now_pushing || buckled)
 		return 0

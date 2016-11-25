@@ -89,6 +89,13 @@
 	heat_capacity = 325000
 	floor_tile = /obj/item/stack/rods
 
+/turf/simulated/floor/engine/medieval
+	name = "reinforced ebony floor"
+	icon_state = "hardwood"
+	thermal_conductivity = 0.025
+	heat_capacity = 325000
+	floor_tile = /obj/item/stack/rods
+
 /turf/simulated/floor/engine/break_tile()
 	return //unbreakable
 

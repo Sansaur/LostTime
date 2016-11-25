@@ -1,7 +1,7 @@
 /obj/item/clothing
 	name = "clothing"
 	burn_state = FLAMMABLE //Small Species (Dwarves and Kobolds) won't be able to wear normal clothing.
-	var/list/species_restricted = list("Human", "Tajaran", "Vulpkanin", "Unathi", "Kobold", "Dwarf")//THESE SPECIES CAN WEAR THE CLOTHING = list("Kobold", "Dwarf")
+	var/list/species_restricted = list("Human", "Tajaran", "Vulpkanin", "Unathi", "Kobold", "Dwarf", "Squall")//THESE SPECIES CAN WEAR THE CLOTHING = list("Kobold", "Dwarf")
 	var/rig_restrict_helmet = 0 // Stops the user from equipping a rig helmet without attaching it to the suit first.
 	var/scan_reagents = 0 //Can the wearer see reagents while it's equipped?
 

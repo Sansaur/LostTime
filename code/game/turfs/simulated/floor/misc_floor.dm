@@ -51,10 +51,31 @@
 /turf/simulated/floor/beach/water
 	name = "water"
 	icon_state = "water"
-
+	slowdown = 4
+	footstep_sounds = list(
+		"human" = list('sound/effects/footstep/swimming.ogg'), //@RonaldVanWonderen of Freesound.org
+		"xeno"  = list('sound/effects/footstep/swimming.ogg')  //@RonaldVanWonderen of Freesound.org
+	)
 /turf/simulated/floor/beach/water/New()
 	..()
 	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
+
+/turf/simulated/floor/beach/water/attackby(obj/item/W, mob/user as mob)
+	if(istype(W, /obj/item/weapon/reagent_containers/glass/bucket))
+		var/obj/item/weapon/reagent_containers/glass/bucket/BUCKET = W
+		BUCKET.reagents.add_reagent("water",120)
+		to_chat(user, "<span class=info> You fill the bucket to the brim with water </span>")
+		return
+
+	if(istype(W, /obj/item/weapon/fishing_rod))
+		var/area/medieval/castle/CASTLEAREA
+		if(loc == CASTLEAREA)
+			to_chat(user, "There are no fish around here...")
+			return
+		else
+			var/obj/item/weapon/fishing_rod/ROD = W
+			ROD.attempt_fish(user, src)
+			return
 
 /turf/simulated/floor/noslip
 	name = "high-traction floor"

@@ -2327,6 +2327,7 @@
 				//for(var/area/medieval/AM in world)
 				for(var/area/medieval/AM in world)
 					AM.ChangeDayTime()
+
 			if("prisonwarp")
 				if(!ticker)
 					alert("The game hasn't started yet!", null, null, null, null, null)

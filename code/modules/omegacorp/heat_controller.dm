@@ -8,9 +8,11 @@
 	opacity = 0
 	var/ice = 0
 	var/heat = 0 //Max is 125 now
+	var/obj/structure/pb_mainframe/power_mainframe/MAINFRAME
 
 /obj/structure/heat_controller/New()
 	..()
+	MAINFRAME = locate()
 	processing()
 
 /obj/structure/heat_controller/attackby(obj/item/W, mob/user as mob)
@@ -41,17 +43,17 @@
 			visible_message("<span class=danger>The [src] is overheating!!</span>")
 
 	if(heat > 125)
-		var/obj/structure/pb_mainframe/power_mainframe/MAINFRAME = locate()
+
 		if(MAINFRAME)
 			MAINFRAME.Explosion()
 			heat = 0
-			//update_icon()
-			//processing() AFTER ENTERING HERE IT STOPS PROCESSING CORRECTLY
+			update_icon()
+			processing() //AFTER ENTERING HERE IT STOPS PROCESSING CORRECTLY
 
 	update_icon()
 	sleep(30)
 	processing()
-	//return
+	return
 
 /obj/structure/heat_controller/update_icon()
 	if(heat == 0)

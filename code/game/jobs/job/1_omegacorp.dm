@@ -45,8 +45,8 @@
 	title = "Operation Enforcer"
 	flag = OFFICER
 	department_flag = ENGSEC
-	total_positions = 2
-	spawn_positions = 2
+	total_positions = 3
+	spawn_positions = 3
 	supervisors = "Omegacorp"
 	selection_color = "#FF9100"
 	idtype = /obj/item/weapon/card/id/omegacorp_enforcer

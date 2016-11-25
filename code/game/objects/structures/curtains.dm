@@ -58,5 +58,42 @@
 /obj/structure/curtain/open/shower/centcom
 	color = "#000066"
 
+/obj/structure/curtain/royal
+	icon = 'icons/obj/curtain.dmi'
+	name = "curtain"
+	icon_state = "closed_royal"
+
+/obj/structure/curtain/royal/toggle()
+	opacity = !opacity
+	if(opacity)
+		icon_state = "closed_royal"
+		layer = SHOWER_CLOSED_LAYER
+	else
+		icon_state = "open_royal"
+		layer = SHOWER_OPEN_LAYER
+
+/obj/structure/curtain/open/royal
+	icon_state = "open_royal"
+
+/obj/structure/curtain/church
+	icon = 'icons/obj/curtain.dmi'
+	name = "curtain"
+	icon_state = "closed_church"
+
+/obj/structure/curtain/church/toggle()
+	opacity = !opacity
+	if(opacity)
+		icon_state = "closed_church"
+		layer = SHOWER_CLOSED_LAYER
+	else
+		icon_state = "open_church"
+		layer = SHOWER_OPEN_LAYER
+
+/obj/structure/curtain/open/church
+	icon_state = "open_church"
+
 #undef SHOWER_OPEN_LAYER
 #undef SHOWER_CLOSED_LAYER
+
+
+

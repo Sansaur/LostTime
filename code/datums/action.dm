@@ -188,6 +188,9 @@
 /datum/action/item_action/toggle_hardsuit_mode
 	name = "Toggle Hardsuit Mode"
 
+/datum/action/item_action/change_riff
+	name = "Change riff"
+
 /datum/action/item_action/toggle
 
 /datum/action/item_action/toggle/New(Target)

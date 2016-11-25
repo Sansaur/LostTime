@@ -235,7 +235,7 @@
 		t = replacetext(t, "\[/grid\]", "</td></tr></table>")
 		t = replacetext(t, "\[row\]", "</td><tr>")
 		t = replacetext(t, "\[cell\]", "<td>")
-		t = replacetext(t, "\[logo\]", "<img src = ntlogo.png>")
+		//t = replacetext(t, "\[logo\]", "<img src = ntlogo.png>")
 
 		t = "<font face=\"[deffont]\" color=[P ? P.colour : "black"]>[t]</font>"
 	else // If it is a crayon, and he still tries to use these, make them empty!
@@ -709,3 +709,29 @@
 /obj/item/weapon/paper/evilfax/proc/evilpaper_selfdestruct()
 	visible_message("<span class='danger'>[src] spontaneously catches fire, and burns up!</span>")
 	qdel(src)
+
+
+/obj/item/weapon/paper/medieval_scroll
+	name = "scroll"
+	gender = PLURAL
+	icon = 'icons/obj/bureaucracy.dmi'
+	icon_state = "scroll"
+	throwforce = 0
+	w_class = 1
+	throw_range = 1
+	throw_speed = 1
+	layer = 4
+	pressure_resistance = 0
+	slot_flags = null
+	body_parts_covered = null
+	burn_state = FLAMMABLE
+	burntime = 5
+	attack_verb = list("smacked")
+
+/obj/item/weapon/paper/medieval_scroll/update_icon()
+	if(icon_state == "paper_talisman")
+		return
+	if(info)
+		icon_state = "scroll_words"
+		return
+	icon_state = "scroll"
