@@ -43,7 +43,6 @@
 			visible_message("<span class=danger>The [src] is overheating!!</span>")
 
 	if(heat > 125)
-
 		if(MAINFRAME)
 			MAINFRAME.Explosion()
 			heat = 0

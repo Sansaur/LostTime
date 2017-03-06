@@ -15,7 +15,7 @@
 	var/moved_recently = 0
 	var/mob/pulledby = null
 	var/inertia_dir = 0
-
+	var/can_be_pulled = 1
 	var/area/areaMaster
 
 	var/auto_init = 1

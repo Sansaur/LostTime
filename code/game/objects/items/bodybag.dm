@@ -110,7 +110,7 @@
 	icon = 'icons/obj/cryobag.dmi'
 	item_path = /obj/item/bodybag/cryobag
 	var/used = 0
-	var/locked = 0
+	locked = 0
 	req_access = list(access_medical)
 
 	open()

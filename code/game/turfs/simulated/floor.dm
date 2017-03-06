@@ -63,6 +63,10 @@ var/list/icons_to_ignore_at_floor_init = list("damaged1","damaged2","damaged3","
 					if(src.type != /turf/simulated/floor/grass)
 						new src.floor_tile(src)
 				src.ChangeTurf(/turf/simulated/floor/grass)
+
+			if(src.loc.type in medieval_areas_underground)
+				src.ChangeTurf(/turf/simulated/floor/stone/mine)
+
 			else
 				src.ChangeTurf(/turf/simulated/floor/plating)
 		if(2.0)
@@ -75,15 +79,23 @@ var/list/icons_to_ignore_at_floor_init = list("damaged1","damaged2","damaged3","
 				if(2)
 					if(src.loc.type in medieval_areas)
 						src.ChangeTurf(/turf/simulated/floor/grass)
+					if(src.loc.type in medieval_areas_underground)
+						src.ChangeTurf(/turf/simulated/floor/stone/mine)
 					else
 						src.ChangeTurf(/turf/simulated/floor/plating)
 				if(3)
+					if(src.loc.type in medieval_areas_underground)
+						src.ChangeTurf(/turf/simulated/floor/stone/mine)
+						return
+
 					if(!(src.loc.type in medieval_areas))
 						if(prob(80))
 							src.break_tile()
 						else
 							src.break_tile()
 						src.hotspot_expose(1000,CELL_VOLUME)
+
+
 					//if(prob(33)) new /obj/item/stack/sheet/metal(src)
 		if(3.0)
 			if(prob(50))

@@ -27,6 +27,7 @@
 	var/stop_automated_movement = 0 //Use this to temporarely stop random movement or to if you write special movement code for animals.
 	var/wander = 1	// Does the mob wander around when idle?
 	var/stop_automated_movement_when_pulled = 1 //When set to 1 this stops the animal from moving when someone is pulling it.
+	var/can_rest = 1	// Can the mob get into resting position?
 
 	//Interaction
 	var/response_help   = "pokes"
@@ -128,8 +129,11 @@
 	handle_automated_speech()
 
 /mob/living/simple_animal/lay_down()
-	..()
-	handle_resting_state_icons()
+	if(can_rest)
+		..()
+		handle_resting_state_icons()
+	else
+		return 0
 
 /mob/living/simple_animal/proc/handle_resting_state_icons()
 	if(icon_resting)

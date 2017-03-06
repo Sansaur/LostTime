@@ -13,6 +13,8 @@
 	else
 		icon_state = icon_opened
 
+
+
 /obj/structure/closet/acloset
 	name = "strange closet"
 	desc = "It looks alien!"

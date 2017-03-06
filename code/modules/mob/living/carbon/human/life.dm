@@ -1109,6 +1109,7 @@
 			to_chat(H, "<spawn class='warning'>You smell something foul...")
 			H.fakevomit()
 
+
 /mob/living/carbon/human/proc/handle_heartbeat()
 	var/client/C = src.client
 	if(C && C.prefs.sound & SOUND_HEARTBEAT) //disable heartbeat by pref

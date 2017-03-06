@@ -129,7 +129,7 @@
 	singular_name = "fixed wood floor tile"
 	desc = "an easy to fit stone floor tile"
 	icon_state = "tile-stone3"
-	turf_type = /turf/simulated/floor/stone/brick
+	turf_type = /turf/simulated/floor/stone/tiled
 
 /obj/item/stack/tile/stone/brick // - Sansaur
 	name = "bricked floor tiles"

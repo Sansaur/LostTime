@@ -101,7 +101,6 @@
 	special_cooldown = 60
 
 /obj/item/weapon/medieval/sword/dropped()
-	icon_state = "[ori_icon]"
 	update_icon()
 	..()
 
@@ -116,7 +115,6 @@
 	to_chat(user, "<span class=info> You prepare a slicing strike </span>")
 	block_chance = 0
 	special = 1
-	icon_state = "[ori_icon]_special"
 	src.force += 15
 	update_icon()
 	cooldown(special_cooldown)
@@ -124,8 +122,8 @@
 	src.force -= 15
 	block_chance = 15
 	special = 0
-	icon_state = "[ori_icon]"
 	update_icon()
+	cooldown(special_cooldown)
 
 /obj/item/weapon/medieval/sword/attack(mob/living/M as mob, mob/living/user as mob, def_zone)
 	if(special)

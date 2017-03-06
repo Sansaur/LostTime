@@ -26,6 +26,28 @@
 	 "sugar" = list("emptycondiment", "sugar bottle", "Tasty spacey sugar!"))
 	var/originalname = "condiment" //Can't use initial(name) for this. This stores the name set by condimasters.
 
+/obj/item/weapon/reagent_containers/food/condiment/medieval
+	name = "condiment container"
+	desc = "Just your average condiment container."
+	icon = 'icons/obj/food/containers.dmi'
+	icon_state = "emptycondiment_m"
+	flags = OPENCONTAINER
+	possible_transfer_amounts = list(1, 5, 10, 15, 20, 25, 30, 50)
+	volume = 50
+	//Possible_states has the reagent id as key and a list of, in order, the icon_state, the name and the desc as values. Used in the on_reagent_change() to change names, descs and sprites.
+	possible_states = list(
+	 "ketchup" = list("ketchup_m", "ketchup bottle", "It is a small condiment bottle containing ketchup."),
+	 "capsaicin" = list("hotsauce_m", "hotsauce bottle", "UGH, this reeks with stomach aches!"),
+	 "enzyme" = list("enzyme_m", "universal enzyme bottle", "Used in cooking various dishes"),
+	 "soysauce" = list("soysauce_m", "soy sauce bottle", "A salty soy-based flavoring"),
+	 "frostoil" = list("coldsauce_m", "coldsauce bottle", "Leaves the tongue numb in it's passage"),
+	 "sodiumchloride" = list("saltshakersmall_m", "salt shaker", "Salt."),
+	 "blackpepper" = list("peppermillsmall_m", "pepper mill", "Often used to flavor food or make people sneeze"),
+	 "cornoil" = list("oliveoil_m", "corn oil bottle", "A delicious oil used in cooking. Made from corn"),
+	 "sugar" = list("emptycondiment_m", "sugar bottle", "Tasty sugar!"))
+	originalname = "condiment" //Can't use initial(name) for this. This stores the name set by condimasters.
+
+
 /obj/item/weapon/reagent_containers/food/condiment/attackby(obj/item/weapon/W, mob/user, params)
 	return
 
@@ -106,6 +128,30 @@
 			icon_state = "mixedcondiments"
 	else
 		icon_state = "emptycondiment"
+		name = "condiment bottle"
+		desc = "An empty condiment bottle."
+
+/obj/item/weapon/reagent_containers/food/condiment/medieval/on_reagent_change()
+	if(!possible_states.len)
+		return
+	if(reagents.reagent_list.len > 0)
+		var/main_reagent = reagents.get_master_reagent_id()
+		if(main_reagent in possible_states)
+			var/list/temp_list = possible_states[main_reagent]
+			icon_state = temp_list[1]
+			name = temp_list[2]
+			desc = temp_list[3]
+
+		else
+			name = "[originalname] bottle"
+			main_reagent = reagents.get_master_reagent_name()
+			if(reagents.reagent_list.len==1)
+				desc = "Looks like it is [lowertext(main_reagent)], but you are not sure."
+			else
+				desc = "A mixture of various condiments. [lowertext(main_reagent)] is one of them."
+			icon_state = "mixedcondiments_m"
+	else
+		icon_state = "emptycondiment_m"
 		name = "condiment bottle"
 		desc = "An empty condiment bottle."
 
@@ -205,6 +251,25 @@
 	possible_transfer_amounts = list()
 	possible_states = list("ketchup" = list("condi_ketchup", "Ketchup", "You feel more American already."), "capsaicin" = list("condi_hotsauce", "Hotsauce", "You can almost TASTE the stomach ulcers now!"), "soysauce" = list("condi_soysauce", "Soy Sauce", "A salty soy-based flavoring"), "frostoil" = list("condi_frostoil", "Coldsauce", "Leaves the tongue numb in it's passage"), "sodiumchloride" = list("condi_salt", "Salt Shaker", "Salt. From space oceans, presumably"), "blackpepper" = list("condi_pepper", "Pepper Mill", "Often used to flavor food or make people sneeze"), "cornoil" = list("condi_cornoil", "Corn Oil", "A delicious oil used in cooking. Made from corn"), "sugar" = list("condi_sugar", "Sugar", "Tasty spacey sugar!"))
 
+/obj/item/weapon/reagent_containers/food/condiment/pack/medieval
+	name = "condiment pack"
+	desc = "A small plastic pack with condiments to put on your food"
+	icon_state = "condi_empty_m"
+	volume = 10
+	amount_per_transfer_from_this = 10
+	possible_transfer_amounts = list()
+	possible_states = list(
+	"ketchup" = list("condi_ketchup_m", "Ketchup", "It's some ketchup in a tiny glass bottle"),
+	"capsaicin" = list("condi_hotsauce_m", "Hotsauce", "You can almost TASTE the stomach ulcers now!"),
+	"soysauce" = list("condi_soysauce_m", "Soy Sauce", "A salty soy-based flavoring"),
+	"frostoil" = list("condi_frostoil_m", "Coldsauce", "Leaves the tongue numb in it's passage"),
+	"sodiumchloride" = list("condi_salt_m", "Salt Shaker", "A salt cube, of course"),
+	"blackpepper" = list("condi_pepper_m", "Pepper Mill", "Often used to flavor food or make people sneeze"),
+	"cornoil" = list("condi_cornoil_m", "Corn Oil", "A delicious oil used in cooking. Made from corn"),
+	"sugar" = list("condi_sugar_m", "Sugar", "Tasty sugar cubes!")
+	)
+
+
 /obj/item/weapon/reagent_containers/food/condiment/pack/attack(mob/M, mob/user, def_zone) //Can't feed these to people directly.
 	return
 
@@ -239,6 +304,20 @@
 	else
 		icon_state = "condi_empty"
 		desc = "A small condiment pack. It is empty."
+
+/obj/item/weapon/reagent_containers/food/condiment/pack/medieval/on_reagent_change()
+	if(reagents.reagent_list.len > 0)
+		var/main_reagent = reagents.get_master_reagent_id()
+		if(main_reagent in possible_states)
+			var/list/temp_list = possible_states[main_reagent]
+			icon_state = temp_list[1]
+			desc = temp_list[3]
+		else
+			icon_state = "condi_mixed_m"
+			desc = "A small condiment cube.[originalname]"
+	else
+		icon_state = "condi_empty"
+		desc = "Some condiment rubble, someone should clean this up"
 
 //Ketchup
 /obj/item/weapon/reagent_containers/food/condiment/pack/ketchup

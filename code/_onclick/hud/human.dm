@@ -329,6 +329,14 @@
 	mymob.healthdoll = new()
 	infodisplay += mymob.healthdoll
 
+	//MANA STUFF - Sansaur
+	mymob.manas = new /obj/screen/manas()
+	//WE ADD THE MANA THING TO THE INFO DISPLAY
+	infodisplay += mymob.manas
+
+	mymob.healthdoll = new()
+	infodisplay += mymob.healthdoll
+
 	mymob.pullin = new /obj/screen/pull()
 	mymob.pullin.icon = ui_style
 	mymob.pullin.update_icon(mymob)

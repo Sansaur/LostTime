@@ -97,17 +97,6 @@ var/global/list/datum/stack_recipe/tranquillite_recipes = list ( \
 	..()
 	recipes = sandstone_recipes
 
-/obj/item/stack/sheet/mineral/diamond
-	name = "diamond"
-	icon_state = "sheet-diamond"
-	origin_tech = "materials=6"
-	sheettype = "diamond"
-	materials = list(MAT_DIAMOND=MINERAL_MATERIAL_AMOUNT)
-
-
-/obj/item/stack/sheet/mineral/diamond/New()
-	..()
-	recipes = diamond_recipes
 
 /obj/item/stack/sheet/mineral/uranium
 	name = "uranium"
@@ -158,27 +147,9 @@ var/global/list/datum/stack_recipe/tranquillite_recipes = list ( \
 	name = "plastic sheets"
 	icon_state = "sheet-plastic"
 
-/obj/item/stack/sheet/mineral/gold
-	name = "gold"
-	icon_state = "sheet-gold"
-	origin_tech = "materials=4"
-	sheettype = "gold"
-	materials = list(MAT_GOLD=MINERAL_MATERIAL_AMOUNT)
 
-/obj/item/stack/sheet/mineral/gold/New()
-	..()
-	recipes = gold_recipes
 
-/obj/item/stack/sheet/mineral/silver
-	name = "silver"
-	icon_state = "sheet-silver"
-	origin_tech = "materials=3"
-	sheettype = "silver"
-	materials = list(MAT_SILVER=MINERAL_MATERIAL_AMOUNT)
 
-/obj/item/stack/sheet/mineral/silver/New()
-	..()
-	recipes = silver_recipes
 
 /obj/item/stack/sheet/mineral/bananium
 	name = "bananium"

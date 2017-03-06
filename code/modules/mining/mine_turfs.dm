@@ -15,12 +15,12 @@ var/global/list/rockTurfEdgeCache = list(
 	name = "Rock"
 	icon = 'icons/turf/mining.dmi'
 	icon_state = "rock_nochance"
-	oxygen = 0
-	nitrogen = 0
 	opacity = 1
 	density = 1
 	blocks_air = 1
-	temperature = TCMB
+	oxygen = MOLES_O2STANDARD
+	nitrogen = MOLES_N2STANDARD
+	temperature = T20C //TCMB is "super freezing" temperature
 	var/mineralType = null
 	var/mineralAmt = 3
 	var/mineralName = null
@@ -107,11 +107,14 @@ var/global/list/rockTurfEdgeCache = list(
 	name = "mineral deposit"
 	icon_state = "rock"
 	var/mineralSpawnChanceList = list(
-		"Uranium" = 5, "Diamond" = 1, "Gold" = 10,
-		"Silver" = 12, "Plasma" = 20, "Iron" = 40,
-		"Gibtonite" = 4, "Cave" = 2, "BScrystal" = 1,
-		/*, "Adamantine" =5*/)
-		//Currently, Adamantine won't spawn as it has no uses. -Durandan
+		"Diamond" = 4,
+		"Gold" = 8,
+		"Silver" = 15,
+		"Iron" = 15,
+		"Cave" = 22,
+		"Mythril" = 4,
+		"None" = 32
+		)
 	var/mineralChance = 13
 
 /turf/simulated/mineral/random/New()
@@ -122,28 +125,24 @@ var/global/list/rockTurfEdgeCache = list(
 		if(mName)
 			var/turf/simulated/mineral/M
 			switch(mName)
-				if("Uranium")
-					M = new/turf/simulated/mineral/uranium(src)
 				if("Iron")
 					M = new/turf/simulated/mineral/iron(src)
 				if("Diamond")
-					M = new/turf/simulated/mineral/diamond(src)
+					//This makes it so they can only spawn in certain mine levels
+					if(istype(src.loc, /area/medieval/underground/mine_level_2) || istype(src.loc, /area/medieval/underground/mine_level_3))
+						M = new/turf/simulated/mineral/diamond(src)
+				if("Mytrhil")
+					//This makes it so they can only spawn in certain mine levels
+					if(istype(src.loc, /area/medieval/underground/mine_level_2) || istype(src.loc, /area/medieval/underground/mine_level_3))
+						M = new/turf/simulated/mineral/mythril(src)
 				if("Gold")
 					M = new/turf/simulated/mineral/gold(src)
 				if("Silver")
 					M = new/turf/simulated/mineral/silver(src)
-				if("Plasma")
-					M = new/turf/simulated/mineral/plasma(src)
 				if("Cave")
-					new/turf/simulated/floor/plating/airless/asteroid/cave(src)
-				if("Gibtonite")
-					M = new/turf/simulated/mineral/gibtonite(src)
-				if("Bananium")
-					M = new/turf/simulated/mineral/clown(src)
-				if("Tranquillite")
-					M = new/turf/simulated/mineral/mime(src)
-				if("BScrystal")
-					M = new/turf/simulated/mineral/bscrystal(src)
+					new/turf/simulated/floor/stone/mine(src)
+				if("None")
+					return
 			if(M)
 				M.mineralAmt = rand(1, 5)
 				src = M
@@ -155,18 +154,14 @@ var/global/list/rockTurfEdgeCache = list(
 	icon_state = "rock_highchance"
 	mineralChance = 25
 	mineralSpawnChanceList = list(
-		"Uranium" = 35, "Diamond" = 30,
-		"Gold" = 45, "Silver" = 50, "Plasma" = 50,
-		"BScrystal" = 20)
-
-
-/turf/simulated/mineral/random/high_chance_clown
-	mineralChance = 40
-	mineralSpawnChanceList = list(
-		"Uranium" = 35, "Diamond" = 2,
-		"Gold" = 5, "Silver" = 5, "Plasma" = 25,
-		"Iron" = 30, "Bananium" = 15, "Tranquillite" = 15, "BScrystal" = 10)
-
+		"Diamond" = 6,
+		"Gold" = 11,
+		"Silver" = 18,
+		"Iron" = 11,
+		"Cave" = 23,
+		"Mythril" = 6,
+		"None" = 21
+		)
 /turf/simulated/mineral/random/high_chance/New()
 	icon_state = "rock"
 	..()
@@ -175,9 +170,14 @@ var/global/list/rockTurfEdgeCache = list(
 	icon_state = "rock_lowchance"
 	mineralChance = 6
 	mineralSpawnChanceList = list(
-		"Uranium" = 2, "Diamond" = 1, "Gold" = 4,
-		"Silver" = 6, "Plasma" = 15, "Iron" = 40,
-		"Gibtonite" = 2, "BScrystal" = 1)
+		"Diamond" = 4,
+		"Gold" = 11,
+		"Silver" = 6,
+		"Iron" = 5,
+		"Cave" = 15,
+		"Mythril" = 1,
+		"None" = 50
+		)
 
 /turf/simulated/mineral/random/low_chance/New()
 	icon_state = "rock"
@@ -192,14 +192,14 @@ var/global/list/rockTurfEdgeCache = list(
 	spread = 1
 	hidden = 0
 
-/turf/simulated/mineral/uranium
-	name = "uranium deposit"
-	mineralType = /obj/item/weapon/ore/uranium
-	mineralName = "Uranium"
+/turf/simulated/mineral/mythril
+	name = "mythril deposit"
+	mineralType = /obj/item/stack/sheet/mineral/mythril
+	mineralName = "Mythril"
 	spreadChance = 5
 	spread = 1
 	hidden = 1
-	scan_state = "rock_Uranium"
+	scan_state = "rock_Mythril"
 
 /turf/simulated/mineral/diamond
 	name = "diamond deposit"
@@ -393,18 +393,26 @@ var/global/list/rockTurfEdgeCache = list(
 	return
 
 /turf/simulated/mineral/proc/gets_drilled()
+	//mine_dangers.dm
+	cavein()
+
 	if(mineralType && (src.mineralAmt > 0) && (src.mineralAmt < 11))
 		var/i
 		for(i=0;i<mineralAmt;i++)
 			new mineralType(src)
 		feedback_add_details("ore_mined","[mineralType]|[mineralAmt]")
-	var/turf/simulated/floor/plating/airless/asteroid/N = ChangeTurf(/turf/simulated/floor/plating/airless/asteroid)
+	var/turf/simulated/floor/stone/mine/N = ChangeTurf(/turf/simulated/floor/stone/mine)
 	playsound(src, 'sound/effects/break_stone.ogg', 50, 1) //beautiful destruction
 	N.fullUpdateMineralOverlays()
+	N.updateMineralOverlays()
 
+
+
+	//This spawns treasures but it's deactivated for now
+	/*
 	if(rand(1,750) == 1)
 		visible_message("<span class='notice'>An old dusty crate was buried within!</span>")
-		new /obj/structure/closet/crate/secure/loot(src)
+		new /obj/structure/closet/crate/secure/loot(src) */
 
 	return
 
@@ -558,7 +566,7 @@ var/global/list/rockTurfEdgeCache = list(
 /turf/proc/fullUpdateMineralOverlays()
 	for(var/turf/t in range(1,src))
 		t.updateMineralOverlays()
-
+/*
 /turf/simulated/floor/plating/airless/asteroid/cave
 	var/length = 100
 	var/mob_spawn_list = list("Goldgrub" = 1, "Goliath" = 5, "Basilisk" = 4, "Hivelord" = 3)
@@ -653,7 +661,7 @@ var/global/list/rockTurfEdgeCache = list(
 			if("Hivelord")
 				new /mob/living/simple_animal/hostile/asteroid/hivelord(T)
 	return
-
+*/
 #undef NORTH_EDGING
 #undef SOUTH_EDGING
 #undef EAST_EDGING

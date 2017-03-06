@@ -40,6 +40,7 @@
 	var/result			// example: = /obj/item/weapon/reagent_containers/food/snacks/donut/normal
 	var/time = 100		// 1/10 part of second
 	var/byproduct		// example: = /obj/item/weapon/kitchen/mould		// byproduct to return, such as a mould or trash
+	var/name_replace	// Name of a recipe
 
 
 /datum/recipe/proc/check_reagents(datum/reagents/avail_reagents) //1=precisely, 0=insufficiently, -1=superfluous
@@ -94,6 +95,17 @@
 		if(checklist.len)
 			. = -1
 	return .
+
+/datum/recipe/proc/check_items_floor(turf/container) //This checks if the items of the recipe are on a tile - Sansaur
+	if(items && items.len)
+		var/list/checklist = list()
+		checklist = items.Copy() // All the items we're gonna check
+		var/list/items_in_loc = list() //This adds the types of the items in the location
+		for(var/obj/item/O in container)
+			items_in_loc.Add(O.type)
+
+		var/list/checker = difflist(checklist, items_in_loc)
+		return checker.len
 
 //general version
 /datum/recipe/proc/make(obj/container)

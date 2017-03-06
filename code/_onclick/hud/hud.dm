@@ -84,6 +84,7 @@
 	//clear mob refs to screen objects
 	mymob.throw_icon = null
 	mymob.healths = null
+	mymob.manas = null
 	mymob.healthdoll = null
 	mymob.pullin = null
 	mymob.zone_sel = null

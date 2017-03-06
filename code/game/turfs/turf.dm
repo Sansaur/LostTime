@@ -42,6 +42,8 @@
 	if(smooth && ticker && ticker.current_state == GAME_STATE_PLAYING)
 		smooth_icon(src)
 
+
+
 /hook/startup/proc/smooth_world()
 	var/watch = start_watch()
 	log_startup_progress("Smoothing atoms...")
@@ -187,6 +189,8 @@
 			lighting_build_overlays()
 		else
 			lighting_clear_overlays()
+
+	//lighting_redo_overlays()	// TESTING TESTING TESTING TESTING - SANSAUR
 
 	obscured = old_obscured
 

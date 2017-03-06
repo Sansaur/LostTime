@@ -98,3 +98,101 @@
 /obj/structure/wall_torch/pre_lit/New()
 	..()
 	lit()
+/**
+** Bonfire
+**/
+/obj/structure/bonfire
+	name = "bonfire"
+	desc = "It looks like it'll burn ya"
+	icon = 'icons/medieval/structures.dmi'
+	icon_state = "bonfire0"
+	var/lit = 0
+	var/fuel = 0
+
+/obj/structure/bonfire/New()
+	layer=2.9 //Replace with Object Layer - 0.1
+	fuel += 50
+	processing()
+	//..()
+
+/obj/structure/bonfire/update_icon()
+	icon_state = "bonfire[lit]"
+	..()
+
+/obj/structure/bonfire/proc/processing() //COMPROBAR FUNCIONAMIENTO CORRECTO EN EL FUTURO
+	if(lit)
+		fuel--
+		if(fuel < 0)
+			new /obj/effect/decal/cleanable/ash (loc)
+			qdel(src)
+			return 0
+
+		var/turf/simulated/floor/location = locate(x,y,z)
+		if(location.wet)
+			switch_lit()
+
+	sleep(15)
+	processing()
+
+/obj/structure/bonfire/attack_hand(mob/user as mob)
+	//switch_lit()
+
+/obj/structure/bonfire/attackby(obj/item/W as obj, mob/user as mob, params)
+	if(istype(W, /obj/item/weapon/log))
+		to_chat(user, "<span class=info> You put some wood into the fire </span>")
+		fuel += 50
+		qdel(W)
+	if(istype(W, /obj/item/weapon/wood_plank))
+		to_chat(user, "<span class=info> You put some wood into the fire </span>")
+		fuel += 25
+		qdel(W)
+	if(istype(W, /obj/item/weapon/pickaxe) || istype(W, /obj/item/weapon/fire_pick) )
+		if(lit)
+			to_chat(user, "<span class=warning> You extinguish the fire. </span>")
+			switch_lit()
+			return
+
+	if(istype(W, /obj/item/weapon/flint))
+		if(!lit)
+			to_chat(user, "<span class=warning> You start the fire. </span>")
+			switch_lit()
+			processing()
+			return
+
+/obj/structure/bonfire/Crossed(atom/movable/AM as mob|obj)
+	spawn( 0 )
+		if(istype(AM, /mob/living/carbon/human) && lit)
+			var/mob/living/carbon/human/TouchingHuman = AM
+			to_chat(TouchingHuman, "<span class=userdanger> OW! The [src] has burned you!</span>")
+			TouchingHuman.adjustFireLoss(10)
+			if(prob(10))
+				spawn(3)
+				to_chat(TouchingHuman, "<span class=userdanger> AAARRGH!</span>")
+				TouchingHuman.adjust_fire_stacks(4)
+				TouchingHuman.IgniteMob()
+			return
+
+/obj/structure/bonfire/proc/switch_lit()
+	lit = !lit
+	if(lit)
+		playsound(loc, 'sound/machines/startingfire.ogg', 50, 1)
+		set_light(6, 2, LIGHT_COLOR_ORANGE)
+	else
+		playsound(loc,'sound/machines/extinguishfire.ogg',50,1)
+		set_light(0)
+	update_icon()
+	return lit
+
+// This shit is to put out fires, apparently
+/obj/item/weapon/fire_pick
+	name = "fire pick"
+	desc = "in case you need to put out a bonfire"
+	icon = 'icons/obj/items.dmi'
+	icon_state = "fire_pick"
+	flags = CONDUCT
+	slot_flags = SLOT_BELT
+	force = 4.0
+	throwforce = 4.0
+	item_state = "fire_pick"
+	w_class = 2
+	sharp = 1

@@ -79,8 +79,10 @@
 
 /turf/simulated/floor/stone/stairs // - Sansaur
 	icon_state = "stone6"
-	floor_tile = /obj/item/stack/tile/stone/big_brick
+	floor_tile = /obj/item/stack/tile/stone/stairs
 	broken_states = list("stone6-broken", "stone6-broken2")
+
+
 	// STONE FLOORS.
 
 	// MARBLE FLOORS.
@@ -142,7 +144,7 @@
 				BURIED_ITEM.invisibility = 3
 				BURIED_ITEM.loc = src
 				BURIED_ITEM = null
-			if(HIDDENCOFFIN)
+			else if(HIDDENCOFFIN)
 				HIDDENCOFFIN.invisibility = 3
 				HIDDENCOFFIN.density = 1
 				HIDDENCOFFIN.loc = src
@@ -150,6 +152,7 @@
 				icon_state = "grass[pick("1","2","3","4")]"
 			else
 				new /obj/item/weapon/ore/glass(src)
+
 			to_chat(user, "<span class='notice'>You shovel the grass.</span>")
 			icon_state = "grass_dug"
 			excavated = 1
@@ -178,6 +181,7 @@
 		var/obj/item/stack/tile/TILE = C
 		ChangeTurf(TILE.turf_type)
 		TILE.use(1)
+		return
 
 	if(excavated)
 		if(C.w_class <= 2)

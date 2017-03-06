@@ -29,7 +29,7 @@ var/global/wcCommon = pick(list("#379963", "#0d8395", "#58b5c3", "#49e46e", "#8f
 	pressure_resistance = 4*ONE_ATMOSPHERE
 	anchored = 1.0
 	flags = ON_BORDER
-	var/health = 14.0
+	var/health = 20.0
 	var/ini_dir = null
 	var/state = 2
 	var/reinf = 0
@@ -115,9 +115,10 @@ var/global/wcCommon = pick(list("#379963", "#0d8395", "#58b5c3", "#49e46e", "#8f
 	playsound(loc, 'sound/effects/Glasshit.ogg', 100, 1)
 	health = max(0, health - tforce)
 	if(health <= 7 && !reinf)
-		anchored = 0
-		update_nearby_icons()
-		step(src, get_dir(AM, src))
+		if(prob(30))
+			anchored = 0
+			update_nearby_icons()
+			step(src, get_dir(AM, src))
 	if(health <= 0)
 		destroy()
 

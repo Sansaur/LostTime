@@ -103,19 +103,4 @@
 		else
 			continue
 	return 1
-/*
-/obj/effect/step_trigger/teleport_fancy/omegacorp_floor/proc/Anti_Permaloop()
-	var/obj/effect/step_trigger/teleport_fancy/omegacorp_floor/TP_TOFIND
-	if(!searching_tag)
-		return 0
-	var/list/used_tags = list()
-	for(TP_TOFIND in world)
-		if(!TP_TOFIND.searching_tag in used_tags)
-			used_tags.Add(searching_tag)
-		else
-			continue
 
-	if(used_tags.len >= 6)
-		return 0
-	else
-		return 1*/

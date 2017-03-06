@@ -47,13 +47,6 @@
 	refined_type = /obj/item/stack/sheet/mineral/uranium
 	materials = list(MAT_URANIUM=MINERAL_MATERIAL_AMOUNT)
 
-/obj/item/weapon/ore/iron
-	name = "iron ore"
-	icon_state = "Iron ore"
-	origin_tech = "materials=1"
-	points = 1
-	refined_type = /obj/item/stack/sheet/metal
-	materials = list(MAT_METAL=MINERAL_MATERIAL_AMOUNT)
 
 /obj/item/weapon/ore/glass
 	name = "sand pile"

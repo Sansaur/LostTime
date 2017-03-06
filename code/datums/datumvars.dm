@@ -183,6 +183,7 @@
 			OXY:<font size='1'><a href='?_src_=vars;mobToDamage=[D.UID()];adjustDamage=oxygen'>[M.getOxyLoss()]</a>
 			CLONE:<font size='1'><a href='?_src_=vars;mobToDamage=[D.UID()];adjustDamage=clone'>[M.getCloneLoss()]</a>
 			BRAIN:<font size='1'><a href='?_src_=vars;mobToDamage=[D.UID()];adjustDamage=brain'>[M.getBrainLoss()]</a>
+			MANA:<font size='1'><a href='?_src_=vars;mobToDamage=[D.UID()];adjustDamage=mana'>[M.getMana()]</a>
 			</font>
 
 
@@ -1084,6 +1085,7 @@ body
 			if("oxygen")L.adjustOxyLoss(amount)
 			if("brain")	L.adjustBrainLoss(amount)
 			if("clone")	L.adjustCloneLoss(amount)
+			if("mana")	L.adjustMana(amount)
 			else
 				to_chat(usr, "You caused an error. DEBUG: Text:[Text] Mob:[L]")
 				return

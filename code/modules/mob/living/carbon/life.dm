@@ -458,3 +458,21 @@
 					healths.icon_state = "health6"
 		else
 			healths.icon_state = "health7"
+
+/mob/living/carbon/handle_hud_icons_mana()
+	if(mana)
+		switch(mana)
+			if(100 to INFINITY)
+				manas.icon_state = "mana0"
+			if(80 to 100)
+				manas.icon_state = "mana1"
+			if(60 to 80)
+				manas.icon_state = "mana2"
+			if(40 to 60)
+				manas.icon_state = "mana3"
+			if(20 to 40)
+				manas.icon_state = "mana4"
+			if(0 to 20)
+				manas.icon_state = "mana5"
+			else
+				manas.icon_state = "mana6"

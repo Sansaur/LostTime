@@ -633,6 +633,16 @@
 						if(0 to 20)				H.healths.icon_state = "health5"
 						else					H.healths.icon_state = "health6"
 
+	if(H.manas)
+		switch(H.mana)
+			if(100 to INFINITY)		H.manas.icon_state = "mana0"
+			if(80 to 100)			H.manas.icon_state = "mana1"
+			if(60 to 80)			H.manas.icon_state = "mana2"
+			if(40 to 60)			H.manas.icon_state = "mana3"
+			if(20 to 40)			H.manas.icon_state = "mana4"
+			if(0 to 20)				H.manas.icon_state = "mana5"
+			else					H.manas.icon_state = "mana6"
+
 	if(H.healthdoll)
 		if(H.stat == DEAD)
 			H.healthdoll.icon_state = "healthdoll_DEAD"

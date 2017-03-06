@@ -16,6 +16,7 @@
 	var/cutting_sound = 'sound/items/Welder.ogg'
 	var/storage_capacity = 30 //This is so that someone can't pack hundreds of items in a locker/crate then open it in a populated area to crash clients.
 	var/material_drop = /obj/item/stack/sheet/metal
+	var/locked = 0
 
 /obj/structure/closet/New()
 	..()
@@ -39,6 +40,8 @@
 
 /obj/structure/closet/proc/can_open()
 	if(src.welded)
+		return 0
+	if(src.locked)
 		return 0
 	return 1
 

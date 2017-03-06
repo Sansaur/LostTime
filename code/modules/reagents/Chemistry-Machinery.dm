@@ -10,6 +10,7 @@
 	icon_state = "dispenser"
 	use_power = 0
 	idle_power_usage = 40
+	var/has_pill_bottle = 1
 	var/ui_title = "Chem Dispenser 5000"
 	var/energy = 100
 	var/max_energy = 100
@@ -398,6 +399,7 @@
 	var/pillsprite = "1"
 	var/client/has_sprites = list()
 	var/printing = null
+	var/medieval = 0
 
 /obj/machinery/chem_master/New()
 	var/datum/reagents/R = new/datum/reagents(100)
@@ -476,6 +478,8 @@
 		return
 
 	if(href_list["print_p"])
+		if(medieval)
+			return
 		if(!(printing))
 			printing = 1
 			visible_message("<span class='notice'>[src] rattles and prints out a sheet of paper.</span>")
@@ -520,7 +524,10 @@
 				dat += "<BR><BR><A href='?src=[UID()];print_p=1;desc=[href_list["desc"]];name=[href_list["name"]]'>(Print Analysis)</A><BR>"
 				dat += "<A href='?src=[UID()];main=1'>(Back)</A>"
 			else
-				dat += "<TITLE>Condimaster 3000</TITLE>Condiment infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=[UID()];main=1'>(Back)</A>"
+				if(!medieval)
+					dat += "<TITLE>Condimaster 3000</TITLE>Condiment infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=[UID()];main=1'>(Back)</A>"
+				else
+					dat += "<TITLE> Reagent separator: </TITLE>Condiment infos:<BR><BR>Name:<BR>[href_list["name"]]<BR><BR>Description:<BR>[href_list["desc"]]<BR><BR><BR><A href='?src=[UID()];main=1'>(Back)</A>"
 			usr << browse(dat, "window=chem_master;size=575x400")
 			return
 
@@ -598,7 +605,7 @@
 							updateUsrDialog()
 			else
 				var/name = input(usr,"Name:","Name your bag!",reagents.get_master_reagent_name()) as text|null
-				if(!name)
+				if(!name || !medieval)
 					return
 				name = reject_bad_text(name)
 				var/obj/item/weapon/reagent_containers/food/condiment/pack/P = new/obj/item/weapon/reagent_containers/food/condiment/pack(loc)
@@ -607,8 +614,9 @@
 				P.name = "[name] pack"
 				P.desc = "A small condiment pack. The label says it contains [name]."
 				reagents.trans_to(P,10)
+
 		else if(href_list["createpatch"] || href_list["createpatch_multiple"])
-			if(!condi)
+			if(!condi || !medieval)
 				var/count = 1
 				if(href_list["createpatch_multiple"])
 					count = input("Select the number of patches to make.", 10, patchamount) as num|null
@@ -635,6 +643,7 @@
 					if(is_medical_patch)
 						P.instant_application = 1
 						P.icon_state = "bandaid_med"
+
 		else if(href_list["createbottle"])
 			if(!condi)
 				var/name = input(usr,"Name:","Name your bottle!",reagents.get_master_reagent_name()) as text|null
@@ -649,8 +658,11 @@
 				P.icon_state = bottlesprite
 				reagents.trans_to(P,30)
 			else
-				var/obj/item/weapon/reagent_containers/food/condiment/P = new/obj/item/weapon/reagent_containers/food/condiment(loc)
-				reagents.trans_to(P,50)
+				if(!medieval)
+					var/obj/item/weapon/reagent_containers/food/condiment/P = new/obj/item/weapon/reagent_containers/food/condiment(loc)
+					reagents.trans_to(P,50)
+
+
 		else if(href_list["change_pill"])
 			#define MAX_PILL_SPRITE 20 //max icon state of the pill sprites
 			var/dat = "<table>"

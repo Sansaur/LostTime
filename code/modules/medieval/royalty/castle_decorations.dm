@@ -29,8 +29,15 @@
 
 /obj/structure/castle_decoration/big/taxidermy_bear
 	name = "bear"
-	desc = "This one has gone through taxidermy, it's an old gift the late king received some years ago"
+	desc = "This one has gone through taxidermy, it's an old gift the late king received some years ago, the king or queen should take care of it"
 	icon_state = "bear"
+
+/obj/structure/castle_decoration/big/taxidermy_bear/attackby(obj/item/weapon/W, mob/user as mob)
+	if(W.sharp && W.edge)
+		//Shred the bear pelt
+		if(do_after(user, 70-W.force,target = src))
+			icon_state = "bear_naked"
+			update_icon()
 
 /obj/structure/castle_decoration/normal/standing_banner
 	name = "standing banner"

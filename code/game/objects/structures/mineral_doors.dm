@@ -83,7 +83,10 @@
 
 /obj/structure/mineral_door/proc/Open()
 	isSwitchingStates = 1
-	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 100, 1)
+	if(mineralType == "wood")
+		playsound(loc, 'sound/effects/doorcreaky.ogg', 100, 1)
+	else
+		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 100, 1)
 	flick("[mineralType]opening",src)
 	sleep(10)
 	density = 0
@@ -95,7 +98,10 @@
 
 /obj/structure/mineral_door/proc/Close()
 	isSwitchingStates = 1
-	playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 100, 1)
+	if(mineralType == "wood")
+		playsound(loc, 'sound/effects/doorcreaky.ogg', 100, 1)
+	else
+		playsound(loc, 'sound/effects/stonedoor_openclose.ogg', 100, 1)
 	flick("[mineralType]closing",src)
 	sleep(10)
 	density = 1

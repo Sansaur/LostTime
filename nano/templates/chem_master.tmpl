@@ -1,5 +1,5 @@
 {{if data.beaker}}
-	<div class='item'>{{:helper.link('Eject Beaker and Clear Buffer', 'eject', {'eject': 1})}}</div>
+	<div class='item'>{{:helper.link('Eject Reagent container and Clear Buffer', 'eject', {'eject': 1})}}</div>
 	<div class='statusDisplay'>
 		<h3>Add to buffer:</h3>
 		{{for data.beaker_reagents}}
@@ -81,9 +81,11 @@
 	<span class='item'>No beaker loaded</span><br>
 {{/if}}
 <span class='item'>
-	{{if data.loaded_pill_bottle}}
-		{{:helper.link('Pill Bottle (' + data.loaded_pill_bottle_contents_len + '/' + data.loaded_pill_bottle_storage_slots + ')', 'eject', {'ejectp': 1})}}
-	{{else}}
-		{{:helper.link('No Pill Bottle', 'eject', {}, 'disabled')}}
+	{{if data.has_pill_bottle}}
+		{{if data.loaded_pill_bottle}}
+			{{:helper.link('Pill Bottle (' + data.loaded_pill_bottle_contents_len + '/' + data.loaded_pill_bottle_storage_slots + ')', 'eject', {'ejectp': 1})}}
+		{{else}}
+			{{:helper.link('No Pill Bottle', 'eject', {}, 'disabled')}}
+		{{/if}}
 	{{/if}}
 </span>

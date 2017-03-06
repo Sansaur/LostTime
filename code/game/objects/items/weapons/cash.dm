@@ -7,6 +7,15 @@ var/global/list/moneytypes=list(
 	/obj/item/weapon/spacecash/c20   = 20,
 	/obj/item/weapon/spacecash/c10   = 10,
 	/obj/item/weapon/spacecash       = 1,
+
+	/obj/item/weapon/medieval_cash    = 1,
+	/obj/item/weapon/medieval_cash/c10 = 10,
+	/obj/item/weapon/medieval_cash/c20 = 20,
+	/obj/item/weapon/medieval_cash/c50 = 50,
+	/obj/item/weapon/medieval_cash/c100 = 100,
+	/obj/item/weapon/medieval_cash/c200 = 200,
+	/obj/item/weapon/medieval_cash/c500 = 500,
+	/obj/item/weapon/medieval_cash/c1000 = 1000,
 )
 
 /obj/item/weapon/spacecash

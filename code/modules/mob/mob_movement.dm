@@ -462,6 +462,8 @@
 		return
 	if(!Process_Spacemove(get_dir(pulling.loc, A)))
 		return
+	if(!pulling.can_be_pulled)
+		return
 	if(ismob(pulling))
 		var/mob/M = pulling
 		var/atom/movable/t = M.pulling

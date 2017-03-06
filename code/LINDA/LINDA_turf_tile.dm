@@ -43,7 +43,7 @@
 	var/datum/excited_group/excited_group
 	var/excited = 0
 	var/recently_active = 0
-	var/datum/gas_mixture/air
+	var/datum/gas_mixture/air //RECORDAR QUE ESTO ESTÁ AQUI!!!! LINDA TURF TILE - SANSAUR
 	var/archived_cycle = 0
 	var/current_cycle = 0
 	var/icy = 0

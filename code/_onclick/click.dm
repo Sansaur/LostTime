@@ -236,7 +236,7 @@
 	return
 
 /atom/movable/CtrlClick(var/mob/user)
-	if(Adjacent(user))
+	if(Adjacent(user) && user.can_be_pulled)
 		user.start_pulling(src)
 
 /*

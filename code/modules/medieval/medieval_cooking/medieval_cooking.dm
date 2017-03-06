@@ -84,7 +84,7 @@
 	updateUsrDialog()
 
 /obj/structure/medieval_cooking/attack_hand(mob/user)
-	if(contents)
+	if(contents.len >= 1)
 		cook()
 
 
@@ -114,4 +114,22 @@
 			cooked.forceMove(loc)
 		if(byproduct)
 			new byproduct(loc)
-		return
+
+	contents.Cut()
+
+/obj/structure/medieval_cooking/proc/fail()
+	var/obj/item/weapon/reagent_containers/food/snacks/badrecipe/ffuu = new(src)
+	var/amount = 0
+	for(var/obj/O in contents-ffuu)
+		amount++
+		if(O.reagents)
+			var/id = O.reagents.get_master_reagent_id()
+			if(id)
+				amount+=O.reagents.get_reagent_amount(id)
+		qdel(O)
+	reagents.clear_reagents()
+	ffuu.reagents.add_reagent("carbon", amount)
+	ffuu.reagents.add_reagent("????", amount/10)
+	ffuu.forceMove(get_turf(src))
+	contents.Cut()
+

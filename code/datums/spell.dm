@@ -25,7 +25,7 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 	var/holder_var_amount = 20 //same. The amount adjusted with the mob's var when the spell is used
 
 	var/ghost = 0 // Skip life check.
-	var/clothes_req = 1 //see if it requires clothes
+	var/clothes_req = 0 //see if it requires clothes, REMOVED FOR THE MOD!! - Sansaur
 	var/stat_allowed = 0 //see if it requires being conscious/alive, need to set to 1 for ghostpells
 	var/invocation = "HURP DURP" //what is uttered when the wizard casts the spell
 	var/invocation_emote_self = null
@@ -55,10 +55,16 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 	var/action_icon_state = "spell_default"
 	var/action_background_icon_state = "bg_spell"
 
+	var/mana_usage = 0 // How much mana from the living mob is used when casted, if current mana is less than this, can't cast. - Sansaur
+
 /obj/effect/proc_holder/spell/proc/cast_check(skipcharge = 0, mob/living/user = usr) //checks if the spell can be cast based on its settings; skipcharge is used when an additional cast_check is called inside the spell
 
 	if(((!user.mind) || !(src in user.mind.spell_list)) && !(src in user.mob_spell_list))
 		to_chat(user, "<span class='warning'>You shouldn't have this spell! Something's wrong.</span>")
+		return 0
+
+	if(user.mana < mana_usage)
+		to_chat(user, "<span class='warning'>You don't have enough mana!.</span>")
 		return 0
 	if(istype(user, /mob/living/carbon/human))
 		var/mob/living/carbon/human/caster = user
@@ -89,6 +95,8 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 		if(ishuman(user) && (invocation_type == "whisper" || invocation_type == "shout") && user.is_muzzled())
 			to_chat(user, "Mmmf mrrfff!")
 			return 0
+			/*
+			REMOVING THE CLOTHING LIMIT - Sansaur
 	var/obj/effect/proc_holder/spell/noclothes/spell = locate() in (user.mob_spell_list | (user.mind ? user.mind.spell_list : list()))
 	if(clothes_req && !(spell && istype(spell)))//clothes check
 		if(!istype(user, /mob/living/carbon/human))
@@ -103,7 +111,7 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 		if(!istype(user:head, /obj/item/clothing/head/wizard) && !istype(user:head, /obj/item/clothing/head/helmet/space/rig/wizard))
 			to_chat(user, "<span class='notice'>I don't feel strong enough without my hat.</span>")
 			return 0
-
+	*/
 	if(!skipcharge)
 		switch(charge_type)
 			if("recharge")
@@ -112,6 +120,8 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 				charge_counter-- //returns the charge if the targets selecting fails
 			if("holdervar")
 				adjust_var(user, holder_var_type, holder_var_amount)
+
+
 
 	return 1
 
@@ -170,6 +180,8 @@ var/list/spells = typesof(/obj/effect/proc_holder/spell) //needed for the badmin
 		critfail(targets)
 	else
 		cast(targets)
+		var/mob/living/MYMOB = user
+		MYMOB.adjustMana(-mana_usage)
 	after_cast(targets)
 
 /obj/effect/proc_holder/spell/proc/before_cast(list/targets)

@@ -258,7 +258,7 @@
 /obj/structure/piano
 	name = "space minimoog"
 	icon = 'icons/obj/musician.dmi'
-	icon_state = "minimoog"
+	icon_state = "piano"
 	anchored = 1
 	density = 1
 	var/datum/song/song
@@ -266,15 +266,9 @@
 
 /obj/structure/piano/New()
 	song = new("piano", src)
-
-	if(prob(50))
-		name = "space minimoog"
-		desc = "This is a minimoog, like a space piano, but more spacey!"
-		icon_state = "minimoog"
-	else
-		name = "space piano"
-		desc = "This is a space piano, like a regular piano, but always in tune! Even if the musician isn't."
-		icon_state = "piano"
+	name = "space piano"
+	desc = "It's a piano, looks professional."
+	icon_state = "piano"
 
 /obj/structure/piano/Destroy()
 	qdel(song)

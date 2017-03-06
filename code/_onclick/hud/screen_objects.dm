@@ -474,3 +474,5 @@
 	icon_state = "healthdoll_DEAD"
 	screen_loc = ui_healthdoll
 	var/list/cached_healthdoll_overlays = list() // List of icon states (strings) for overlays
+
+

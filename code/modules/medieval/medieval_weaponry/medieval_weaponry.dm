@@ -23,18 +23,29 @@
 	var/NO_SPECIAL = 0
 
 /obj/item/weapon/medieval/attack()
-	Use_Durability(durability_loss)
 	..()
+	Use_Durability(durability_loss)
 
 /obj/item/weapon/medieval/proc/Use_Durability(var/durability_loss)
 	durability -= durability_loss
 	if(durability < 0)
 		Break_Weapon()
 
+/obj/item/weapon/medieval/update_icon()
+	if(durability <= 0)
+		icon_state = "[ori_icon]_broken"
+		..()
+		return
+	if(special && !isturf(loc))
+		icon_state = "[ori_icon]_special"
+	else
+		icon_state = "[ori_icon]"
+	..()
 /obj/item/weapon/medieval/proc/Break_Weapon()
-	visible_message("<span class=warning> The [src] breaks! </span>")
-	ori_icon = "[icon_state]_broken"
-	icon_state = "[icon_state]"
+	if(NO_SPECIAL)
+		return
+	visible_message("<span class=warning> [src] breaks! </span>")
+	icon_state = "[ori_icon]_broken"
 	force = force * 0.25
 	NO_SPECIAL = 1
 	update_icon()

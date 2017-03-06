@@ -101,10 +101,8 @@
 	..()
 	var/obj/structure/power_mainframe_repair/MAINREPAIR = locate()
 	qdel(MAINREPAIR)
-	var/obj/structure/heat_controller/HEATCONTROL = locate()
-	HEATCONTROL.MAINFRAME = src
-	HEATCONTROL.processing()
-	//FUCKING WORK ALREADY
+	//Esto no lo coge porque el heatcontrol se crea despues, hacemos un metodo y que se llame desde el propio heatcontrol
+
 
 /obj/structure/pb_mainframe/stabilization_mainframe
 	name = "Stabilization mainframe"

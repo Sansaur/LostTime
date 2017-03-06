@@ -97,10 +97,12 @@
 #define ui_alien_nightvision "EAST-1:28,CENTER+2:25"
 
 //Middle right (status indicators)
-#define ui_nutrition "EAST-1:28,CENTER-3:11"
-#define ui_temp "EAST-1:28,CENTER-2:13"
-#define ui_healthdoll "EAST-1:28,CENTER-1:15"
-#define ui_health "EAST-1:28,CENTER:17"
+// THIS HAS BEEN CHANGED TOO - Sansaur
+#define ui_nutrition "EAST-1:28,CENTER-3:9"
+#define ui_temp "EAST-1:28,CENTER-2:11"
+#define ui_healthdoll "EAST-1:28,CENTER-1:13"
+#define ui_health "EAST-1:28,CENTER:15"
+#define ui_manas "EAST-1:25,CENTER:-60"
 #define ui_internal "EAST-1:28,CENTER+1:19"
 									//borgs
 #define ui_borg_health "EAST-1:28,CENTER-1:15" //borgs have the health display where humans have the pressure damage indicator.

@@ -203,6 +203,26 @@ var/list/ghostteleportlocs = list()
 	icon_state = "medieval"
 	lighting_use_dynamic = 1
 
+/area/medieval/underground/mine_start
+	name = "\improper Mine area start"
+	icon_state = "mine_start"
+
+/area/medieval/underground/mine_generic
+	name = "\improper Mine area generic"
+	icon_state = "mine_generic"
+
+/area/medieval/underground/mine_level_1
+	name = "\improper Mine area level 1"
+	icon_state = "mine_level_1"
+
+/area/medieval/underground/mine_level_2
+	name = "\improper Mine area level 2"
+	icon_state = "mine_level_2"
+
+/area/medieval/underground/mine_level_3
+	name = "\improper Mine area level 3"
+	icon_state = "mine_level_3"
+
 /area/medieval/underground/ChangeDayTime()
 	return
 	// UNDERGROUND AREAS, FOR BASEMENTS OR THE MINE
@@ -2849,6 +2869,11 @@ var/list/the_station_areas = list (
 var/list/medieval_areas = list (
 	/area/medieval,
 	/area/medieval/underground,
+	/area/medieval/underground/mine_start,
+	/area/medieval/underground/mine_generic,
+	/area/medieval/underground/mine_level_1,
+	/area/medieval/underground/mine_level_2,
+	/area/medieval/underground/mine_level_3,
 	/area/medieval/castle,
 	/area/medieval/castle/throne_room,
 	/area/medieval/castle/dormitories,
@@ -2926,5 +2951,10 @@ var/list/medieval_areas_exposed_to_sun = list (
 )
 
 var/list/medieval_areas_underground = list (
-	/area/medieval/underground
+	/area/medieval/underground,
+	/area/medieval/underground/mine_start,
+	/area/medieval/underground/mine_generic,
+	/area/medieval/underground/mine_level_1,
+	/area/medieval/underground/mine_level_2,
+	/area/medieval/underground/mine_level_3,
 )

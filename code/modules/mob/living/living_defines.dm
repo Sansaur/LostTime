@@ -4,6 +4,8 @@
 	//Health and life related vars
 	var/maxHealth = 100 //Maximum health that should be possible.
 	var/health = 100 	//A mob's health
+	var/mana = 100 //Mana system for wizards and maybe other entities, dead people or phantoms can have infinite mana, for now
+	var/uses_mana = 1 //If the living mob uses mana with his spells or not
 
 
 	//Damage related vars, NOTE: THESE SHOULD ONLY BE MODIFIED BY PROCS

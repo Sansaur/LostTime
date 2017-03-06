@@ -139,6 +139,7 @@
 	..()
 	tension = 0
 	update_icon()
+
 /obj/item/weapon/gun/throw/crossbow/french
 	name = "french powered crossbow"
 	icon_state = "fcrossbow"

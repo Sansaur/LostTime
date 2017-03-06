@@ -8,7 +8,6 @@ var/global/default_martial_art = new/datum/martial_art
 	var/list/m_styles = DEFAULT_MARKING_STYLES //All markings set to None.
 
 	var/s_tone = 0	//Skin tone
-
 	//Skin colour
 	var/r_skin = 0
 	var/g_skin = 0

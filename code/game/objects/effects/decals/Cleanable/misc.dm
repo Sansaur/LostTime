@@ -163,6 +163,10 @@
 	icon = 'icons/effects/tomatodecal.dmi'
 	random_icon_states = list("smashed_pie")
 
+/obj/effect/decal/cleanable/pie_smudge/New()
+	var/list/possible = list("#3C5B84", "BC4A4A", "80A40A")
+	color = pick(possible)
+
 /obj/effect/decal/cleanable/fruit_smudge
 	name = "smudge"
 	desc = "Some kind of fruit smear."
@@ -172,6 +176,10 @@
 	icon = 'icons/effects/blood.dmi'
 	icon_state = "mfloor1"
 	random_icon_states = list("mfloor1", "mfloor2", "mfloor3", "mfloor4", "mfloor5", "mfloor6", "mfloor7")
+
+/obj/effect/decal/cleanable/fruit_smudge/New()
+	var/list/possible = list("#3C5B84", "BC4A4A", "80A40A")
+	color = pick(possible)
 
 /obj/effect/decal/cleanable/fungus
 	name = "space fungus"

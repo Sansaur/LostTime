@@ -12,11 +12,18 @@
 
 /turf/proc/lighting_build_overlays()
 	if(lighting_overlay)
+		lighting_redo_overlays()
 		return
 
+	// This needs an addition for "if there's a lightning overlay in the contents but not in the lighting_overlay variable - Sansaur
+	// VERY IMPORTANT
 	var/area/A = loc
 	if(A.lighting_use_dynamic)
-		var/atom/movable/lighting_overlay/O = new(src)
+		var/atom/movable/lighting_overlay/O
+		for(var/atom/movable/lighting_overlay/TODEL in src.contents)
+			qdel(TODEL)
+
+		O = new(src)
 		lighting_overlay = O
 		// forcibly refresh lighting on this tile
 		// must make light forget tile or it wil remain
@@ -24,3 +31,8 @@
 		for(var/datum/light_source/L in affecting_lights)
 			L.forget_turf(src)
 			L.vis_update()
+
+/turf/proc/lighting_redo_overlays()
+	for(var/datum/light_source/L in affecting_lights)
+		L.forget_turf(src)
+		L.vis_update()
