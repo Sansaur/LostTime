@@ -271,8 +271,15 @@
 		oxygen_alert = 0
 		toxins_alert = 0
 		return
+
+	// Special places where the mob shouldn't be able to breathe but can - Sansaur
 	if(istype(loc, /obj/machinery/atmospherics/unary/cryo_cell))
 		return
+	if(istype(loc, /mob/living/ship))
+		return
+	if(istype(loc, /mob/living/simple_animal/horse))
+		return
+	// Special places where the mob shouldn't be able to breathe but can - Sansaur
 
 	var/datum/gas_mixture/environment
 	if(loc)

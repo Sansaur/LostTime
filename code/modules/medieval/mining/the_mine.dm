@@ -69,10 +69,10 @@ The code to make both monsters and treasure spawn on the stone mine tiles
 /turf/simulated/floor/stone/mine // - Sansaur
 	icon_state = "stone_mine"
 	floor_tile = null
-	var/mob_spawn_list_1 = list("Hivelord" = 3) //Easy Monsters
+	var/mob_spawn_list_1 = list("FriendKobold" = 2,"Hivelord" = 2) //Easy Monsters
 	var/mob_spawn_list_2 = list("Basilisk" = 4) //Normal Monsters
 	var/mob_spawn_list_3 = list("Goliath" = 5) //Fuck-you Monsters
-	var/expandChance = 75
+	var/expandChance = 45
 	broken_states = list("stone_mine") // NEEDS BROKEN SPRITE - Sansaur
 
 	// THIS SHOULDN'T EXIST.
@@ -135,24 +135,31 @@ The code to make both monsters and treasure spawn on the stone mine tiles
 
 
 /turf/simulated/floor/stone/mine/proc/Startup()
+	//WE MIGHT HAVE TO REMOVE THIS "SLEEP" HERE -Sansaur
+	//sleep(10)
 	if(prob(expandChance))
 		Expand()
-	if(prob(30))
-		SpawnMonster()
+	SpawnMonster()
 
 	fullUpdateMineralOverlays()
 
 /turf/simulated/floor/stone/mine/proc/Expand()
 	if(!loc) return 0
+	// If there's a human close it won't expand
+	for(var/mob/living/carbon/human/NearHuman in loc.contents)
+		if(get_dist(src, NearHuman.loc) <= 5)
+			return 0
+
+
 	update_icon()
 	for(var/direction in cardinal)
-		var/turf/simulated/mineral/edge = locate(get_step(src,direction))
-		if(prob(25) && edge)
-			try
-				new /turf/simulated/floor/stone/mine (edge)
-			catch(var/exception/e)
-				// file and line info is available if you enable debugging
-				message_admins( "[e] on [e.file]:[e.line]" )
+		if(prob(expandChance / 2))
+			return
+		var/turf/edge = get_step(src,direction)
+		if(edge && istype(edge, /turf/simulated/mineral))
+			edge.ChangeTurf(/turf/simulated/floor/stone/mine)
+			//new /turf/simulated/floor/stone/mine (edge.loc)
+			//qdel(edge)
 
 
 /turf/simulated/floor/stone/mine/proc/SpawnMonster()
@@ -167,12 +174,8 @@ The code to make both monsters and treasure spawn on the stone mine tiles
 					return
 			var/randumb = pickweight(mob_spawn_list_1)
 			switch(randumb)
-				if("Goliath")
-					new /mob/living/simple_animal/hostile/asteroid/goliath(src)
-				if("Goldgrub")
-					new /mob/living/simple_animal/hostile/asteroid/goldgrub(src)
-				if("Basilisk")
-					new /mob/living/simple_animal/hostile/asteroid/basilisk(src)
+				if("FriendKobold")
+					new /mob/living/simple_animal/friendly_kobold(src)
 				if("Hivelord")
 					new /mob/living/simple_animal/hostile/asteroid/hivelord(src)
 

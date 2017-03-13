@@ -20,12 +20,7 @@
 	icon_dead = "caravan_old_dead"
 	icon_resting = "caravan_old"
 	can_rest = 0
-	//speak = list()
-	//speak_chance = 0
-	//emote_hear = list()	//Hearable emotes
-	//emote_see = list()		//Unlike speak_emote, the list of things in this variable only show by themselves with no spoken text. IE: Ian barks, Ian yaps
-
-	stop_automated_movement = 0 	//Use this to temporarely stop random movement or to if you write special movement code for animals.
+	stop_automated_movement = 1 	//Use this to temporarely stop random movement or to if you write special movement code for animals.
 	wander = 0 						//Use this to temporarely stop random movement or to if you write special movement code for animals.
 
 	//Interaction
@@ -49,7 +44,8 @@
 
 	var/list/items_for_sale = list()			//Items that can be bought from the caravan. MAXIMUM OF 10 ITEMS
 	var/list/price_per_item = list()			//Proce of the Items that can be bought from the caravan.
-
+	var/will_go = 1								// If the caravan will start a trip
+	var/returning = 0							// If it is returning from the trip
 	//The possible items that the merchant can bring
 	var/list/possible_items = list(
 			/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita,
@@ -67,11 +63,9 @@
 /mob/living/simple_animal/caravan/CtrlClick()
 	return 0
 
+	// This doesn't work for our purpose
 /mob/living/simple_animal/caravan/handle_automated_movement()
-	if(Target)
-		walk_to(src,Target,0,speed)
-	else
-		walk_to(src,0) //What the fuck, just work already
+	return 0
 
 /mob/living/simple_animal/caravan/attack_hand(mob/living/carbon/human/M as mob)
 
@@ -93,10 +87,10 @@
 			return
 
 		if(I_HARM, I_DISARM)
-			M.do_attack_animation(src)
-			visible_message("<span class='danger'>[M] [response_harm] [src]!</span>")
-			playsound(loc, "punch", 25, 1, -1)
-			attack_threshold_check(harm_intent_damage)
+			//M.do_attack_animation(src)
+			//visible_message("<span class='danger'>[M] [response_harm] [src]!</span>")
+			//playsound(loc, "punch", 25, 1, -1)
+			//attack_threshold_check(harm_intent_damage)
 			..()
 
 	return
@@ -193,6 +187,8 @@
 		item_being_sold_price = null
 
 /mob/living/simple_animal/caravan/proc/RandomizeItems()
+	if(returning)
+		return
 	items_for_sale.Cut()
 	price_per_item.Cut()
 
@@ -221,14 +217,35 @@
 	*/
 
 /mob/living/simple_animal/caravan/proc/StartTrip()
+	spawn(3)
+	if(!will_go)
+		return
 	message_admins("Starting trip")
 	ready_to_sell=0
-	Target = locate(7,131,1) //This should locate a random place instead.
+	var/obj/effect/step_trigger/teleport_fancy/medieval_map_edge/EDGE = locate()
+	if(EDGE)
+		Target = EDGE.loc
+		//while src.loc != Target??
+		///walk_to(src,Target,0,speed)//This should locate a random place instead. Walk to doesnt work, that's final
+		while(Target)
+			step_towards(src, Target)
+			sleep(10)
+
+	else
+		return
 	//walk_to(src,Target,0,1)
 
 /mob/living/simple_animal/caravan/proc/finishTrip()
+	Target = null
+	if(returning)
+		return
+
+	spawn(3)
+	returning = 1
 	message_admins("Finish trip")
 	var/area/medieval/village/center/TownCenter = locate()
+	var/list/turf/simulated/floor/TurfList = list()
+
 	for(var/turf/simulated/floor/T in TownCenter)
 		if(T.density == 1)
 			continue
@@ -245,21 +262,14 @@
 
 		if(prob(50)) //This is dangerous, but it's so it doesn't spawn always in the same place
 			continue
-		/*
-		FIX THIS LATER
-		var/adjacent_blocked = 0
-		for(var/direction in cardinal)
-			var/turf/simulated/N = locate(get_step(T,direction))
-			if(N.density == 1)
-				adjacent_blocked = 1
-				break
-			else
-				continue
-		if(adjacent_blocked)
-			continue*/
 
-		//If a place in the medieval town center is found that is not blocked, the caravan moves there.
-		Move(T)
-		Target = null
-		ready_to_sell = 1
-		return
+		TurfList.Add(T)
+
+	var/turf/Final = pick_n_take(TurfList)
+	returning = 0
+	sleep(1)
+	Move(Final)
+	sleep(5)
+	returning = 0
+	ready_to_sell = 1
+	return

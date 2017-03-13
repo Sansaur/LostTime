@@ -240,8 +240,10 @@
 	return
 
 // If a weed growth is sufficient, this proc is called.
+// We are disabling this for now - Sansaur
 /obj/machinery/portable_atmospherics/hydroponics/proc/weed_invasion()
 
+	/*
 	//Remove the seed if something is already planted.
 	if(seed) seed = null
 	seed = plant_controller.seeds[pick(list("reishi","nettles","amanita","mushrooms","plumphelmet","towercap","harebells","weeds"))]
@@ -261,6 +263,8 @@
 	plant_hud_set_status()
 	plant_hud_set_health()
 	visible_message("<span class='notice'>[src] has been overtaken by [seed.display_name].</span>")
+
+	*/
 
 	return
 

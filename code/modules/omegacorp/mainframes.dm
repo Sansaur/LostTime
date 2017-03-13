@@ -148,6 +148,7 @@
 	PB.overlays += /obj/effect/overlay/phonebooth_lock
 	var/obj/structure/heat_controller/HEATCONTROL = locate()
 	HEATCONTROL.heat += 5
+
 /obj/structure/pb_mainframe/forcefield_mainframe/proc/delete_forcefield()
 	var/obj/structure/timetravel/phonebooth/PB = locate()
 	PB.LOCKED = 0

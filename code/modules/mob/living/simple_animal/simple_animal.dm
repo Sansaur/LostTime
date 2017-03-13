@@ -257,6 +257,7 @@
 	if(!AM) return
 
 	if(resting || buckled)
+		AM:loc = src.loc	//If a simple animal is resting you should be able to walk over it.
 		return
 
 	if(isturf(src.loc))

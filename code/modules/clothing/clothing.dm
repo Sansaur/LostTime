@@ -21,6 +21,8 @@
 	var/visor_flags = 0			//flags that are added/removed when an item is adjusted up/down
 	var/visor_flags_inv = 0		//same as visor_flags, but for flags_inv
 
+
+
 	var/toggle_message = null
 	var/alt_toggle_message = null
 	var/active_sound = null

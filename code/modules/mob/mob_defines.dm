@@ -25,6 +25,7 @@
 	var/obj/screen/leap_icon = null
 	var/obj/screen/healthdoll/healthdoll = null
 
+
 	var/use_me = 1 //Allows all mobs to use the me verb by default, will have to manually specify they cannot
 	var/damageoverlaytemp = 0
 	var/computer_id = null

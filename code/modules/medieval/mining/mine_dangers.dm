@@ -48,7 +48,7 @@
 
 /obj/structure/rock/proc/mine()
 	playsound(edge,'sound/effects/break_stone.ogg',100,0)
-	if(prob(10))
+	if(prob(25))
 		new /obj/item/weapon/flint (src.loc)
 	qdel(src)
 
@@ -68,7 +68,7 @@
 	icon_state = "wooden_support0"
 	anchored = 1
 	density = 0
-	var/chance_to_success = 60	//Sometimes not even the best support can stop rocks fallin' on top of you
+	var/chance_to_success = 70	//Sometimes not even the best support can stop rocks fallin' on top of you
 
 /obj/structure/mine_support/New()
 	update_icon()
@@ -87,3 +87,77 @@
 
 	icon_state = "wooden_support[side]"
 	..()
+
+/*
+*	Friendly kobolds
+*	They might give you an item
+*
+*/
+
+/mob/living/simple_animal/friendly_kobold
+	name = "cave kobold"
+	desc = "Yap yap!"
+	icon = 'icons/mob/npc.dmi'
+	health = 25
+	maxHealth = 25
+	universal_understand = 1
+	status_flags = CANPUSH
+	icon_state = "cave_kobold0"
+	icon_living = "cave_kobold0"
+	icon_dead = "cave_kobold_dead"
+	icon_resting = "cave_kobold_dead"
+	can_rest = 0
+	speak = list("IEEEE","Yap yap", "Yaaap!", "Eieierakaka","Wa?")
+	speak_chance = 1
+	emote_hear = list()	//Hearable emotes
+	emote_see = list()		//Unlike speak_emote, the list of things in this variable only show by themselves with no spoken text. IE: Ian barks, Ian yaps
+
+	stop_automated_movement = 0 	//Use this to temporarely stop random movement or to if you write special movement code for animals.
+	wander = 1 						//Use this to temporarely stop random movement or to if you write special movement code for animals.
+
+	//Interaction
+	response_help   = "pokes"
+	response_disarm = "shoves"
+	response_harm   = "attacks"
+	harm_intent_damage = 3
+
+	speed = 9 //LETS SEE IF I CAN SET SPEEDS FOR SIMPLE MOBS WITHOUT DESTROYING EVERYTHING. Higher speed is slower, negative speed is faster
+
+	deathmessage = "screams painfully as he gets maimed."
+
+	// Will give an item?
+	var/will_give_item
+	var/list/availible_items = list(
+								/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/meatpizza,
+								/obj/item/weapon/reagent_containers/food/snacks/sliceable/pizza/margherita
+								)
+
+/mob/living/simple_animal/friendly_kobold/New()
+	..()
+	var/i = pick(0,1)
+	icon_state = "cave_kobold[i]"
+	i = pick(0,1)
+	will_give_item = i
+
+
+/mob/living/simple_animal/friendly_kobold/attack_hand(mob/living/carbon/human/M as mob)
+
+	switch(M.a_intent)
+
+		if(I_HELP)
+			if(will_give_item && stat != DEAD)
+				var/i = pick(1, availible_items.len)
+				var/obj/item/W = availible_items[i]
+				new W (M.loc)
+				will_give_item = 0
+		if(I_GRAB)
+			return
+
+		if(I_HARM, I_DISARM)
+			M.do_attack_animation(src)
+			visible_message("<span class='danger'>[M] [response_harm] [src]!</span>")
+			playsound(loc, "punch", 25, 1, -1)
+			attack_threshold_check(harm_intent_damage)
+			//..()
+
+	return

@@ -111,6 +111,24 @@
 	broken_states = list("marble4-broken", "marble4-broken2")
 	// MARBLE FLOORS.
 
+	// DIRT FLOORS.
+
+/turf/simulated/floor/dirt // - Sansaur
+	icon_state = "dirt"
+	//floor_tile = /obj/item/stack/tile/marble
+	//broken_states = list("marble-broken", "marble-broken2")
+/*	footstep_sounds = list(
+		"human" = list('sound/effects/footstep/marble_all.ogg'), //@avakas of Freesound.org
+		"xeno"  = list('sound/effects/footstep/marble_all.ogg')  //@avakas of Freesound.org
+	)*/
+	// DIRT FLOORS.
+
+/turf/simulated/floor/dirt/ChangeTurf(path, defer_change = FALSE, keep_icon = TRUE)
+	if(path == /turf/simulated/floor/grass)
+		return
+	else
+		..()
+
 /turf/simulated/floor/grass
 	name = "grass patch"
 	icon_state = "grass1"
@@ -243,3 +261,39 @@
 	icon_state = "[rand(0,25)]"
 
 
+
+/turf/simulated/floor/beach/water
+	name = "water"
+	icon_state = "water"
+	slowdown = 4
+	footstep_sounds = list(
+		"human" = list('sound/effects/footstep/swimming.ogg'), //@RonaldVanWonderen of Freesound.org
+		"xeno"  = list('sound/effects/footstep/swimming.ogg')  //@RonaldVanWonderen of Freesound.org
+	)
+/turf/simulated/floor/beach/water/New()
+	..()
+	//There must be a way to make the water overlay everything but the ship!
+	overlays += image("icon"='icons/misc/beach.dmi',"icon_state"="water5","layer"=MOB_LAYER+0.1)
+
+	//Can't break water
+/turf/simulated/floor/beach/water/break_tile()
+	return
+
+/turf/simulated/floor/beach/water/attackby(obj/item/W, mob/user as mob)
+	if(istype(W, /obj/item/weapon/reagent_containers/glass/bucket))
+		var/obj/item/weapon/reagent_containers/glass/bucket/BUCKET = W
+		BUCKET.reagents.add_reagent("water",120)
+		to_chat(user, "<span class=info> You fill the bucket to the brim with water </span>")
+		return
+
+	if(istype(W, /obj/item/weapon/fishing_rod))
+		var/area/medieval/castle/CASTLEAREA
+		if(loc == CASTLEAREA)
+			to_chat(user, "There are no fish around here...")
+			return
+		else
+			var/obj/item/weapon/fishing_rod/ROD = W
+			ROD.attempt_fish(user, src)
+			return
+
+/turf/simulated/floor/beach/water

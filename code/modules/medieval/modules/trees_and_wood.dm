@@ -56,20 +56,20 @@
 	w_class = 4
 	burn_state = FLAMMABLE
 	var/cutting = 0
-
+	var/plank_type = /obj/item/weapon/wood_plank
 /obj/item/weapon/log/attackby(obj/item/weapon/O, mob/user, params)
 	//This should accept both hatchets and combat axes
 	if((istype(O, /obj/item/weapon/hatchet) || istype(O, /obj/item/weapon/twohanded/fireaxe/medieval_combat_axe) || istype(O, /obj/item/weapon/medieval/axe)) && istype(src.loc, /turf/simulated)) //Needs to be on the ground
 		if(cutting)
 			return
 		cutting = 1
-		if(do_after(user, 15, target=src))
+		if(do_after(user, 18, target=src))
 			playsound(loc,'sound/effects/choppingtree.ogg',90,1)
-			if(do_after(user, 15, target=src))
+			if(do_after(user, 18, target=src))
 				playsound(loc,'sound/effects/choppingtree.ogg',90,1)
-				if(do_after(user, 15, target=src))
+				if(do_after(user, 18, target=src))
 					playsound(loc,'sound/effects/choppingtree.ogg',90,1)
-					if(do_after(user, 15, target=src))
+					if(do_after(user, 18, target=src))
 						playsound(loc,'sound/effects/choppingtree.ogg',90,1)
 						makePlanks()
 				else
@@ -84,8 +84,9 @@
 
 /obj/item/weapon/log/proc/makePlanks()
 	//This is just a debug proc for now
-	for(var/i=0, i<2, i++)
-		new /obj/item/weapon/wood_plank(src.loc)
+	var/num = rand(1,4)
+	for(var/i=0, i<num, i++)
+		new plank_type (src.loc)
 	qdel(src)
 
 /obj/item/weapon/wood_plank

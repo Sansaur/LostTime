@@ -67,22 +67,28 @@ var/list/icons_to_ignore_at_floor_init = list("damaged1","damaged2","damaged3","
 			if(src.loc.type in medieval_areas_underground)
 				src.ChangeTurf(/turf/simulated/floor/stone/mine)
 
-			else
-				src.ChangeTurf(/turf/simulated/floor/plating)
+			//else
+				//src.ChangeTurf(/turf/simulated/floor/plating)
 		if(2.0)
 			switch(pick(1,2;75,3))
 				if(1)
+					return
+					/*
 					spawn(0)
-						if(!(src.loc.type in medieval_areas))
-							src.ReplaceWithLattice()
-							if(prob(33)) new /obj/item/stack/sheet/metal(src)
+					if(!(src.loc.type in medieval_areas))
+						//src.ReplaceWithLattice()
+						//if(prob(33)) new /obj/item/stack/sheet/metal(src)
+						*/
 				if(2)
 					if(src.loc.type in medieval_areas)
 						src.ChangeTurf(/turf/simulated/floor/grass)
+						return
 					if(src.loc.type in medieval_areas_underground)
 						src.ChangeTurf(/turf/simulated/floor/stone/mine)
+						return
 					else
 						src.ChangeTurf(/turf/simulated/floor/plating)
+						return
 				if(3)
 					if(src.loc.type in medieval_areas_underground)
 						src.ChangeTurf(/turf/simulated/floor/stone/mine)

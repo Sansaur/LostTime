@@ -17,5 +17,6 @@
 
 	if(istype(M, /mob/living/simple_animal/caravan))
 		var/mob/living/simple_animal/caravan/MC = M
-		MC.finishTrip()
 		MC.RandomizeItems()
+		MC.finishTrip()
+		return

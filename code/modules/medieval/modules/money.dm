@@ -34,6 +34,31 @@
 
 /obj/item/weapon/medieval_cash/update_icon()
 	icon_state = "coin[worth]"
+	name = "[worth] coin"
+	if(worth / 1000 < 1)
+		icon_state = "coin1000"
+		return
+	else if (worth / 500 < 1)
+		icon_state = "coin500"
+		return
+	else if (worth / 200 < 1)
+		icon_state = "coin200"
+		return
+	else if (worth / 100 < 1)
+		icon_state = "coin100"
+		return
+	else if (worth / 50 < 1)
+		icon_state = "coin50"
+		return
+	else if (worth / 20 < 1)
+		icon_state = "coin20"
+		return
+	else if (worth / 10 < 1)
+		icon_state = "coin10"
+		return
+	else
+		icon_state = "coin1"
+		return
 	// Up to 100 items per stack.
 	pixel_x=rand(-7,7)
 	pixel_y=rand(-14,14)

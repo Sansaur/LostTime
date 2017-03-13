@@ -227,6 +227,14 @@ var/list/ghostteleportlocs = list()
 	return
 	// UNDERGROUND AREAS, FOR BASEMENTS OR THE MINE
 
+
+	// SEA AREAS
+/area/medieval/sea
+	name = "\improper Medieval Sea"
+	icon_state = "medieval"
+
+
+
 	// C A S T L E     A R E A S
 
 /area/medieval/castle

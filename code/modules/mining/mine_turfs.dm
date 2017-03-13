@@ -140,7 +140,7 @@ var/global/list/rockTurfEdgeCache = list(
 				if("Silver")
 					M = new/turf/simulated/mineral/silver(src)
 				if("Cave")
-					new/turf/simulated/floor/stone/mine(src)
+					new/turf/simulated/floor/stone/mine(src, 0)
 				if("None")
 					return
 			if(M)

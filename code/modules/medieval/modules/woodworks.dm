@@ -11,17 +11,62 @@
 	name = "sawmill"
 	desc = "A tool used to turn logs into planks after a noisy ruckus."
 	icon = 'icons/obj/medieval/village.dmi'
-	icon_state = "sawmill"
+	icon_state = "sawmill2"
 	anchored = 1
 	density = 1
 
-/obj/structure/sawmill/attackby(obj/item/O, mob/user, params)
+// The sawmill holder must be built separately
+
+/obj/structure/sawmill_holder
+	name = "sawmill"
+	desc = "A tool used to turn logs into planks after a noisy ruckus."
+	icon = 'icons/obj/medieval/village.dmi'
+	icon_state = "sawmill1"
+	anchored = 1
+	density = 1
+	var/obj/item/weapon/log/loadedlog
+
+/obj/structure/sawmill_holder/attack_hand(mob/user as mob)
+	if(loadedlog)
+		loadedlog.loc = user.loc
+		loadedlog = null
+		icon_state = "sawmill1"
+		update_icon()
+		return
+
+/obj/structure/sawmill_holder/attackby(obj/item/O, mob/user, params)
 	if(istype(O, /obj/item/weapon/log))
-		playsound(loc, 'sound/effects/sawingmill.ogg', 90, 1)
-		flick("sawmill-cut",src)
-		for(var/i=0, i<3, i++)
-			new /obj/item/weapon/wood_plank(src.loc)
-		qdel(O)
+		if(!user.drop_item())
+			to_chat(user, "<span class='notice'>\The [O] is stuck to your hand, you cannot put it in \the [src]</span>")
+			return 0
+		var/obj/item/weapon/log/logg = O
+		loadedlog = logg
+		logg.loc = src
+		icon_state = "sawmill1_loaded"
+		update_icon()
+
+
+
+/obj/structure/sawmill_holder/verb/WorkIt()
+	set name = "Saw wood"
+	set src in view(1)
+	set category = "Object"
+
+	icon_state = "sawmill1"
+	update_icon()
+	var/turf/simulated/floor/F = locate(x,y,z)
+	var/obj/structure/sawmill/S = locate(/obj/structure/sawmill) in F.loc
+	if(!S)
+		S = locate()
+	if(Adjacent(S))
+		playsound(S.loc, 'sound/effects/sawingmill.ogg', 90, 1)
+		flick("sawmill2_working",S)
+		loadedlog.loc = S.loc
+		sleep(10)
+		loadedlog.makePlanks()
+		loadedlog = null
+	else
+		return
 
 
 //Wood Workbench

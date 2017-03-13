@@ -14,3 +14,4 @@
 	reinf = 1
 	basestate = "rwindow"
 	health = 40
+
