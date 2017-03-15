@@ -702,6 +702,19 @@
 			else
 				overeatduration -= 2
 
+	if(nutrition < NUTRITION_LEVEL_STARVING)	// If you're starving you'll recieve stamina damage - Sansaur
+		if(staminaloss < 40)
+			if(prob(25))
+				adjustStaminaLoss(20)
+			if(prob(25))
+				adjustStaminaLoss(20)
+			if(prob(25))
+				adjustStaminaLoss(10)
+			if(prob(25))
+				to_chat(src, "<div class=warning> Your stomach grumbles harder than ever before </div>")
+
+
+
 	if(drowsyness)
 		drowsyness--
 		eye_blurry = max(2, eye_blurry)

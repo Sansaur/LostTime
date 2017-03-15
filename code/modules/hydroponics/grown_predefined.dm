@@ -24,6 +24,15 @@
 /obj/item/weapon/reagent_containers/food/snacks/grown/banana
 	plantname = "banana"
 
+/obj/item/weapon/reagent_containers/food/snacks/grown/apple
+	plantname = "apple"
+
+/obj/item/weapon/reagent_containers/food/snacks/grown/cherry
+	plantname = "cherry"
+
+/obj/item/weapon/reagent_containers/food/snacks/grown/lime
+	plantname = "lime"
+
 /obj/item/weapon/reagent_containers/food/snacks/grown/chili
 	plantname = "chili"
 

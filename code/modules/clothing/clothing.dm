@@ -53,6 +53,7 @@
 		if(H.species)
 			if(exclusive)
 				if(!(H.species.name in species_restricted))
+
 					wearable = 1
 			else
 				if(H.species.name in species_restricted)
@@ -82,6 +83,7 @@
 		icon = sprite_sheets_obj[target_species]
 	else
 		icon = initial(icon)
+		
 
 //Ears: currently only used for headsets and earmuffs
 /obj/item/clothing/ears

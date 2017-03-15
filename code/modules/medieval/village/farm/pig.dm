@@ -27,7 +27,7 @@
 	. = ..()
 
 	//PROBS ARE 100 WHILE TESTING - SANSAUR
-	if(prob(5) && fullness < 100)
+	if(prob(1) && fullness < 100)
 		var/obj/structure/animal_feeder/MyFeeder = locate()
 		if(get_dist(src.loc, MyFeeder.loc) <= 5)
 			visible_message("[src] walks towards the [MyFeeder]")
@@ -41,15 +41,16 @@
 				steps_taken++
 				sleep(5)
 
-			if(Adjacent(MyFeeder))
+			if(Adjacent(MyFeeder) && MyFeeder.enoughFood())
 				//When its adjacent it eats
 				visible_message("[src] eats from the [MyFeeder]")
 				fullness += 10
+				MyFeeder.adjustFood(-10)
 				return
 			else
 				return
 
-	if(fullness >= 100 && prob(2))
+	if(fullness >= 100 && prob(1))
 		for(var/mob/living/simple_animal/pig/FellowPig in loc.loc)
 			//This will check for all the pigs in the area
 			if(get_dist(src, FellowPig.loc) >= 8)
@@ -59,6 +60,7 @@
 				continue
 
 			for(var/mob/living/carbon/human/Human in loc.loc)
+				if(get_dist(src, Human.loc) <= 5)
 					visible_message("It looked like [src] was going to breed with [FellowPig] but [src] needs privacy")
 					return
 
@@ -112,11 +114,3 @@
 				mind.transfer_to(C)
 			qdel(src)
 
-/obj/structure/animal_feeder
-	name = "\improper feeder"
-	desc = "You feed the animals here."
-	icon = 'icons/obj/medieval/village.dmi'
-	icon_state = "animal_feeder"
-	density = 0
-	opacity = 0
-	anchored = 1

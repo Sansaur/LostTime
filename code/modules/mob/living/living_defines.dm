@@ -52,6 +52,8 @@
 
 	var/list/weather_immunities = list()
 
+	var/list/datum/status_effect/status_list = list()	// The magical status effects affecting this living being, called on Life()
+
 	var/list/surgeries = list()	//a list of surgery datums. generally empty, they're added when the player wants them.
 
 	var/gene_stability = DEFAULT_GENE_STABILITY

@@ -58,6 +58,41 @@
 
 	return adjacencies
 
+/proc/calculate_adjacencies_plus_struct(atom/A)
+	if(!A.loc)
+		return 0
+
+	var/adjacencies = 0
+
+	if(A.can_be_unanchored)
+		var/atom/movable/AM = A
+		if(!AM.anchored)
+			return 0
+
+		for(var/direction in alldirs)
+			AM = find_type_in_direction(A, direction)
+			if(istype(AM))
+				if(AM.anchored)
+					adjacencies |= 1 << direction
+
+			if(istype(AM, /turf/simulated/wall))
+				adjacencies |= 1 << direction
+
+			if(istype(AM, /obj/structure))
+				if(AM.anchored)
+					adjacencies |= 1 << direction
+
+			else
+				if(AM)
+					adjacencies |= 1 << direction
+
+	else
+		for(var/direction in alldirs)
+			if(find_type_in_direction(A, direction))
+				adjacencies |= 1 << direction
+
+	return adjacencies
+
 /proc/smooth_icon(atom/A)
 	if(qdeleted(A))
 		return

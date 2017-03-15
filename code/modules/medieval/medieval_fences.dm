@@ -49,7 +49,8 @@
 
 /obj/structure/fence/update_icon()
 	icon_state = "fence"
-	var/adjacencies = calculate_adjacencies(src)
+	//var/adjacencies = calculate_adjacencies(src)
+	var/adjacencies = calculate_adjacencies_plus_struct(src)
 	var/norte = 0
 	var/sur = 0
 	var/este = 0

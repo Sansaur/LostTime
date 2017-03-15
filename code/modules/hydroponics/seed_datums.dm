@@ -61,6 +61,7 @@
 	chems = list("plantmatter" = list(1,10))
 	kitchen_tag = "berries"
 	preset_icon = "berrypile"
+	trash_type = /obj/item/seeds/berryseed
 
 /datum/seed/berry/New()
 	..()
@@ -172,6 +173,7 @@
 	chems = list("plantmatter" = list(1,10))
 	kitchen_tag = "tomato"
 	preset_icon = "tomato"
+	trash_type = /obj/item/seeds/tomatoseed
 
 /datum/seed/tomato/New()
 	..()
@@ -297,6 +299,7 @@
 	chems = list("plantmatter" = list(1,10))
 	kitchen_tag = "apple"
 	preset_icon = "apple"
+	trash_type = /obj/item/seeds/appleseed
 
 /datum/seed/apple/New()
 	..()
@@ -827,6 +830,7 @@
 	chems = list("plantmatter" = list(1,10), "sugar" = list(1,5))
 	kitchen_tag = "grapes"
 	preset_icon = "grapes"
+	trash_type = /obj/item/seeds/grapeseed
 
 /datum/seed/grapes/New()
 	..()
@@ -1112,6 +1116,7 @@
 	chems = list("plantmatter" = list(1,6))
 	kitchen_tag = "watermelon"
 	preset_icon = "watermelon"
+	trash_type = /obj/item/seeds/watermelonseed
 
 /datum/seed/watermelon/New()
 	..()
@@ -1133,6 +1138,7 @@
 	chems = list("plantmatter" = list(1,6))
 	kitchen_tag = "pumpkin"
 	preset_icon = "pumpkin"
+	trash_type = /obj/item/seeds/pumpkinseed
 
 /datum/seed/pumpkin/New()
 	..()
@@ -1153,6 +1159,7 @@
 	chems = list("plantmatter" = list(1,20))
 	kitchen_tag = "lime"
 	preset_icon = "lime"
+	trash_type = /obj/item/seeds/limeseed
 
 /datum/seed/citrus/New()
 	..()
@@ -1174,6 +1181,7 @@
 	mutants = list("cashtree")
 	kitchen_tag = "lemon"
 	preset_icon = "lemon"
+	trash_type = /obj/item/seeds/lemonseed
 
 /datum/seed/citrus/lemon/New()
 	..()
@@ -1208,6 +1216,7 @@
 	kitchen_tag = "orange"
 	chems = list("plantmatter" = list(1,20))
 	preset_icon = "orange"
+	trash_type = /obj/item/seeds/orangeseed
 
 /datum/seed/citrus/orange/New()
 	..()
@@ -1259,6 +1268,7 @@
 	chems = list("plantmatter" = list(1,15), "sugar" = list(1,15))
 	kitchen_tag = "cherries"
 	preset_icon = "cherry"
+	trash_type = /obj/item/seeds/cherryseed
 
 /datum/seed/cherries/New()
 	..()

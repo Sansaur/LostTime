@@ -26,11 +26,34 @@
 	gold_core_spawnable = CHEM_MOB_SPAWN_FRIENDLY
 	var/preggers = 0
 	var/pregger_advance = 0
+	var/too_tired = 0		//If the cow is too tired she won't get pregnant, you can speed up this process by giving her food or allowing her to eat from a feeder
+	var/tired_advance = 0
 
 /mob/living/simple_animal/cow/New()
 	..()
 
+/mob/living/simple_animal/cow/examine(mob/user)
+	..()
+	if(too_tired)
+		to_chat(user, "<br> she looks tired")
+	if(preggers && pregger_advance > 25)
+		to_chat(user, "<br> she looks pregnant")
+
+
 /mob/living/simple_animal/cow/attackby(var/obj/item/O as obj, var/mob/user as mob, params, params)
+	if(istype(O, /obj/item/weapon/reagent_containers/food/snacks/grown)) //feedin' dem chickens
+		var/obj/item/weapon/reagent_containers/food/snacks/grown/G = O
+		if(G.seed.kitchen_tag == "wheat")
+			if(!stat && too_tired)
+				user.visible_message("\blue [user] feeds [O] to [name]!.","\blue You feed [O] to [name]!.")
+				tired_advance += 10
+				user.drop_item()
+				qdel(O)
+			else
+				to_chat(user, "\blue [name] doesn't seem hungry!")
+		else
+			to_chat(user, "\blue [name] doesn't seem interested in [O]!")
+
 	if(stat == CONSCIOUS && istype(O, /obj/item/weapon/reagent_containers/glass))
 		user.changeNext_move(CLICK_CD_MELEE)
 		var/obj/item/weapon/reagent_containers/glass/G = O
@@ -48,11 +71,27 @@
 
 /mob/living/simple_animal/cow/Life()
 	. = ..()
+
+	//While tired she won't even regen milk
+	if(too_tired)
+		if(prob(1))
+			tired_advance++
+		for(var/obj/structure/animal_feeder/MyFeeder in loc.loc)
+			if(Adjacent(MyFeeder) && MyFeeder.enoughFood())
+				visible_message("[src] eats from the [MyFeeder]")
+				MyFeeder.adjustFood(-10)
+				tired_advance += 5
+		if(tired_advance >= 100)
+			too_tired = 0
+			tired_advance = 0
+
+		return
+
 	if(stat == CONSCIOUS && prob(5))
 		milk_content = min(50, milk_content+rand(5, 10))
 
-	if(preggers && prob(20))
-		pregger_advance += rand(3,6)
+	if(preggers && prob(1))
+		pregger_advance += rand(2,3)
 		if(pregger_advance >= 100)
 			new /mob/living/simple_animal/calf (src.loc)
 			pregger_advance = 0
@@ -112,20 +151,26 @@
 	visible_message("<b>[src]</b> moos angrily, \"MOOOOO!!!\" ")
 	for(var/direction in cardinal)
 		for(var/mob/living/USER in get_step(src,direction))
-			sleep(5)	//Gives time to dodge
+			for(var/i in list(1,2,4,8,4,2,1,2,4,8,4,2,1,2,4,8,4,2))
+				dir = i
+				sleep(0.3)
+
+			sleep(3)	//Gives time to dodge
 			if(Adjacent(USER))
 				if(istype(USER, /mob/living/carbon/human))
 					var/mob/living/carbon/human/N = USER
 					visible_message("[src] retaliates!")
+					src.do_attack_animation(N)
 					N.adjustBruteLoss(rand(10,15))
 				else
 					visible_message("[src] retaliates!")
+					USER.do_attack_animation(src)
 					USER.adjustBruteLoss(rand(10,15))
 
 
 /mob/living/simple_animal/bull/Life()
 	..()
-	if(prob(2))
+	if(prob(1))
 		for(var/mob/living/simple_animal/cow/COW in loc.loc)
 			//This will check for all the pigs in the area
 			if(get_dist(src, COW.loc) >= 6)
@@ -142,6 +187,9 @@
 				step_towards(src, COW.loc)
 				steps_taken++
 				sleep(5)
+
+			if(COW.too_tired)
+				return
 
 			visible_message("The [src] breeds [COW]")
 			COW.preggers = 1

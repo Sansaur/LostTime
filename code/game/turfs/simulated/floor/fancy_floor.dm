@@ -114,6 +114,7 @@
 	// DIRT FLOORS.
 
 /turf/simulated/floor/dirt // - Sansaur
+	name = "dirt"
 	icon_state = "dirt"
 	//floor_tile = /obj/item/stack/tile/marble
 	//broken_states = list("marble-broken", "marble-broken2")
@@ -123,16 +124,11 @@
 	)*/
 	// DIRT FLOORS.
 
-/turf/simulated/floor/dirt/ChangeTurf(path, defer_change = FALSE, keep_icon = TRUE)
-	if(path == /turf/simulated/floor/grass)
-		return
-	else
-		..()
 
 /turf/simulated/floor/grass
 	name = "grass patch"
 	icon_state = "grass1"
-	floor_tile = /obj/item/stack/tile/grass
+	//floor_tile = /obj/item/stack/tile/grass
 	broken_states = list("sand")
 	var/excavated = 0
 	var/obj/item/BURIED_ITEM
@@ -157,6 +153,10 @@
 		return
 	if(istype(C, /obj/item/weapon/shovel))
 		if(!excavated)
+			for(var/obj/structure/flora/tree/TREE in src.contents)
+				if(TREE)
+					to_chat(user, "<span class='warning'>You cannot dig while there's a tree in place!.</span>")
+					return
 
 			if(BURIED_ITEM)
 				BURIED_ITEM.invisibility = 3
@@ -170,6 +170,8 @@
 				icon_state = "grass[pick("1","2","3","4")]"
 			else
 				new /obj/item/weapon/ore/glass(src)
+
+
 
 			to_chat(user, "<span class='notice'>You shovel the grass.</span>")
 			icon_state = "grass_dug"
@@ -202,6 +204,16 @@
 		return
 
 	if(excavated)
+		if(istype(C, /obj/item/seeds))
+			user.drop_item()
+			var/obj/item/seeds/SEED = C
+			if(SEED.soil_plant)
+				to_chat(user, "<span class='warning'>You cannot plant the [SEED] here!.</span>")
+				return
+
+			to_chat(user, "<span class='notice'>You plant the [SEED].</span>")
+			CheckPlant(SEED)
+			return
 		if(C.w_class <= 2)
 			user.drop_item()
 			BURIED_ITEM = C
@@ -209,6 +221,54 @@
 			C.loc = src
 			icon_state = "grass_buried"
 			excavated = 0
+			return
+
+/turf/simulated/floor/grass/proc/CheckPlant(var/obj/item/seeds/SEED)
+	for(var/obj/structure/flora/tree/TREE in src.contents)
+		if(TREE)
+			return 0
+
+	switch(SEED.seed_type)
+		if("cherry")
+			qdel(SEED)
+			icon_state = "grass[pick("1","2","3","4")]"
+			excavated = 0
+			new /obj/structure/flora/tree/fruit_tree/cherries (src)
+			//qdel(SEED)
+		if("apple")
+			qdel(SEED)
+			icon_state = "grass[pick("1","2","3","4")]"
+			excavated = 0
+			new /obj/structure/flora/tree/fruit_tree/apple (src)
+			//qdel(SEED)
+		if("lime")
+			qdel(SEED)
+			icon_state = "grass[pick("1","2","3","4")]"
+			excavated = 0
+			new /obj/structure/flora/tree/fruit_tree/lime (src)
+			//qdel(SEED)
+		if("lemon")
+			qdel(SEED)
+			icon_state = "grass[pick("1","2","3","4")]"
+			excavated = 0
+			new /obj/structure/flora/tree/fruit_tree/lemon (src)
+			//qdel(SEED)
+		if("orange")
+			qdel(SEED)
+			icon_state = "grass[pick("1","2","3","4")]"
+			excavated = 0
+			new /obj/structure/flora/tree/fruit_tree/orange (src)
+			//qdel(SEED)
+		if("banana")
+			qdel(SEED)
+			icon_state = "grass[pick("1","2","3","4")]"
+			excavated = 0
+			new /obj/structure/flora/tree/fruit_tree/banana (src)
+			//qdel(SEED)
+		else
+			message_admins("DOLOR DE CULO EN [src]")
+			return 0
+
 
 
 /turf/simulated/floor/carpet

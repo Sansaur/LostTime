@@ -227,6 +227,44 @@ var/list/ghostteleportlocs = list()
 	return
 	// UNDERGROUND AREAS, FOR BASEMENTS OR THE MINE
 
+	// BASEMENT / ROOM AREAS
+
+/area/medieval/basement
+	name = "\improper Basement Generic"
+	icon_state = "basement"
+
+/area/medieval/basement/king_room
+	name = "\improper King's room"
+	icon_state = "basement_k"
+
+/area/medieval/basement/heir_room
+	name = "\improper Heir's room"
+	icon_state = "basement_k"
+
+/area/medieval/underground/dungeon	//The dungeon is underground so it's creepy
+	name = "\improper Dungeon"
+	icon_state = "basement_k"
+
+/area/medieval/basement/bishop_office
+	name = "\improper Bishop's office"
+	icon_state = "basement_k"
+
+/area/medieval/basement/observatory
+	name = "\improper Observatory"
+	icon_state = "basement_k"
+
+/area/medieval/basement/shop_basement
+	name = "\improper Shop basement"
+	icon_state = "basement_k"
+
+/area/medieval/basement/exotic_basement
+	name = "\improper Exotic shop basement"
+	icon_state = "basement_k"
+
+/area/medieval/basement/mayor_office
+	name = "\improper Mayor's room"
+	icon_state = "basement_k"
+
 
 	// SEA AREAS
 /area/medieval/sea

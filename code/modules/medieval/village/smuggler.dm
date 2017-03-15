@@ -59,6 +59,7 @@
 	randomizeMoney()
 
 
+
 /mob/living/simple_animal/kobold_smuggler/attack_hand(mob/living/carbon/human/M as mob)
 
 	switch(M.a_intent)
@@ -164,9 +165,11 @@
 	var/turf/simulated/floor/F = locate(gox,goy,goz)
 	src.Move(F)
 	src.resting = 1
+	src.speak_chance = 0
 	sleep(fleeing_time)
 	src.resting = 0
 	src.invisibility = 0
+	src.speak_chance = 6
 
 /mob/living/simple_animal/kobold_smuggler/proc/punish(mob/living/carbon/human/M as mob)
 	flick("smuggler_punish",src)

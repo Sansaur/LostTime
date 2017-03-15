@@ -850,3 +850,12 @@
 		to_chat(src, "<span class='warning'>You don't have the dexterity to do this!</span>")
 		return 0
 	return 1
+
+/mob/living/proc/addStatusEffect(var/datum/status_effect/NEWEFFECT)
+	status_list.Add(NEWEFFECT)
+	return
+
+	//Just in case we want status effects to be removed in the same proc or we're doing a clean up
+/mob/living/proc/removeStatusEffect(var/datum/status_effect/NEWEFFECT)
+	status_list.Remove(NEWEFFECT)
+	return

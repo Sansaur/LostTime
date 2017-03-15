@@ -9,7 +9,13 @@
 	name = "TEST"
 	desc = "TEST"
 	var/PRESSED = 0
+
 /obj/item/woodworks/THISISTEST/attack_self(mob/user as mob)
+	var/mob/living/ha = user
+	to_chat(ha, "Omg you are cursed now")
+	var/datum/status_effect/random_slowdown/NewSlodwon = new()
+	ha.addStatusEffect(NewSlodwon)
+
 	user.set_machine(src)
 	var/dat
 
@@ -35,4 +41,5 @@
 			visible_message("ASDADASDASDASSS")
 			PRESSED = !PRESSED
 	updateUsrDialog()
+	updateDialog()
 	return

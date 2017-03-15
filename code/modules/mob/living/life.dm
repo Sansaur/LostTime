@@ -57,6 +57,14 @@
 	if(get_nations_mode())
 		process_nations()
 
+
+	// MOD ACTIONS
+	// Mana regen, super basic for now
+	handle_mana()
+
+	handle_status_effects_mod()
+
+	//
 	..()
 
 /mob/living/proc/handle_breathing()
@@ -77,6 +85,17 @@
 
 /mob/living/proc/handle_stomach()
 	return
+
+/mob/living/proc/handle_mana()
+	mana++
+	if(mana < 0)
+		mana = 0
+	if(mana > 100)
+		mana = 100
+
+/mob/living/proc/handle_status_effects_mod()
+	for(var/datum/status_effect/stupid_status in status_list)
+		stupid_status.applyEffect(src)
 
 /mob/living/proc/update_pulling()
 	if(pulling)

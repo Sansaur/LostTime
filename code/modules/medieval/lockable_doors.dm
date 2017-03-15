@@ -145,6 +145,18 @@
 	stored_tag = "GENERALSTORE"
 	icon_state = "store_key"
 
+/obj/structure/mineral_door/lockable/pre_locked/farm_house
+	ID_TAG = "FARMHOUSE"
+	locked = 1
+	icon_state = "wood"
+	mineralType = "wood"
+
+/obj/item/weapon/locking_key/farm_house
+	name = "Farm house Key"
+	stored_tag = "FARMHOUSE"
+	icon_state = "store_key"
+
+
 // INN ROOMS!!
 
 /obj/structure/mineral_door/lockable/pre_locked/inn

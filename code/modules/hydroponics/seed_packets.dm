@@ -10,7 +10,9 @@ var/global/list/plant_seed_sprites = list()
 	var/seed_type
 	var/datum/seed/seed
 	var/modified = 0
-
+	//Mod vars
+	var/soil_plant = 1			// Can it be planted on soil?
+	var/chance_to_trash = 25	// The chance that after eating the fruit, it'll drop this seed
 /obj/item/seeds/New()
 	while(!plant_controller)
 		sleep(30)
@@ -115,6 +117,7 @@ var/global/list/plant_seed_sprites = list()
 
 /obj/item/seeds/bananaseed
 	seed_type = "banana"
+	soil_plant = 0	//Banana is a tree
 
 /obj/item/seeds/eggplantseed
 	seed_type = "eggplant"
@@ -208,6 +211,7 @@ var/global/list/plant_seed_sprites = list()
 
 /obj/item/seeds/appleseed
 	seed_type = "apple"
+	soil_plant = 0	//Apple is a tree
 
 /obj/item/seeds/poisonedappleseed
 	seed_type = "poisonapple"
@@ -238,12 +242,15 @@ var/global/list/plant_seed_sprites = list()
 
 /obj/item/seeds/limeseed
 	seed_type = "lime"
+	soil_plant = 0	//Lime is a tree
 
 /obj/item/seeds/lemonseed
 	seed_type = "lemon"
+	soil_plant = 0	//Lemon is a tree
 
 /obj/item/seeds/orangeseed
 	seed_type = "orange"
+	soil_plant = 0	//Orange is a tree
 
 /obj/item/seeds/poisonberryseed
 	seed_type = "poisonberries"
@@ -259,6 +266,7 @@ var/global/list/plant_seed_sprites = list()
 
 /obj/item/seeds/cherryseed
 	seed_type = "cherry"
+	soil_plant = 0	//cherry is a tree
 
 /obj/item/seeds/tobaccoseed
 	seed_type = "tobacco"

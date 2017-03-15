@@ -15,8 +15,12 @@
 	var/locked = 0
 	var/original_dir = ""
 	var/animating = 0
+	var/ID_TAG
 	anchored = 1
 	density = 0
+
+
+
 
 /obj/structure/saloon_door/New(location)
 	..()
@@ -25,6 +29,10 @@
 	else
 		original_dir = "left_right"
 
+/obj/structure/saloon_door/prelocked/farm
+	ID_TAG = "FARMHOUSE"
+/obj/structure/saloon_door/prelocked/inn
+	ID_TAG = "INN"
 
 /obj/structure/saloon_door/prelocked/New()
 	..()
@@ -37,6 +45,11 @@
 
 /obj/structure/saloon_door/attackby(obj/item/W, mob/user as mob)
 	//Here we add chains or something like that, to lock the door
+	if(istype(W, /obj/item/weapon/locking_key))
+		var/obj/item/weapon/locking_key/KEY = W
+		if(ID_TAG == KEY.stored_tag)
+			SwitchLocked()
+			return
 
 /obj/structure/saloon_door/Destroy()
 	density = 0
@@ -103,3 +116,5 @@
 
 /obj/structure/saloon_door/CanAtmosPass()
 	return !density
+
+

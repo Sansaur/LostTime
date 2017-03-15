@@ -19,7 +19,9 @@
 
 /obj/structure/flora/tree/New()
 	log_number = pick(1,2,3,4)
-	desc = "It's a tree, this tree yields <b>[log_type]</b> wood"
+	var/obj/item/weapon/log/NGH = new log_type (src)
+	desc = "It's a tree, this tree yields <b>[NGH]</b> wood"
+	qdel(NGH)
 	..()
 
 /obj/structure/flora/tree/attackby(obj/item/weapon/O, mob/living/user, params)
@@ -42,6 +44,10 @@
 	playsound(loc,'sound/effects/treefall.ogg',90,1)
 	animate_spin(src,"L",45,-1)
 	sleep(15)
+	qdel(src)
+
+/obj/structure/flora/tree/proc/OldTree()
+	new /obj/structure/flora/tree/dead (loc)
 	qdel(src)
 
 

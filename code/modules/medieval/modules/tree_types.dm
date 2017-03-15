@@ -16,9 +16,15 @@
 	..()
 	icon_state = "pine_c"
 
+//	DEAD TREE
+
 /obj/structure/flora/tree/dead
 	icon = 'icons/obj/flora/deadtrees.dmi'
 	icon_state = "tree_1"
+	tree_life = 10
+	log_number = 1
+
+/obj/structure/flora/tree/dead
 
 /obj/structure/flora/tree/dead/New()
 	..()

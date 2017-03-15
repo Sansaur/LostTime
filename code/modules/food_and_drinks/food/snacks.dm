@@ -26,11 +26,23 @@
 			user.unEquip(src)	//so icons update :[
 			Post_Consume(M)
 			if(trash)
+				if(ispath(trash, /obj/item/seeds))
+					var/obj/item/seeds/TrashItem = new trash(user)
+					if(prob(TrashItem.chance_to_trash))	//There's only a chance that a seed will drop, defined in seed_packets.dm
+						TrashItem = new trash(user)
+						user.put_in_hands(TrashItem)
+
+
+					qdel(src)
+					return
+
 				if(ispath(trash,/obj/item))
 					var/obj/item/TrashItem = new trash(user)
 					user.put_in_hands(TrashItem)
 				else if(istype(trash,/obj/item))
 					user.put_in_hands(trash)
+
+
 			qdel(src)
 	return
 

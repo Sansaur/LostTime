@@ -598,6 +598,10 @@
 		if(!seed)
 
 			var/obj/item/seeds/S = O
+			if(!S.soil_plant)	//If it's not to be planted on soil
+				to_chat(user, "This seed cannot be planted on soil!.")
+				return
+
 			user.drop_item(O)
 
 			if(!S.seed)
