@@ -45,6 +45,7 @@ STAIRS TO GO INTO AND OUT THE MINE
 /obj/structure/stairs/to_the_mine/New()
 	new /obj/effect/step_trigger/teleport_fancy/mine_tp/from_village_to_mine (src.loc)
 	..()
+
 /obj/structure/stairs/to_the_village
 	name = "stairs"
 	desc = "these ones go towards the village"

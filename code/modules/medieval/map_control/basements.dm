@@ -7,6 +7,7 @@
 	var/locz = 5
 
 /obj/effect/step_trigger/teleport_fancy/medieval_basement/Trigger(mob/M as mob)
+	sleep(5)
 	var/dest = locate(locx, locy, locz)
 	M.loc = dest //Let's test this!!
 	return 1
@@ -32,10 +33,22 @@
 	locy = 184
 	locz = 1
 
+/obj/effect/step_trigger/teleport_fancy/medieval_basement/to_inn_second
+	locx = 89
+	locy = 117
+	locz = 4
+
+/obj/effect/step_trigger/teleport_fancy/medieval_basement/from_inn_second
+	locx = 96
+	locy = 125
+	locz = 1
+
 /obj/effect/step_trigger/teleport_fancy/medieval_basement/to_dungeon
 	locx = 65
 	locy = 148
 	locz = 4
+
+
 
 	//This is useful for every basement tp
 /obj/effect/step_trigger/teleport_fancy/medieval_basement/Trigger(mob/M as mob)
@@ -120,3 +133,77 @@
 	locx = 109
 	locy = 126
 	locz = 1
+
+
+
+/obj/structure/stairs/basement
+	name = "stairs"
+	desc = "take them, see where they take you"
+	icon = 'icons/obj/medieval/village.dmi'
+	icon_state = "stairs_down"
+	var/MYTP
+
+/obj/structure/stairs/basement/down
+	icon_state = "stairs_down"
+
+/obj/structure/stairs/basement/up
+	icon_state = "stairs_down"
+
+/obj/structure/stairs/basement/Destroy()
+	return //Indestructible
+
+/obj/structure/stairs/basement/New()
+	if(MYTP)
+		new MYTP (src.loc)
+	..()
+
+/obj/structure/stairs/basement/down/from_mayor
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/from_mayor
+
+/obj/structure/stairs/basement/down/to_exotic_basement
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/to_exotic_basement
+
+/obj/structure/stairs/basement/down/to_shop_basement
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/to_shop_basement
+
+/obj/structure/stairs/basement/down/from_observatory
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/from_observatory
+
+/obj/structure/stairs/basement/down/from_bishop
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/from_bishop
+
+/obj/structure/stairs/basement/down/to_dungeon
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/to_dungeon
+
+/obj/structure/stairs/basement/down/from_inn_second
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/from_inn_second
+
+/obj/structure/stairs/basement/down/from_heir_room
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/from_heir_room
+
+/obj/structure/stairs/basement/down/from_king_room
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/from_king_room
+
+
+// up
+
+
+
+/obj/structure/stairs/basement/up/to_mayor
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/to_mayor
+/obj/structure/stairs/basement/up/from_exotic_basement
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/from_exotic_basement
+/obj/structure/stairs/basement/up/from_shop_basement
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/from_shop_basement
+/obj/structure/stairs/basement/up/to_observatory
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/to_observatory
+/obj/structure/stairs/basement/up/to_bishop
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/to_bishop
+/obj/structure/stairs/basement/up/from_dungeon
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/from_dungeon
+/obj/structure/stairs/basement/up/to_inn_second
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/to_inn_second
+/obj/structure/stairs/basement/up/to_heir_room
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/to_heir_room
+/obj/structure/stairs/basement/up/to_king_room
+	MYTP = /obj/effect/step_trigger/teleport_fancy/medieval_basement/to_king_room

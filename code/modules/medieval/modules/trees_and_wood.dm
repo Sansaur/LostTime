@@ -15,10 +15,12 @@
 	var/log_number = 2
 	var/tree_life = 300
 	var/gettingCut = 0
+	var/leaves_harvest = 0
 	var/log_type = /obj/item/weapon/log
 
 /obj/structure/flora/tree/New()
 	log_number = pick(1,2,3,4)
+	leaves_harvest = rand(10, 40)
 	var/obj/item/weapon/log/NGH = new log_type (src)
 	desc = "It's a tree, this tree yields <b>[NGH]</b> wood"
 	qdel(NGH)
@@ -30,6 +32,14 @@
 		user.do_attack_animation(src)
 		playsound(loc,'sound/effects/choppingtree.ogg',90,1)
 		damageTree(O.force)
+		return
+	if(istype(O,/obj/item/weapon/scissors))
+		user.do_attack_animation(src)
+		playsound(loc,'sound/goonstation/misc/Scissor.ogg',90,1)
+		if(leaves_harvest > 0)
+			new /obj/item/stack/sheet/leaves (user.loc)
+			leaves_harvest--
+			return
 
 /obj/structure/flora/tree/proc/damageTree(var/damage)
 	tree_life -= damage
@@ -142,3 +152,17 @@
 		new /obj/structure/bonfire (loc.loc)
 	else
 		to_chat(user, "<div class=warning> There's not enough kindling to make a bonfire! </div>")
+
+/obj/item/stack/sheet/leaves
+	name = "leaves"
+	desc = "Some leaves, looks flammable"
+	icon = 'icons/obj/items.dmi'
+	icon_state = "leaf"
+	w_class = 1
+	burn_state = FLAMMABLE
+	max_amount = 50
+
+/obj/item/stack/sheet/leaves/New()
+	..()
+	pixel_x = rand(-12, 12)
+	pixel_y = rand(0, 12)

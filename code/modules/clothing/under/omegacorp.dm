@@ -1,6 +1,3 @@
-
-
-
 /obj/item/clothing/under/omegacorp/omegacorp_leader
 	name = "Omegacorp uniform - Leader"
 	desc = "The uniform belonging to the Operation Leader, it'd look cool if it didn't have a giant Omega symbol on it's back"

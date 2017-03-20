@@ -12,7 +12,7 @@
 
 /obj/item/woodworks/THISISTEST/attack_self(mob/user as mob)
 	var/mob/living/ha = user
-	to_chat(ha, "Omg you are cursed now")
+	to_chat(ha, "NOW WE'RE EVEN TESTING MORE, THIS HAS BEEN ALTERED IN SUBLIME TEXT")
 	var/datum/status_effect/random_slowdown/NewSlodwon = new()
 	ha.addStatusEffect(NewSlodwon)
 
@@ -40,6 +40,7 @@
 		if(href_list["choice"] == "claim")
 			visible_message("ASDADASDASDASSS")
 			PRESSED = !PRESSED
+	
 	updateUsrDialog()
 	updateDialog()
 	return

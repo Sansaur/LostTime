@@ -8,9 +8,12 @@
 	icon = 'icons/obj/flora/ausflora.dmi'
 	icon_state = "pointybush_4"
 	var/is_sapling = 1
+	var/stored_fruit
+	
 /obj/structure/flora/tree/fruit_tree/New()
 	..()
 	sleep(20)
+	stored_fruit = rand(2,6)
 	Grow()
 
 /obj/structure/flora/tree/fruit_tree/proc/Grow()
@@ -31,7 +34,11 @@
 
 /obj/structure/flora/tree/fruit_tree/attack_hand(mob/user as mob)
 	if(growing >= 100)
-		new RESULT_FRUIT (user.loc)
+		if(stored_fruit)
+			new RESULT_FRUIT (user.loc)
+			stored_fruit--
+		else
+			to_chat(user, "<div class=warning> There's no more fruit </div>")
 
 
 /obj/structure/flora/tree/fruit_tree/apple

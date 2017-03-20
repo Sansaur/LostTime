@@ -1,7 +1,7 @@
 /datum/personal_crafting
 	var/busy
 	var/viewing_category = 1 //typical powergamer starting on the Weapons tab
-	var/list/categories = list(CAT_WEAPON,CAT_AMMO,CAT_ROBOT,CAT_FOOD,CAT_MISC,CAT_PRIMAL)
+	var/list/categories = list(CAT_WEAPON,CAT_AMMO,CAT_ROBOT,CAT_FOOD,CAT_MISC,CAT_PRIMAL,CAT_CLOTHING)
 
 
 
@@ -98,6 +98,8 @@
 				if(!check_tools(user, R, contents))
 					return ", missing tool."
 				var/list/parts = del_reqs(R, user)
+				if(R.category == CAT_CLOTHING)
+					playsound(src, 'sound/goonstation/misc/Scissor.ogg', 75, 0)	//May be removed and unnecesary - Sansaur
 				var/atom/movable/I = new R.result (get_turf(user.loc))
 				I.CheckParts(parts, R)
 				if(send_feedback)

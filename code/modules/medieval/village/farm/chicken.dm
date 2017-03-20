@@ -170,7 +170,7 @@ var/global/chicken_count = 0
 		var/obj/item/nest/Findme = locate() in loc.contents
 		if(Findme)
 			amount_grown += rand(1,2)
-			if(amount_grown >= 100)
+			if(amount_grown >= 400)	//Slowing this down a lot
 				visible_message("[src] hatches with a quiet cracking sound.")
 				new /mob/living/simple_animal/chick(get_turf(src))
 				processing_objects.Remove(src)

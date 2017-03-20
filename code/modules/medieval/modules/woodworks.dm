@@ -263,7 +263,7 @@ PART BY PARY SYSTEM
 /obj/item/woodworks/two_by_four
 	icon_state = "2x4"
 	name = "2x4"
-	desc = "It's not actually the same as a 4x2"
+	desc = "8"
 
 /obj/item/woodworks/royal_wood_cover
 	icon_state = "royal_wood_cover"
@@ -287,9 +287,11 @@ PART BY PARY SYSTEM
 	density = 1
 	anchored = 1
 	var/recipe_type = /datum/recipe/woodworks
-
+	var/working = 0
 /obj/structure/woodworks_station/New()
-	if(dir == SOUTH)
+	..()
+	//NO - Sansaur
+	/*if(dir == SOUTH)
 		var/dest = locate(x+1,y,z)
 		var/obj/structure/woodworks_station_decoration/NEWDECOR = new /obj/structure/woodworks_station_decoration (dest)
 		NEWDECOR.dir = dir
@@ -304,15 +306,33 @@ PART BY PARY SYSTEM
 	if(dir == WEST)
 		var/dest = locate(x,y-1,z)
 		var/obj/structure/woodworks_station_decoration/NEWDECOR = new /obj/structure/woodworks_station_decoration (dest)
-		NEWDECOR.dir = dir
+		NEWDECOR.dir = dir*/
+
+/obj/structure/woodworks_station/proc/CalculateTime()
+	var/time = 200
+	for(var/direction in cardinal)
+		var/turf/T = get_step(src,direction)
+		for(var/obj/structure/woodworks_station_decoration/M in T)
+			if(M)
+				time -= 50
+
+	return time
 
 /obj/structure/woodworks_station/attack_hand(mob/user as mob)
-	if(tryRecipes())
-		to_chat(user, "You've crafted something!")
+	if(working)
 		return
-	else
-		to_chat(user, "<div class=warning> You don't know what you can do with these! </div>")
-		return
+	to_chat(user, "You begin testing what you can craft with this...")
+	working = 1
+	var/time = CalculateTime()
+	if(do_after(user, time, target=src))
+		if(tryRecipes())
+			to_chat(user, "You've crafted something!")
+			working = 0
+			return
+		else
+			to_chat(user, "<div class=warning> You don't know what you can do with these! </div>")
+			working = 0
+			return
 
 /obj/structure/woodworks_station/attackby(obj/item/W, mob/user as mob)
 	if(!user.drop_item())
@@ -363,3 +383,12 @@ PART BY PARY SYSTEM
 	icon_state = "woodworks_station_decoration"
 	density = 1
 	anchored = 1
+
+/obj/structure/woodworks_station_decoration/New()
+	..()
+	for(var/direction in cardinal)
+		var/turf/T = get_step(src,direction)
+		for(var/obj/structure/woodworks_station/M in T)
+			if(M)
+				dir = direction
+				return

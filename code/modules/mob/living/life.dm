@@ -87,7 +87,7 @@
 	return
 
 /mob/living/proc/handle_mana()
-	mana++
+	adjustMana(1)
 	if(mana < 0)
 		mana = 0
 	if(mana > 100)

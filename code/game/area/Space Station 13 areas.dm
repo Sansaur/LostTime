@@ -265,6 +265,11 @@ var/list/ghostteleportlocs = list()
 	name = "\improper Mayor's room"
 	icon_state = "basement_k"
 
+/area/medieval/basement/inn_second_floor
+	name = "\improper Inn second floor"
+	icon_state = "basement_k"
+
+
 
 	// SEA AREAS
 /area/medieval/sea

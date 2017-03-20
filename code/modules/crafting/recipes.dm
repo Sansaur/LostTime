@@ -310,3 +310,4 @@
 	reqs = list(/obj/item/stack/sheet/mineral/bananium = 5,
 				/obj/item/weapon/bikehorn)
 	category = CAT_MISC
+

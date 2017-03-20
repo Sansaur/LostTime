@@ -1,3 +1,7 @@
+/mob/living/AdjustDrunk(amount)
+	..()
+	if(amount < 0)
+		adjustMana(1)	//Increases mana when removing drunkness - Sansaur
 
 /mob/living/Destroy()
 	..()

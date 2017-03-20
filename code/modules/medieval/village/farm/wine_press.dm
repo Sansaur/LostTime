@@ -39,6 +39,7 @@
 			time_to_trample -= 20
 
 		if(do_after(TADA, time_to_trample, target=src))
+			playsound(src, 'sound/items/bubblewrap.ogg', 70,0)	//Change the sound in the future
 			for(var/obj/item/weapon/reagent_containers/food/snacks/grown/GROWNTOADD in src)
 				if(GROWNTOADD.seed.kitchen_tag == "grapes")
 					reagents.add_reagent("grapejuice",10)

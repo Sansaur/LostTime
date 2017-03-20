@@ -20,6 +20,7 @@
 		L.vis_update = 0
 		L.force_update = 0
 		L.needs_update = 0
+		
 
 		SCHECK
 
