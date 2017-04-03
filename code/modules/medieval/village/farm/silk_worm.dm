@@ -40,7 +40,8 @@
 
 
 /obj/item/silk_worm_dummy/dropped()		//THIS WILL GIVE BUGS
-	var/mob/living/simple_animal/silk_worm/NN = new /mob/living/simple_animal/silk_worm (loc)
+	// var/mob/living/simple_animal/silk_worm/NN = 
+	new /mob/living/simple_animal/silk_worm (loc)
 	qdel(src)
 	return
 

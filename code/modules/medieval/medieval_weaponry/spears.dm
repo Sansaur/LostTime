@@ -11,7 +11,7 @@
 	flags = CONDUCT
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	slot_flags = SLOT_BELT
-	force = 15
+	force = 18
 	throwforce = 10
 	sharp = 1
 	edge = 0
@@ -19,6 +19,7 @@
 	attack_verb = list("attacked", "slashed", "stabbed", "sliced", "torn", "ripped", "diced", "cut")
 	block_chance = 0
 	special_cooldown = 60
+	durability_loss = 3
 
 /obj/item/weapon/medieval/spear/dropped()
 	if(durability <= 0)
@@ -55,9 +56,24 @@
 			return
 		else
 			visible_message("<span class='danger'>[user] Pushes [M] backwards!.</span>")
-			to_chat(M, "<span class=userdanger>[user] has pushed you backwards!</span>")
+			//to_chat(M, "<span class=userdanger>[user] has pushed you backwards!</span>")
 			..()
 			M.Move(get_step(M, user.dir))
 			return
 	else
 		..()
+
+/////// TYPES
+/// These need new icons, stats, color, etc.
+
+/obj/item/weapon/medieval/spear/silver
+	name = "Silver spear"
+	color = "#C0C0C0"
+
+/obj/item/weapon/medieval/spear/gold
+	name = "Gold spear"
+	color = "#FFFACD"
+
+/obj/item/weapon/medieval/spear/mythril
+	name = "Mythril spear"
+	color = "#00FFFF"

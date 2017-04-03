@@ -59,7 +59,6 @@
 	randomizeMoney()
 
 
-
 /mob/living/simple_animal/kobold_smuggler/attack_hand(mob/living/carbon/human/M as mob)
 
 	switch(M.a_intent)
@@ -157,6 +156,10 @@
 	playsound(loc,'sound/weapons/effects/searwall.ogg',100,1)
 	for(var/mob/living/carbon/human/M in view(src))
 		M.flash_eyes(affect_silicon = 0)
+
+	var/datum/effect/system/harmless_smoke_spread/smoke = new /datum/effect/system/harmless_smoke_spread()
+	smoke.set_up(1, 0, loc) //no idea what the 0 is
+	smoke.start()
 
 	src.invisibility = 101
 	var/gox = initial(x)

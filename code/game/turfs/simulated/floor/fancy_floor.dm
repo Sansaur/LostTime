@@ -197,6 +197,8 @@
 				HIDDENCOFFIN = COFFIN
 			return
 
+	/*
+	Removing this because of construction || Nope, putting it back - Sansaur*/
 	if(istype(C, /obj/item/stack/tile))
 		var/obj/item/stack/tile/TILE = C
 		ChangeTurf(TILE.turf_type)

@@ -2,7 +2,7 @@
 	name = "wooden shelves"
 	desc = "woody."
 	icon = 'icons/obj/objects.dmi'
-	icon_state = "metal_shelf"
+	icon_state = "wooden_shelves"
 	density = 1
 	anchored = 1.0
 	throwpass = 1	//You can throw objects over this, despite it's density.
@@ -13,7 +13,7 @@
 	name = "wooden shelf parts"
 	desc = "Parts of a shelf."
 	icon = 'icons/obj/items.dmi'
-	icon_state = "shelf_parts"
+	icon_state = "wooden_shelf_parts"
 	flags = CONDUCT
 	materials = list(MAT_METAL=2000)
 

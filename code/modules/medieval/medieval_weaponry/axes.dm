@@ -82,3 +82,19 @@
 	visible_message("<span class='danger'>[src] hits [C] with massive force!</span>")
 	to_chat(C, "<span class='userdanger'>[src] ensnares you!</span>")
 	//..()
+
+
+	/////// TYPES
+/// These need new icons, stats, color, etc.
+
+/obj/item/weapon/medieval/axe/silver
+	name = "Silver axe"
+	color = "#C0C0C0"
+
+/obj/item/weapon/medieval/axe/gold
+	name = "Gold axe"
+	color = "#FFFACD"
+
+/obj/item/weapon/medieval/axe/mythril
+	name = "Mythril axe"
+	color = "#00FFFF"

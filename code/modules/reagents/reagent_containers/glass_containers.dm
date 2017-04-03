@@ -70,6 +70,8 @@
 		if(istype(target, type))
 			return
 
+
+
 	if(ismob(target) && target.reagents && reagents.total_volume)
 		to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>")
 
@@ -128,7 +130,15 @@
 	else if(istype(target, /obj/structure/heat_controller)) //Allows adding ice to the heat controller - Sansaur
 		return
 
+	else if(istype(target, /turf/simulated/floor/beach/water))
+		return
+
+	else if(istype(target, /obj/structure/cement_mixer))
+		return
+
 	else if(reagents.total_volume)
+		if(istype(target, /obj/structure/cement_mixer)) // Yet another exception - Sansaur
+			return
 		to_chat(user, "<span class='notice'>You splash the solution onto [target].</span>")
 		reagents.reaction(target, TOUCH)
 		spawn(5) reagents.clear_reagents()

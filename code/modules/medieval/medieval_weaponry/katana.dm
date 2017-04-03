@@ -11,7 +11,7 @@
 	flags = CONDUCT
 	hitsound = 'sound/weapons/bladeslice.ogg'
 	slot_flags = SLOT_BELT
-	force = 35
+	force = 30
 	throwforce = 1
 	sharp = 1
 	edge = 1

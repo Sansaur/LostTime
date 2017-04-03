@@ -74,7 +74,8 @@
 
 /obj/structure/saloon_door/Crossed(atom/movable/AM as mob|obj)
 	spawn( 0 )
-		if(ismob(AM))
+		if(isliving(AM))
+
 			var/mob/living/C = AM
 			var/stored_dir = dir
 			var/direccion = C.dir

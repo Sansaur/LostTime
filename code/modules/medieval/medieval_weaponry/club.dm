@@ -11,7 +11,7 @@
 	flags = CONDUCT
 	hitsound = 'sound/weapons/genhit3.ogg'
 	slot_flags = SLOT_BELT
-	force = 3
+	force = 6
 	throwforce = 1
 	sharp = 0
 	edge = 0
@@ -19,6 +19,7 @@
 	attack_verb = list("attacked", "smashed", "beated")
 	block_chance = 0
 	special_cooldown = 60
+	durability_loss = 2
 
 /obj/item/weapon/medieval/club/dropped()
 	if(durability <= 0)
@@ -56,8 +57,6 @@
 				var/mob/living/carbon/human/HUMAN = M
 				if(prob(25))
 					HUMAN.confused += 15
-					HUMAN.Stun(2)
-					HUMAN.Weaken(2)
 			return
 	else
 		..()

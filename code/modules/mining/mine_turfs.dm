@@ -194,7 +194,7 @@ var/global/list/rockTurfEdgeCache = list(
 
 /turf/simulated/mineral/mythril
 	name = "mythril deposit"
-	mineralType = /obj/item/stack/sheet/mineral/mythril
+	mineralType = /obj/item/weapon/ore/mythril
 	mineralName = "Mythril"
 	spreadChance = 5
 	spread = 1

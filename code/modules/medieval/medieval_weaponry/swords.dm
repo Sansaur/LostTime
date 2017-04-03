@@ -100,6 +100,8 @@
 	block_chance = 15
 	special_cooldown = 60
 
+
+
 /obj/item/weapon/medieval/sword/dropped()
 	update_icon()
 	..()
@@ -132,7 +134,7 @@
 		else
 			visible_message("<span class='danger'>[user] is attempting to perform a slicing strike on [M]!.</span>")
 			to_chat(M, "<span class=userdanger>[user] is attempting to slicing strike you!!</span>")
-			if(do_after(user, 13, target = M))
+			if(do_after(user, 11, target = M))
 				//var/mob/living/carbon/human/H = M
 				visible_message("<span class='danger'>[user] has sliced [M]!.</span>")
 				..()
@@ -141,3 +143,19 @@
 				visible_message("[user] misses his slicing strike!")
 	else
 		..()
+
+
+/////// TYPES
+/// These need new icons, stats, color, etc.
+
+/obj/item/weapon/medieval/sword/silver
+	name = "Silver sword"
+	color = "#C0C0C0"
+
+/obj/item/weapon/medieval/sword/gold
+	name = "Gold sword"
+	color = "#FFFACD"
+
+/obj/item/weapon/medieval/sword/mythril
+	name = "Mythril sword"
+	color = "#00FFFF"

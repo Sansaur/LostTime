@@ -91,29 +91,8 @@
 	else
 		..()
 
-/obj/item/weapon/ore/silver
-	name = "silver ore"
-	icon_state = "Silver ore"
-	origin_tech = "materials=3"
-	points = 16
-	refined_type = /obj/item/stack/sheet/mineral/silver
-	materials = list(MAT_SILVER=MINERAL_MATERIAL_AMOUNT)
 
-/obj/item/weapon/ore/gold
-	name = "gold ore"
-	icon_state = "Gold ore"
-	origin_tech = "materials=4"
-	points = 18
-	refined_type = /obj/item/stack/sheet/mineral/gold
-	materials = list(MAT_GOLD=MINERAL_MATERIAL_AMOUNT)
 
-/obj/item/weapon/ore/diamond
-	name = "diamond ore"
-	icon_state = "Diamond ore"
-	origin_tech = "materials=6"
-	points = 50
-	refined_type = /obj/item/stack/sheet/mineral/diamond
-	materials = list(MAT_DIAMOND=MINERAL_MATERIAL_AMOUNT)
 
 /obj/item/weapon/ore/bananium
 	name = "bananium ore"

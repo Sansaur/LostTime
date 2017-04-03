@@ -6,7 +6,7 @@ Stones are made into cubes and then they are worked and cut
 The cubes are fucking gigantic and they must be carried in two hands
 **/
 
-var/list/possible_stone_uses = list("stone wall",
+var/list/possible_stone_uses = list("stone bricks",
 									"big brick stone floor",
 									"brick stone floor",
 									"stone stairs floor",
@@ -58,8 +58,10 @@ var/list/possible_stone_uses = list("stone wall",
 
 /obj/item/weapon/twohanded/required/stone_block/proc/turnIntoFutureUse()
 	switch(future_use)
-		if("stone wall")
-			//NOTHING FOR NOW
+		if("stone bricks")
+			var/obj/item/stack/sheet/stone_bricks/M = new /obj/item/stack/sheet/stone_bricks (src.loc)
+			M.amount = rand(3,7)
+
 		if("big brick stone floor")
 			new /obj/item/stack/tile/stone/big_brick (loc)
 			new /obj/item/stack/tile/stone/big_brick (loc)
@@ -136,8 +138,6 @@ STONE COMPRESSOR
 	playsound(loc,'sound/effects/shovel_dig.ogg',100,1)
 	flick("stone_compressor_working", src)
 	sleep(8)
-	playsound(loc,'sound/effects/shovel_dig.ogg',100,1)
-	sleep(8)
 	playsound(loc,'sound/effects/woodhit.ogg',100,1)
 	update_icon()
 	new /obj/item/weapon/twohanded/required/stone_block (loc)
@@ -168,6 +168,10 @@ MASONRY EASEL
 	density = 0
 	layer = OBJ_LAYER +0.1
 
+/**
+MASONRY TOOLS
+**/
+
 /obj/item/weapon/stone_ruler
 	name = "masonry ruler"
 	desc = "Let's make those stones useful."
@@ -181,3 +185,14 @@ MASONRY EASEL
 	icon = 'icons/obj/medieval/village.dmi'
 	icon_state = "hammer_and_chisel"
 	force = 8
+
+/**
+MASONRY CONSTRUCTION
+**/
+
+/obj/item/stack/sheet/stone_bricks
+	name = "stone bricks"
+	desc = "hardy."
+	singular_name = "stone brick"
+	icon_state = "sheet-stonebricks"
+	origin_tech = "materials=2"
