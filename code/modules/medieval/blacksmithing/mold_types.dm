@@ -30,3 +30,47 @@
 					"silver" = /obj/item/weapon/medieval_weapon_part/axe_head/silver,
 					"mythril" = /obj/item/weapon/medieval_weapon_part/axe_head/mythril
 					)
+
+/obj/item/weapon/mold/chestplate
+	name = "chestplate mold"
+	desc = "It's time to make a chestplate!"
+	icon_state = "chestplate_mold"
+	yield_list = list(
+					"metal" = /obj/item/weapon/medieval_weapon_part/chestplate,
+					"gold" = /obj/item/weapon/medieval_weapon_part/chestplate/gold,
+					"silver" = /obj/item/weapon/medieval_weapon_part/chestplate/silver,
+					"mythril" = /obj/item/weapon/medieval_weapon_part/chestplate/mythril
+					)
+
+/obj/item/weapon/mold/leg_guard
+	name = "leg guard mold"
+	desc = "It's time to make some leg guards!"
+	icon_state = "leg_guard_mold"
+	yield_list = list(
+					"metal" = /obj/item/weapon/medieval_weapon_part/leg_guard,
+					"gold" = /obj/item/weapon/medieval_weapon_part/leg_guard/gold,
+					"silver" = /obj/item/weapon/medieval_weapon_part/leg_guard/silver,
+					"mythril" = /obj/item/weapon/medieval_weapon_part/leg_guard/mythril
+					)
+
+/obj/item/weapon/mold/shoulder_pad
+	name = "shoulder pad mold"
+	desc = "It's time to make some shoulder pads!"
+	icon_state = "shoulder_pad_mold"
+	yield_list = list(
+					"metal" = /obj/item/weapon/medieval_weapon_part/shoulder_pad,
+					"gold" = /obj/item/weapon/medieval_weapon_part/shoulder_pad/gold,
+					"silver" = /obj/item/weapon/medieval_weapon_part/shoulder_pad/silver,
+					"mythril" = /obj/item/weapon/medieval_weapon_part/shoulder_pad/mythril
+					)
+
+/obj/item/weapon/mold/hand_guard_glove
+	name = "hand guard glove mold"
+	desc = "It's time to make some gloves!"
+	icon_state = "hand_guard_glove_mold"
+	yield_list = list(
+					"metal" = /obj/item/weapon/medieval_weapon_part/hand_guard_glove,
+					"gold" = /obj/item/weapon/medieval_weapon_part/hand_guard_glove/gold,
+					"silver" = /obj/item/weapon/medieval_weapon_part/hand_guard_glove/silver,
+					"mythril" = /obj/item/weapon/medieval_weapon_part/hand_guard_glove/mythril
+					)

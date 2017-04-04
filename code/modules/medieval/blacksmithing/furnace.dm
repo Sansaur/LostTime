@@ -34,8 +34,12 @@
 
 /obj/structure/blacksmith_furnace/attackby(obj/item/W, mob/user as mob)
 	if(istype(W, /obj/item/weapon/mold))
+		var/obj/item/weapon/mold/COMEON = W
 		if(MYMOLD)
 			to_chat(user, "<div class=warning> There's already a [MYMOLD] loaded! </div>")
+			return
+		if(COMEON.material_loaded)
+			to_chat(user, "<div class=warning> Pull out the [COMEON.material_loaded] first! </div>")
 			return
 		if(istype(W, /obj/item/weapon/mold/ingot))
 			to_chat(user, "<div class=warning> That doesn't go there </div>")

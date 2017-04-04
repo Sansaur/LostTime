@@ -22,7 +22,7 @@
 	desc = "the hammer used by the blacksmith to do his smithy smithing."
 	icon = 'icons/obj/blacksmithing.dmi'
 	icon_state = "blacksmith_hammer"
-	force = 6
+	force = 12
 	throwforce = 6
 	w_class = 2
 	attack_verb = list("punctured", "pinched")

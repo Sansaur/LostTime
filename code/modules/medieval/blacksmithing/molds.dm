@@ -11,7 +11,7 @@
 	var/obj/item/stack/sheet/mineral/LOADED_INGOT
 	//Possibilities, it's an associative list.
 	var/list/yield_list = list()
-	var/material_loaded = ""
+	var/material_loaded = null
 
 /obj/item/weapon/mold/attackby(obj/item/W, mob/user as mob)
 	if(istype(W, /obj/item/weapon/pincers))

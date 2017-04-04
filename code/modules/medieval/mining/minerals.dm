@@ -101,6 +101,7 @@ uses:
 		if(!isturf(loc))
 			to_chat(user, "<div class=warning> You cannot shape the [src] here!</div>")
 			return
+		// Enhance this later with a "what's the number of metal sheets you want to make?"
 
 		to_chat(user, "<div class=warning> You shape the [src]!</div>")
 		var/obj/item/stack/sheet/metal/METAL = new /obj/item/stack/sheet/metal (loc)
